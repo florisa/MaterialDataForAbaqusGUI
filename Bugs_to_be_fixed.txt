@@ -1,0 +1,13 @@
+OBS:
+
+sigma = (A+B*0.1^n)*(1+C*log(0.003/eps_0))*(1-((20-20)/(1500-20))^m);
+
+
+sigma = (A+B*epsilon^n)*(1+C*log(epsilon_dot_linear/eps_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+
+epsilon (constant) = 0.1
+epsilon_dot_linear = strain rate (0.003)
+eps_0 = epsilon dot zero = 0.002
+temperature_array = 20 (temperature reference)
+T_0 = initial temperature
+T_m = Melting Temp = 1500

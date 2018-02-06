@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 22-Dec-2016 10:14:14
+% Last Modified by GUIDE v2.5 06-Feb-2018 14:57:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -85,20 +85,20 @@ varargout{1} = handles.output;
 %% ======================= BEGIN OF PANEL MATERIAL SELECTION ==============
 %  ========================================================================
 
-%%                       material_grade_checkbox
-% --- Executes on button press in material_grade_checkbox.
-function material_grade_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to material_grade_checkbox (see GCBO)
+%%                       materials_checkbox
+% --- Executes on button press in materials_checkbox.
+function materials_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to materials_checkbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of material_grade_checkbox
+% Hint: get(hObject,'Value') returns toggle state of materials_checkbox
 save_material_selection = 1;
 assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 1);
+set(handles.materials_checkbox, 'Value', 1);
 
 %%                        Material_Grade_popup
 % --- Executes on selection change in material_grade_popup.
@@ -142,7 +142,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.pure_ferrite_checkbox, 'Value', 1);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.materials_checkbox, 'Value', 0);
 
 %%                    S_text_box
 function s_text_Callback(hObject, eventdata, handles)
@@ -188,7 +188,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 1);
-set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.materials_checkbox, 'Value', 0);
 
 %%                      Dp_text_box
 function dp_text_Callback(hObject, eventdata, handles)
@@ -251,6 +251,132 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%%               user_defined_JC
+
+% --- Executes on button press in user_defined_jc_checkbox.
+function user_defined_jc_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_jc_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of user_defined_jc_checkbox
+
+
+
+function A_user_defined_text_Callback(hObject, eventdata, handles)
+% hObject    handle to A_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of A_user_defined_text as text
+%        str2double(get(hObject,'String')) returns contents of A_user_defined_text as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function A_user_defined_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to A_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function B_user_defined_text_Callback(hObject, eventdata, handles)
+% hObject    handle to B_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of B_user_defined_text as text
+%        str2double(get(hObject,'String')) returns contents of B_user_defined_text as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function B_user_defined_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to B_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function C_user_defined_text_Callback(hObject, eventdata, handles)
+% hObject    handle to C_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of C_user_defined_text as text
+%        str2double(get(hObject,'String')) returns contents of C_user_defined_text as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function C_user_defined_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to C_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function m_user_defined_text_Callback(hObject, eventdata, handles)
+% hObject    handle to m_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of m_user_defined_text as text
+%        str2double(get(hObject,'String')) returns contents of m_user_defined_text as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function m_user_defined_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to m_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function n_user_defined_text_Callback(hObject, eventdata, handles)
+% hObject    handle to n_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of n_user_defined_text as text
+%        str2double(get(hObject,'String')) returns contents of n_user_defined_text as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function n_user_defined_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to n_user_defined_text (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
 %%             save_pure_ferrite_checkbox
 
 function save_pure_ferrite_checkbox(hObject, eventdata, handles)
@@ -271,7 +397,7 @@ else
         assignin('base', 'dp_text', dp_text);
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
-        set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.materials_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -337,7 +463,7 @@ else
         assignin('base', 'df_text', df_text);
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
-        set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.materials_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -413,7 +539,7 @@ df_text = 0;
 assignin('base', 'df_text', df_text);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.materials_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 
 % Msg Box for the user
@@ -538,7 +664,7 @@ df_text = 0;
 assignin('base', 'df_text', df_text);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.materials_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 material_choice = 1; 
 assignin('base', 'material_choice',material_choice);
@@ -573,12 +699,12 @@ df_text = 0;
 assignin('base', 'df_text', df_text);
 
 % Initial var values for panel temperature
-temperature_quantity = 0; % Quantity of temperature for popup menu
-assignin('base', 'temperature_quantity', temperature_quantity);
-temperature_array = 0; 
-assignin('base', 'temperature_array', temperature_array);
-temperature_text = 0; % Text box initialization
-assignin('base', 'temperature_text', temperature_text);
+melting_temperature = 0; % Text box initialization
+assignin('base', 'melting_temperature', melting_temperature);
+room_temperature = 0; % Text box initialization
+assignin('base', 'room_temperature', room_temperature);
+temperature = 0; % Text box initialization
+assignin('base', 'temperature', temperature);
 
 % Initial var values for epsilon panel
 epsilon_step_text = 0; 
@@ -620,27 +746,88 @@ delete(hObject);
 %  ========================================================================
 
 %%                    Temperature
-function temperature_text_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_text (see GCBO)
+function melting_temperature_Callback(hObject, eventdata, handles)
+% hObject    handle to melting_temperature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of temperature_text as text
-%        str2double(get(hObject,'String')) returns contents of temperature_text as a double
+% Hints: get(hObject,'String') returns contents of melting_temperature as text
+%        str2double(get(hObject,'String')) returns contents of melting_temperature as a double
 
 % Reading the textbox fields
-temperature_text = str2double(get(hObject, 'String'));
-    if (isnan(temperature_text) || temperature_text <= 0)
-        temperature_text = 0;
-        assignin('base', 'temperature_text', temperature_text);
+melting_temperature = str2double(get(hObject, 'String'));
+    if (isnan(melting_temperature) || melting_temperature <= 0)
+        melting_temperature = 0;
+        assignin('base', 'melting_temperature', melting_temperature);
         set(hObject, 'String','');
         errordlg('Please enter the correct data','Error');
     end
-    assignin('base', 'temperature_text', temperature_text);
+    assignin('base', 'melting_temperature', melting_temperature);
 
 % --- Executes during object creation, after setting all properties.
-function temperature_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_text (see GCBO)
+function melting_temperature_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to melting_temperature (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function room_temperature_Callback(hObject, eventdata, handles)
+% hObject    handle to room_temperature (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of room_temperature as text
+%        str2double(get(hObject,'String')) returns contents of room_temperature as a double
+
+% Reading the textbox fields
+room_temperature = str2double(get(hObject, 'String'));
+    if (isnan(room_temperature) || room_temperature <= 0)
+        room_temperature = 0;
+        assignin('base', 'room_temperature', room_temperature);
+        set(hObject, 'String','');
+        errordlg('Please enter the correct data','Error');
+    end
+    assignin('base', 'room_temperature', room_temperature);
+
+% --- Executes during object creation, after setting all properties.
+function room_temperature_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to room_temperature (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function temperature_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of temperature as text
+%        str2double(get(hObject,'String')) returns contents of temperature as a double
+
+% Reading the textbox fields
+temperature = str2double(get(hObject, 'String'));
+    if (isnan(temperature) || temperature <= 0)
+        temperature = 0;
+        assignin('base', 'temperature', temperature);
+        set(hObject, 'String','');
+        errordlg('Please enter the correct data','Error');
+    end
+    assignin('base', 'temperature', temperature);
+
+% --- Executes during object creation, after setting all properties.
+function temperature_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to temperature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -659,17 +846,15 @@ function temperature_clear_button_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of temperature_clear_button
 
 % Refresh all fields
-temperature_text = 0; 
-assignin('base', 'temperature_text', temperature_text);
-
-temperature_array = 0; 
-assignin('base', 'temperature_array', temperature_array);
-
-refresh_popup = {''};
-set(handles.temperature_popup_menu,'String',refresh_popup);
-
-temperature_quantity = 0; 
-assignin('base', 'temperature_quantity', temperature_quantity);
+set(handles.melting_temperature, 'string', '');
+set(handles.room_temperature, 'string', '');
+set(handles.temperature, 'string', '');
+melting_temperature = 0; 
+assignin('base', 'melting_temperature', melting_temperature);
+room_temperature = 0; 
+assignin('base', 'room_temperature', room_temperature);
+temperature = 0; 
+assignin('base', 'temperature', temperature);
 
 save_temperature_panel = 0;
 assignin('base', 'save_temperature_panel', save_temperature_panel);
@@ -680,88 +865,35 @@ function temperature_save_button_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Verify if the temperatures were added
-temperature_quantity = evalin('base', 'temperature_quantity'); 
+% Verify if the values were added
+melting_temperature = evalin('base', 'melting_temperature'); 
+room_temperature = evalin('base', 'room_temperature'); 
+temperature = evalin('base', 'temperature');
 
-if temperature_quantity == 0
-    errordlg('Fullfil the temperature field', 'Error');
+if melting_temperature == 0 || room_temperature == 0 || temperature == 0
+    errordlg('Fullfil all the fields', 'Error');
+    set(handles.epsilon_max_text, 'string', '');
+    set(handles.epsilon_min_text, 'string', '');
+    set(handles.epsilon_step_text, 'string', '');
+    melting_temperature = 0; 
+    assignin('base', 'melting_temperature', melting_temperature);
+    room_temperature = 0; 
+    assignin('base', 'room_temperature', room_temperature);
+    temperature = 0; 
+    assignin('base', 'temperature', temperature);
 else
     msgbox('Clique to close the window','OK')
-    refresh_popup = {''};
-    set(handles.temperature_popup_menu,'String',refresh_popup);   
+    refresh_melting_temperature = '';
+    set(handles.melting_temperature,'String',refresh_melting_temperature);
+    refresh_room_temperature = '';
+    set(handles.room_temperature,'String',refresh_room_temperature);
+    refresh_temperature = '';
+    set(handles.temperature,'String',refresh_temperature);
     % Control if the user saved the data
     save_temperature_panel = 1;
     assignin('base', 'save_temperature_panel', save_temperature_panel);
 end
 
-
-% --- Executes on button press in temperature_ADD_button.
-function temperature_ADD_button_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_ADD_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-temperature_quantity = evalin('base', 'temperature_quantity');  
-temperature_array = evalin('base', 'temperature_array');
-temperature_text = evalin('base', 'temperature_text');
-
-% prevent to add null values to the popupmenu
-if temperature_text == 0 
-    return;
-end
-    
-% Test if the temperature value was already added
-i_temperature = 1;
-while i_temperature <= temperature_quantity
-    
-    if temperature_array(i_temperature,1) == temperature_text 
-        % Warning and interrupt the loop
-        % Variable i is used to recognize the error
-        errordlg('This value is already used', 'Error');
-         % To refresh the temperature textbox
-        temperature_text = '';
-        set(handles.temperature_text,'String',temperature_text)
-        i_temperature = 0;
-        break;
-    end
-    i_temperature = i_temperature + 1;   
-end
-
-% If i ~= 0, add the temperature, else do nothing 
-if i_temperature ~= 0
-    temperature_quantity = temperature_quantity + 1;
-    temperature_array(temperature_quantity,1) = temperature_text;
-    set(handles.temperature_popup_menu,'String',temperature_array);
-    % To refresh the temperature textbox
-    temperature_text = '';
-    set(handles.temperature_text,'String',temperature_text)
-end    
-
-assignin('base', 'temperature_array', temperature_array);
-assignin('base', 'temperature_quantity', temperature_quantity);
-
-
-% --- Executes on selection change in temperature_popup_menu.
-function temperature_popup_menu_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns temperature_popup_menu contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from temperature_popup_menu
-
-
-% --- Executes during object creation, after setting all properties.
-function temperature_popup_menu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
 
 %% =================== BEGIN OF PANEL EPSILON DOT =========================
 %  ========================================================================
@@ -792,27 +924,27 @@ set(handles.linear_checkbox, 'Value', 1);
 set(handles.logarithmic_checkbox, 'Value', 0);
 
 
-function linear_step_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_step_text (see GCBO)
+function strain_rate_linear_step_text_Callback(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_step_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_step_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_step_text as a double
+% Hints: get(hObject,'String') returns contents of strain_rate_linear_step_text as text
+%        str2double(get(hObject,'String')) returns contents of strain_rate_linear_step_text as a double
 
 % Reading the textbox fields
-linear_step_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_step_text) || linear_step_text <= 0)
-        linear_step_text = 0;
-        assignin('base', 'linear_step_text', linear_step_text);
+strain_rate_linear_step_tex = str2double(get(hObject, 'String'));
+    if (isnan(strain_rate_linear_step_tex) || strain_rate_linear_step_tex <= 0)
+        strain_rate_linear_step_tex = 0;
+        assignin('base', 'strain_rate_linear_step_tex', strain_rate_linear_step_tex);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_step_text', linear_step_text);
+    assignin('base', 'strain_rate_linear_step_tex', strain_rate_linear_step_tex);
 
 % --- Executes during object creation, after setting all properties.
-function linear_step_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_step_text (see GCBO)
+function strain_rate_linear_step_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_step_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -823,28 +955,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function linear_min_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_min_text (see GCBO)
+function strain_rate_linear_min_text_Callback(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_min_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_min_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_min_text as a double
+% Hints: get(hObject,'String') returns contents of strain_rate_linear_min_text as text
+%        str2double(get(hObject,'String')) returns contents of strain_rate_linear_min_text as a double
 
 % Reading the textbox fields
-linear_min_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_min_text) || linear_min_text <= 0)
-        linear_min_text = 0;
-        assignin('base', 'linear_min_text', linear_min_text);
+strain_rate_linear_min_text = str2double(get(hObject, 'String'));
+    if (isnan(strain_rate_linear_min_text) || strain_rate_linear_min_text <= 0)
+        strain_rate_linear_min_text = 0;
+        assignin('base', 'strain_rate_linear_min_text', strain_rate_linear_min_text);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_min_text', linear_min_text);
+    assignin('base', 'strain_rate_linear_min_text', strain_rate_linear_min_text);
     
     
 % --- Executes during object creation, after setting all properties.
-function linear_min_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_min_text (see GCBO)
+function strain_rate_linear_min_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_min_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -855,27 +987,27 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function linear_max_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_max_text (see GCBO)
+function strain_rate_linear_max_text_Callback(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_max_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_max_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_max_text as a double
+% Hints: get(hObject,'String') returns contents of strain_rate_linear_max_text as text
+%        str2double(get(hObject,'String')) returns contents of strain_rate_linear_max_text as a double
 
 % Reading the textbox fields
-linear_max_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_max_text) || linear_max_text <= 0)
-        linear_max_text = 0;
-        assignin('base', 'linear_max_text', linear_max_text);
+strain_rate_linear_max_text = str2double(get(hObject, 'String'));
+    if (isnan(strain_rate_linear_max_text) || strain_rate_linear_max_text <= 0)
+        strain_rate_linear_max_text = 0;
+        assignin('base', 'strain_rate_linear_max_text', strain_rate_linear_max_text);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_max_text', linear_max_text);
+    assignin('base', 'strain_rate_linear_max_text', strain_rate_linear_max_text);
 
 % --- Executes during object creation, after setting all properties.
-function linear_max_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_max_text (see GCBO)
+function strain_rate_linear_max_text_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to strain_rate_linear_max_text (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -899,13 +1031,13 @@ save_epsilon_dot_type = 2;
 assignin('base', 'save_epsilon_dot_type', save_epsilon_dot_type);
 
 % Refresh automatic the linear fields
-set(handles.linear_max_text, 'string', '');
-set(handles.linear_min_text, 'string', '');
-set(handles.linear_step_text, 'string', '');
-linear_step_text = 0; 
-assignin('base', 'linear_step_text', linear_step_text);
+set(handles.strain_rate_linear_max_text, 'string', '');
+set(handles.strain_rate_linear_min_text, 'string', '');
+set(handles.strain_rate_linear_step_text, 'string', '');
+strain_rate_linear_step_tex = 0; 
+assignin('base', 'strain_rate_linear_step_tex', strain_rate_linear_step_tex);
 linear_min_text = 0; 
-assignin('base', 'linear_min_text', linear_min_text);
+assignin('base', 'strain_rate_linear_min_text', strain_rate_linear_min_text);
 linear_max_text = 0; 
 assignin('base', 'linear_max_text', linear_max_text);
 
@@ -1039,13 +1171,13 @@ assignin('base', 'logarithmic_quantity', logarithmic_quantity);
 set(handles.logarithmic_checkbox, 'Value', 0);
 
 % LINEAR
-set(handles.linear_max_text, 'string', '');
-set(handles.linear_min_text, 'string', '');
-set(handles.linear_step_text, 'string', '');
+set(handles.strain_rate_linear_max_text, 'string', '');
+set(handles.strain_rate_linear_min_text, 'string', '');
+set(handles.strain_rate_linear_step_text, 'string', '');
 linear_step_text = 0; 
 assignin('base', 'linear_step_text', linear_step_text);
-linear_min_text = 0; 
-assignin('base', 'linear_min_text', linear_min_text);
+strain_rate_linear_min_text = 0; 
+assignin('base', 'strain_rate_linear_min_text', strain_rate_linear_min_text);
 linear_max_text = 0; 
 assignin('base', 'linear_max_text', linear_max_text);
 set(handles.linear_checkbox, 'Value', 0);
@@ -1060,9 +1192,9 @@ linear_max_text = evalin('base', 'linear_max_text');
 
 if linear_step_text == 0 || linear_min_text == 0 || linear_max_text == 0
     errordlg('Fullfil all the fields', 'Error');
-    set(handles.linear_max_text, 'string', '');
-    set(handles.linear_min_text, 'string', '');
-    set(handles.linear_step_text, 'string', '');
+    set(handles.strain_rate_linear_max_text, 'string', '');
+    set(handles.strain_rate_linear_min_text, 'string', '');
+    set(handles.strain_rate_linear_step_text, 'string', '');
     linear_step_text = 0; 
     assignin('base', 'linear_step_text', linear_step_text);
     linear_min_text = 0; 
@@ -1072,11 +1204,11 @@ if linear_step_text == 0 || linear_min_text == 0 || linear_max_text == 0
 else
     msgbox('Clique to close the window','OK')
     refresh_linear_max_text = '';
-    set(handles.linear_max_text,'String',refresh_linear_max_text);
+    set(handles.strain_rate_linear_max_text,'String',refresh_linear_max_text);
     refresh_linear_min_text = '';
-    set(handles.linear_min_text,'String',refresh_linear_min_text);
+    set(handles.strain_rate_linear_min_text,'String',refresh_linear_min_text);
     refresh_linear_step_text = '';
-    set(handles.linear_step_text,'String',refresh_linear_step_text);
+    set(handles.strain_rate_linear_step_text,'String',refresh_linear_step_text);
     set(handles.linear_checkbox, 'Value', 0);
    
     % Control if the user saved the data
@@ -1388,10 +1520,10 @@ exp_name = evalin('base','exp_name');
 
 % Constants
 % JC Fixed Parameters for all 
-sigma = 0;     % Flow stress
-T_0 = 20;      % Reference temperature
-T_m = 1500;    % Melting temperature
-eps_0 = 1;     % Reference plastic strain
+sigma = 0;         % Flow stress
+T_0 = 20;          % Reference temperature
+T_m = 1500;        % Melting temperature
+eps_0 = 0.002;     % Reference plastic strain
 
 % file open
 fid = fopen(exp_name, 'wt+' );
@@ -1465,10 +1597,10 @@ exp_name = evalin('base','exp_name');
 
 % Constants
 % JC Fixed Parameters for all 
-sigma = 0;     % Flow stress
-T_0 = 20;      % Reference temperature
-T_m = 1500;    % Melting temperature
-eps_0 = 1;     % Reference plastic strain
+sigma = 0;         % Flow stress
+T_0 = 20;          % Reference temperature
+T_m = 1500;        % Melting temperature
+eps_0 = 0.002;     % Reference plastic strain
 
 % File open
 fid = fopen(exp_name, 'wt+' );
