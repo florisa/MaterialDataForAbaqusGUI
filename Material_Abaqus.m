@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 22-Dec-2016 10:14:14
+% Last Modified by GUIDE v2.5 08-Mar-2018 14:32:04
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -557,8 +557,8 @@ save_temperature_panel = 0;
 assignin('base', 'save_temperature_panel', save_temperature_panel);
 save_epsilon_panel = 0;
 assignin('base', 'save_epsilon_panel', save_epsilon_panel);
-save_epsilon_dot_panel = 0;
-assignin('base', 'save_epsilon_dot_panel', save_epsilon_dot_panel);
+save_strain_rate_panel = 0;
+assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 
 % Initial var values for panel material selection
 save_material_selection = 0;
@@ -580,7 +580,7 @@ assignin('base', 'temperature_array', temperature_array);
 temperature_text = 0; % Text box initialization
 assignin('base', 'temperature_text', temperature_text);
 
-% Initial var values for epsilon panel
+% Initial var values for epsilon dot zero panel
 epsilon_step_text = 0; 
 assignin('base', 'epsilon_step_text', epsilon_step_text);
 epsilon_min_text = 0; 
@@ -588,9 +588,9 @@ assignin('base', 'epsilon_min_text', epsilon_min_text);
 epsilon_max_text = 0; 
 assignin('base', 'epsilon_max_text', epsilon_max_text);
 
-% Initial var values for epsilon_dot panel
-save_epsilon_dot_type = 0;
-assignin('base', 'save_epsilon_dot_type', save_epsilon_dot_type);
+% Initial var values for strain_rate panel
+save_strain_rate_type = 0;
+assignin('base', 'save_strain_rate_type', save_strain_rate_type);
 % LOGARITHMIC
 logarithmic_quantity = 0; % Quantity of logarithmic values for popup menu
 assignin('base', 'logarithmic_quantity', logarithmic_quantity);
@@ -763,7 +763,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-%% =================== BEGIN OF PANEL EPSILON DOT =========================
+%% =================== BEGIN OF PANEL STRAIN RATE =========================
 %  ========================================================================
 
 % --- Executes on button press in linear_checkbox.
@@ -774,9 +774,9 @@ function linear_checkbox_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of linear_checkbox
 
-% Control if the user selected the type of Epsilon dot
-save_epsilon_dot_type = 1;
-assignin('base', 'save_epsilon_dot_type', save_epsilon_dot_type);
+% Control if the user selected the type of Strain Rate
+save_strain_rate_type = 1;
+assignin('base', 'save_strain_rate_type', save_strain_rate_type);
 
 % Refresh automatic the logarithmic fields
 logarithmic_text = 0; 
@@ -894,9 +894,9 @@ function logarithmic_checkbox_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of logarithmic_checkbox
 
-% Control if the user selected the type of Epsilon dot
-save_epsilon_dot_type = 2;
-assignin('base', 'save_epsilon_dot_type', save_epsilon_dot_type);
+% Control if the user selected the type of Strain Rate
+save_strain_rate_type = 2;
+assignin('base', 'save_strain_rate_type', save_strain_rate_type);
 
 % Refresh automatic the linear fields
 set(handles.linear_max_text, 'string', '');
@@ -1013,19 +1013,19 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in epsilon_dot_clear_button.
-function epsilon_dot_clear_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_clear_button (see GCBO)
+% --- Executes on button press in strain_rate_clear_button.
+function strain_rate_clear_button_Callback(hObject, eventdata, handles)
+% hObject    handle to strain_rate_clear_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_clear_button
+% Hint: get(hObject,'Value') returns toggle state of strain_rate_clear_button
 
 % Refresh all fields
-save_epsilon_dot_type = 0;
-assignin('base', 'save_epsilon_dot_type', save_epsilon_dot_type);
-save_epsilon_dot_panel = 0;
-assignin('base', 'save_epsilon_dot_panel', save_epsilon_dot_panel);
+save_strain_rate_type = 0;
+assignin('base', 'save_strain_rate_type', save_strain_rate_type);
+save_strain_rate_panel = 0;
+assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 
 % LOGARITHMIC
 logarithmic_text = 0; 
@@ -1050,9 +1050,9 @@ linear_max_text = 0;
 assignin('base', 'linear_max_text', linear_max_text);
 set(handles.linear_checkbox, 'Value', 0);
 
-%%               save_epsilon_dot_linear_checkbox
+%%               save_strain_rate_linear_checkbox
 
-function save_epsilon_dot_linear_checkbox(hObject, eventdata, handles);
+function save_strain_rate_linear_checkbox(hObject, eventdata, handles);
 % Verify if the values were added
 linear_step_text = evalin('base', 'linear_step_text'); 
 linear_min_text = evalin('base', 'linear_min_text'); 
@@ -1080,13 +1080,13 @@ else
     set(handles.linear_checkbox, 'Value', 0);
    
     % Control if the user saved the data
-    save_epsilon_dot_panel = 1;
-    assignin('base', 'save_epsilon_dot_panel', save_epsilon_dot_panel);
+    save_strain_rate_panel = 1;
+    assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 end
      
-%%               save_epsilon_dot_logarithmic_checkbox
+%%               save_strain_rate_logarithmic_checkbox
 
-function save_epsilon_dot_logarithmic_checkbox(hObject, eventdata, handles);
+function save_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
 
 % Verify if the logarithmic values were added
 logarithmic_quantity = evalin('base', 'logarithmic_quantity'); 
@@ -1099,29 +1099,28 @@ else
     set(handles.logarithmic_popup_menu,'String',refresh_logarithmic_popup); 
     set(handles.logarithmic_checkbox, 'Value', 0);
     % Control if the user saved the data
-    save_epsilon_dot_panel = 1;
-    assignin('base', 'save_epsilon_dot_panel', save_epsilon_dot_panel);
+    save_strain_rate_panel = 1;
+    assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 end
 
-% --- Executes on button press in epsilon_dot_save_button.
-function epsilon_dot_save_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_save_button (see GCBO)
+% --- Executes on button press in strain_rate_save_button.
+function strain_rate_save_button_Callback(hObject, eventdata, handles)
+% hObject    handle to strain_rate_save_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+save_strain_rate_type = evalin('base', 'save_strain_rate_type');
 
-save_epsilon_dot_type = evalin('base', 'save_epsilon_dot_type');
-
-switch (save_epsilon_dot_type)
+switch (save_strain_rate_type)
     case 1
-        save_epsilon_dot_linear_checkbox(hObject, eventdata, handles);      
+        save_strain_rate_linear_checkbox(hObject, eventdata, handles);      
     case 2
-        save_epsilon_dot_logarithmic_checkbox(hObject, eventdata, handles);
+        save_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
                
     otherwise
         errordlg('Choose between Linear or Logarithmic','Error');
 end
 
-%% =================== BEGIN OF PANEL EPSILON =============================
+%% =================== BEGIN OF PANEL EPSILON DOT ZERO ====================
 %  ========================================================================
 
 function epsilon_step_text_Callback(hObject, eventdata, handles)
@@ -1134,7 +1133,7 @@ function epsilon_step_text_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
 epsilon_step_text = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_step_text) || epsilon_step_text <= 0)
+    if (isnan(epsilon_step_text) || epsilon_step_text < 0)
         epsilon_step_text = 0;
         assignin('base', 'epsilon_step_text', epsilon_step_text);
         set(hObject, 'String', '');
@@ -1252,7 +1251,7 @@ epsilon_step_text = evalin('base', 'epsilon_step_text');
 epsilon_min_text = evalin('base', 'epsilon_min_text'); 
 epsilon_max_text = evalin('base', 'epsilon_max_text');
 
-if epsilon_step_text == 0 || epsilon_min_text < 0 || epsilon_max_text == 0
+if epsilon_min_text < 0 || epsilon_max_text == 0
     errordlg('Fullfil all the fields', 'Error');
     set(handles.epsilon_max_text, 'string', '');
     set(handles.epsilon_min_text, 'string', '');
@@ -1346,24 +1345,24 @@ function calculate_button_Callback(hObject, eventdata, handles)
 save_material_panel = evalin('base','save_material_panel');
 save_temperature_panel = evalin('base','save_temperature_panel');
 save_epsilon_panel = evalin('base','save_epsilon_panel');
-save_epsilon_dot_panel = evalin('base','save_epsilon_dot_panel');
+save_strain_rate_panel = evalin('base','save_strain_rate_panel');
 
-save_epsilon_dot_type = evalin('base','save_epsilon_dot_type');
+save_strain_rate_type = evalin('base','save_strain_rate_type');
 
 % control if all the panels are filled
 if save_material_panel == 0 || save_temperature_panel == 0 || ...
-        save_epsilon_panel == 0 || save_epsilon_dot_panel == 0
+        save_epsilon_panel == 0 || save_strain_rate_panel == 0
     errordlg('Please fullfil the all data fields','Error');
 else
-        switch(save_epsilon_dot_type)
+        switch(save_strain_rate_type)
             case 1
-                calculate_epsilon_dot_linear(hObject, eventdata, handles);
+                calculate_strain_rate_linear(hObject, eventdata, handles);
             case 2
-                calculate_epsilon_dot_logarithmic(hObject, eventdata, handles);
+                calculate_strain_rate_logarithmic(hObject, eventdata, handles);
         end
 end
-%%              calculate_epsilon_dot_linear
-function calculate_epsilon_dot_linear(hObject, eventdata, handles);
+%%              calculate_strain_rate_linear
+function calculate_strain_rate_linear(hObject, eventdata, handles);
 
 % Load the vars from Workspace
 % JC Parameters
@@ -1376,7 +1375,7 @@ m = evalin('base','m');
 epsilon_step_text = evalin('base','epsilon_step_text');
 epsilon_min_text = evalin('base','epsilon_min_text');
 epsilon_max_text = evalin('base','epsilon_max_text');
-% Epsilon_dot
+% strain_rate
 linear_step_text = evalin('base','linear_step_text');
 linear_min_text = evalin('base','linear_min_text');
 linear_max_text = evalin('base','linear_max_text');
@@ -1388,50 +1387,54 @@ exp_name = evalin('base','exp_name');
 
 % Constants
 % JC Fixed Parameters for all 
-sigma = 0;     % Flow stress
-T_0 = 20;      % Reference temperature
-T_m = 1500;    % Melting temperature
-eps_0 = 1;     % Reference plastic strain
+sigma = 0;              % Flow stress
+T_0 = 20;               % Reference temperature
+T_m = 1500;             % Melting temperature
+eps_dot_0 = 0.002;      % Reference plastic strain
 
 % file open
 fid = fopen(exp_name, 'wt+' );
 
 % Calculate the quantity of epsilons and epsilons_dot
-epsilon_quantity = round((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
-epsilon_dot_linear_quantity = round((linear_max_text-linear_min_text)/linear_step_text)+1;
+if epsilon_step_text > 0
+    epsilon_quantity = round((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
+else
+    epsilon_quantity = 1;
+end
+strain_rate_linear_quantity = round((linear_max_text-linear_min_text)/linear_step_text)+1;
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  Epsilon_dot \t  Temperature \n');
+ fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
-epsilon = epsilon_min_text;
-epsilon_dot_linear = linear_min_text;
+epsilon = 0.1;
+strain_rate_linear = linear_min_text;
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
-            while j <= epsilon_dot_linear_quantity
+            while j <= strain_rate_linear_quantity
                 while k <= epsilon_quantity 
-                        sigma = (A+B*epsilon^n)*(1+C*log(epsilon_dot_linear/eps_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                        sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_linear/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
-                        sigma = (A+B)*(1+C*log(epsilon_dot_linear/eps_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                        sigma = (A+B)*(1+C*log(strain_rate_linear/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
                    end                
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_linear temperature_array(i,1)]);            
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_linear temperature_array(i,1)]);            
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_text;
                 end
                     k = 1;
-                    epsilon = epsilon_min_text;
+                    %epsilon = epsilon_min_text;
                     j = j + 1;
-                    epsilon_dot_linear = epsilon_dot_linear + linear_step_text;
+                    strain_rate_linear = strain_rate_linear + linear_step_text;
             end
                 k = 1;
                 j = 1;
-                epsilon = epsilon_min_text;
-                epsilon_dot_linear = linear_min_text;
+                %epsilon = epsilon_min_text;
+                strain_rate_linear = linear_min_text;
                 i = i + 1;
 end
 fclose(fid);
@@ -1440,8 +1443,8 @@ msgbox('Saved', 'Ok');
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
-%%              calculate_epsilon_dot_logarithmic
-function calculate_epsilon_dot_logarithmic(hObject, eventdata, handles);
+%%              calculate_strain_rate_logarithmic
+function calculate_strain_rate_logarithmic(hObject, eventdata, handles);
 
 % Load the vars from Workspace
 % JC Parameters
@@ -1454,7 +1457,7 @@ m = evalin('base','m');
 epsilon_step_text = evalin('base','epsilon_step_text');
 epsilon_min_text = evalin('base','epsilon_min_text');
 epsilon_max_text = evalin('base','epsilon_max_text');
-% Epsilon_dot
+% strain_rate
 logarithmic_quantity = evalin('base','logarithmic_quantity');
 logarithmic_array = evalin('base','logarithmic_array');
 % Temperature
@@ -1465,41 +1468,45 @@ exp_name = evalin('base','exp_name');
 
 % Constants
 % JC Fixed Parameters for all 
-sigma = 0;     % Flow stress
-T_0 = 20;      % Reference temperature
-T_m = 1500;    % Melting temperature
-eps_0 = 1;     % Reference plastic strain
+sigma = 0;              % Flow stress
+T_0 = 20;               % Reference temperature
+T_m = 1500;             % Melting temperature
+eps_dot_0 = 0.002;       % Reference plastic strain
 
 % File open
 fid = fopen(exp_name, 'wt+' );
 
 % Calculate the quantity of epsilons
-epsilon_quantity = ((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
+if epsilon_step_text > 0
+    epsilon_quantity = ((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
+else
+    epsilon_quantity = 1;
+end
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  Epsilon_dot \t  Temperature \n');
+ fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
-epsilon = epsilon_min_text;
+epsilon = 0.1;
 
 % Write the sigmas in the file
 while i <= temperature_quantity 
             while j <= logarithmic_quantity
                 while k <= epsilon_quantity 
-                    sigma = (A+B*epsilon^n)*(1+C*log(logarithmic_array(j,1)/eps_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                    sigma = (A+B*epsilon^n)*(1+C*log(logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
-                       sigma = (A+B)*(1+C*log(logarithmic_array(j,1)/eps_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                       sigma = (A+B)*(1+C*log(logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    end
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon logarithmic_array(j,1) temperature_array(i,1)]);     
                         k = k + 1;
-                        epsilon = epsilon + epsilon_step_text;
+                        % epsilon = epsilon + epsilon_step_text;
                 end
                     k = 1;
-                    epsilon = epsilon_min_text;
+                    % epsilon = epsilon_min_text;
                     j = j + 1;
             end
                 k = 1;
