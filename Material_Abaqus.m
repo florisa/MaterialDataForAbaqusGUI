@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 08-Mar-2018 14:32:04
+% Last Modified by GUIDE v2.5 20-Mar-2018 15:29:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1519,3 +1519,11 @@ msgbox('Saved', 'Ok');
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
+
+%% =======================BEGIN OF CALCULATE BUTTON =======================
+%  ========================================================================
+% --- Executes on button press in plot_button.
+function plot_button_Callback(hObject, eventdata, handles)
+% hObject    handle to plot_button (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
