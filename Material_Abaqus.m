@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 20-Mar-2018 16:37:33
+% Last Modified by GUIDE v2.5 20-Mar-2018 17:16:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -557,8 +557,8 @@ save_temperature_panel = 0;
 assignin('base', 'save_temperature_panel', save_temperature_panel);
 save_epsilon_panel = 0;
 assignin('base', 'save_epsilon_panel', save_epsilon_panel);
-save_strain_rate_panel = 0;
-assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
+save_epsilon_dot_strain_rate_panel = 0;
+assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 
 % Initial var values for panel material selection
 save_material_selection = 0;
@@ -581,14 +581,14 @@ temperature_text = 0; % Text box initialization
 assignin('base', 'temperature_text', temperature_text);
 
 % Initial var values for epsilon dot zero panel
-epsilon_step_text = 0; 
-assignin('base', 'epsilon_step_text', epsilon_step_text);
-epsilon_min_text = 0; 
-assignin('base', 'epsilon_min_text', epsilon_min_text);
-epsilon_max_text = 0; 
-assignin('base', 'epsilon_max_text', epsilon_max_text);
+epsilon_step_input = 0; 
+assignin('base', 'epsilon_step_input', epsilon_step_input);
+epsilon_min_input = 0; 
+assignin('base', 'epsilon_min_input', epsilon_min_input);
+epsilon_max_input = 0; 
+assignin('base', 'epsilon_max_input', epsilon_max_input);
 
-% Initial var values for strain_rate panel
+% Initial var values for epsilon_dot_strain_rate panel
 save_epsilon_dot_strain_rate_type = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 % LOGARITHMIC
@@ -1024,8 +1024,8 @@ function epsilon_dot_clear_button_Callback(hObject, eventdata, handles)
 % Refresh all fields
 save_epsilon_dot_strain_rate_type = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
-save_strain_rate_panel = 0;
-assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
+save_epsilon_dot_strain_rate_panel = 0;
+assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 
 % LOGARITHMIC
 epsilon_dot_logarithmic_input = 0; 
@@ -1080,8 +1080,8 @@ else
     set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
    
     % Control if the user saved the data
-    save_strain_rate_panel = 1;
-    assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
+    save_epsilon_dot_strain_rate_panel = 1;
+    assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 end
      
 %%               save_epsilon_dot_strain_rate_logarithmic_checkbox
@@ -1099,8 +1099,8 @@ else
     set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup); 
     set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
     % Control if the user saved the data
-    save_strain_rate_panel = 1;
-    assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
+    save_epsilon_dot_strain_rate_panel = 1;
+    assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 end
 
 % --- Executes on button press in epsilon_dot_save_button.
@@ -1121,30 +1121,30 @@ switch (save_epsilon_dot_strain_rate_type)
         errordlg('Choose between Linear or Logarithmic','Error');
 end
 
-%% =================== BEGIN OF PANEL EPSILON DOT ZERO ====================
+%% =================== BEGIN OF PANEL EPSILON =============================
 %  ========================================================================
 
-function epsilon_step_text_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_step_text (see GCBO)
+function epsilon_step_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_step_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of epsilon_step_text as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_step_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_step_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_step_input as a double
 
 % Reading the textbox fields
-epsilon_step_text = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_step_text) || epsilon_step_text < 0)
-        epsilon_step_text = 0;
-        assignin('base', 'epsilon_step_text', epsilon_step_text);
+epsilon_step_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_step_input) || epsilon_step_input < 0)
+        epsilon_step_input = 0;
+        assignin('base', 'epsilon_step_input', epsilon_step_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_step_text', epsilon_step_text);
+    assignin('base', 'epsilon_step_input', epsilon_step_input);
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_step_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_step_text (see GCBO)
+function epsilon_step_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_step_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1155,27 +1155,27 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function epsilon_min_text_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_min_text (see GCBO)
+function epsilon_min_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_min_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of epsilon_min_text as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_min_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_min_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_min_input as a double
 
 % Reading the textbox fields
-epsilon_min_text = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_min_text) || epsilon_min_text < 0)
-        epsilon_min_text = 0;
-        assignin('base', 'epsilon_min_text', epsilon_min_text);
+epsilon_min_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_min_input) || epsilon_min_input < 0)
+        epsilon_min_input = 0;
+        assignin('base', 'epsilon_min_input', epsilon_min_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error'); %zero should be possible here
     end
-    assignin('base', 'epsilon_min_text', epsilon_min_text);
+    assignin('base', 'epsilon_min_input', epsilon_min_input);
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_min_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_min_text (see GCBO)
+function epsilon_min_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_min_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1186,28 +1186,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function epsilon_max_text_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_max_text (see GCBO)
+function epsilon_max_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_max_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of epsilon_max_text as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_max_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_max_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_max_input as a double
 
 % Reading the textbox fields
-epsilon_max_text = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_max_text) || epsilon_max_text <= 0)
-        epsilon_max_text = 0;
-        assignin('base', 'epsilon_max_text', epsilon_max_text);
+epsilon_max_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_max_input) || epsilon_max_input <= 0)
+        epsilon_max_input = 0;
+        assignin('base', 'epsilon_max_input', epsilon_max_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_max_text', epsilon_max_text);
+    assignin('base', 'epsilon_max_input', epsilon_max_input);
     
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_max_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_max_text (see GCBO)
+function epsilon_max_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_max_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1227,15 +1227,15 @@ function epsilon_clear_button_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of epsilon_clear_button
 
 % Refresh all fields
-set(handles.epsilon_max_text, 'string', '');
-set(handles.epsilon_min_text, 'string', '');
-set(handles.epsilon_step_text, 'string', '');
-epsilon_step_text = 0; 
-assignin('base', 'epsilon_step_text', epsilon_step_text);
-epsilon_min_text = 0; 
-assignin('base', 'epsilon_min_text', epsilon_min_text);
-epsilon_max_text = 0; 
-assignin('base', 'epsilon_max_text', epsilon_max_text);
+set(handles.epsilon_max_input, 'string', '');
+set(handles.epsilon_min_input, 'string', '');
+set(handles.epsilon_step_input, 'string', '');
+epsilon_step_input = 0; 
+assignin('base', 'epsilon_step_input', epsilon_step_input);
+epsilon_min_input = 0; 
+assignin('base', 'epsilon_min_input', epsilon_min_input);
+epsilon_max_input = 0; 
+assignin('base', 'epsilon_max_input', epsilon_max_input);
 
 save_epsilon_panel = 0;
 assignin('base', 'save_epsilon_panel', save_epsilon_panel);
@@ -1248,29 +1248,29 @@ function epsilon_save_button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Verify if the values were added
-epsilon_step_text = evalin('base', 'epsilon_step_text'); 
-epsilon_min_text = evalin('base', 'epsilon_min_text'); 
-epsilon_max_text = evalin('base', 'epsilon_max_text');
+epsilon_step_input = evalin('base', 'epsilon_step_input'); 
+epsilon_min_input = evalin('base', 'epsilon_min_input'); 
+epsilon_max_input = evalin('base', 'epsilon_max_input');
 
-if epsilon_min_text < 0 || epsilon_max_text == 0
+if epsilon_min_input < 0 || epsilon_max_input == 0
     errordlg('Fullfil all the fields', 'Error');
-    set(handles.epsilon_max_text, 'string', '');
-    set(handles.epsilon_min_text, 'string', '');
-    set(handles.epsilon_step_text, 'string', '');
-    epsilon_step_text = 0; 
-    assignin('base', 'epsilon_step_text', epsilon_step_text);
-    epsilon_min_text = 0; 
-    assignin('base', 'epsilon_min_text', epsilon_min_text);
-    epsilon_max_text = 0; 
-    assignin('base', 'epsilon_max_text', epsilon_max_text);
+    set(handles.epsilon_max_input, 'string', '');
+    set(handles.epsilon_min_input, 'string', '');
+    set(handles.epsilon_step_input, 'string', '');
+    epsilon_step_input = 0; 
+    assignin('base', 'epsilon_step_input', epsilon_step_input);
+    epsilon_min_input = 0; 
+    assignin('base', 'epsilon_min_input', epsilon_min_input);
+    epsilon_max_input = 0; 
+    assignin('base', 'epsilon_max_input', epsilon_max_input);
 else
     msgbox('Clique to close the window','OK')
-    refresh_epsilon_max_text = '';
-    set(handles.epsilon_max_text,'String',refresh_epsilon_max_text);
-    refresh_epsilon_min_text = '';
-    set(handles.epsilon_min_text,'String',refresh_epsilon_min_text);
-    refresh_epsilon_step_text = '';
-    set(handles.epsilon_step_text,'String',refresh_epsilon_step_text);
+    refresh_epsilon_max_input = '';
+    set(handles.epsilon_max_input,'String',refresh_epsilon_max_input);
+    refresh_epsilon_min_input = '';
+    set(handles.epsilon_min_input,'String',refresh_epsilon_min_input);
+    refresh_epsilon_step_input = '';
+    set(handles.epsilon_step_input,'String',refresh_epsilon_step_input);
     % Control if the user saved the data
     save_epsilon_panel = 1;
     assignin('base', 'save_epsilon_panel', save_epsilon_panel);
@@ -1346,13 +1346,13 @@ function calculate_button_Callback(hObject, eventdata, handles)
 save_material_panel = evalin('base','save_material_panel');
 save_temperature_panel = evalin('base','save_temperature_panel');
 save_epsilon_panel = evalin('base','save_epsilon_panel');
-save_strain_rate_panel = evalin('base','save_strain_rate_panel');
+save_epsilon_dot_strain_rate_panel = evalin('base','save_epsilon_dot_strain_rate_panel');
 
 save_epsilon_dot_strain_rate_type = evalin('base','save_epsilon_dot_strain_rate_type');
 
 % control if all the panels are filled
 if save_material_panel == 0 || save_temperature_panel == 0 || ...
-        save_epsilon_panel == 0 || save_strain_rate_panel == 0
+        save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
     errordlg('Please fullfil the all data fields','Error');
 else
         switch(save_epsilon_dot_strain_rate_type)
@@ -1362,7 +1362,7 @@ else
                 calculate_strain_rate_logarithmic(hObject, eventdata, handles);
         end
 end
-%%              calculate_strain_rate_linear
+%%              calculate_epsilon_dot_strain_rate_linear
 function calculate_strain_rate_linear(hObject, eventdata, handles);
 
 % Load the vars from Workspace
@@ -1373,10 +1373,10 @@ n = evalin('base','n');
 C = evalin('base','C');
 m = evalin('base','m');
 % Epsilon
-epsilon_step_text = evalin('base','epsilon_step_text');
-epsilon_min_text = evalin('base','epsilon_min_text');
-epsilon_max_text = evalin('base','epsilon_max_text');
-% strain_rate
+epsilon_step_input = evalin('base','epsilon_step_input');
+epsilon_min_input = evalin('base','epsilon_min_input');
+epsilon_max_input = evalin('base','epsilon_max_input');
+% Epsilon Dot
 epsilon_dot_step_linear_input = evalin('base','epsilon_dot_step_linear_input');
 epsilon_dot_min_linear_input = evalin('base','epsilon_dot_min_linear_input');
 epsilon_dot_max_linear_input = evalin('base','epsilon_dot_max_linear_input');
@@ -1397,8 +1397,8 @@ eps_dot_0 = 0.002;      % Reference plastic strain
 fid = fopen(exp_name, 'wt+' );
 
 % Calculate the quantity of epsilons and epsilons_dot
-if epsilon_step_text > 0
-    epsilon_quantity = round((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
+if epsilon_step_input > 0
+    epsilon_quantity = round((epsilon_max_input-epsilon_min_input)/epsilon_step_input)+1;
 else
     epsilon_quantity = 1;
 end
@@ -1425,16 +1425,16 @@ while i <= temperature_quantity
                    end                
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_linear temperature_array(i,1)]);            
                         k = k + 1;
-                        epsilon = epsilon + epsilon_step_text;
+                        epsilon = epsilon + epsilon_step_input;
                 end
                     k = 1;
-                    %epsilon = epsilon_min_text;
+                    %epsilon = epsilon_min_input;
                     j = j + 1;
                     strain_rate_linear = strain_rate_linear + epsilon_dot_step_linear_input;
             end
                 k = 1;
                 j = 1;
-                %epsilon = epsilon_min_text;
+                %epsilon = epsilon_min_input;
                 strain_rate_linear = epsilon_dot_min_linear_input;
                 i = i + 1;
 end
@@ -1455,10 +1455,10 @@ n = evalin('base','n');
 C = evalin('base','C');
 m = evalin('base','m');
 % Epsilon
-epsilon_step_text = evalin('base','epsilon_step_text');
-epsilon_min_text = evalin('base','epsilon_min_text');
-epsilon_max_text = evalin('base','epsilon_max_text');
-% strain_rate
+epsilon_step_input = evalin('base','epsilon_step_input');
+epsilon_min_input = evalin('base','epsilon_min_input');
+epsilon_max_input = evalin('base','epsilon_max_input');
+% Epsilon Dot
 epsilon_dot_logarithmic_quantity = evalin('base','epsilon_dot_logarithmic_quantity');
 epsilon_dot_logarithmic_array = evalin('base','epsilon_dot_logarithmic_array');
 % Temperature
@@ -1478,8 +1478,8 @@ eps_dot_0 = 0.002;       % Reference plastic strain
 fid = fopen(exp_name, 'wt+' );
 
 % Calculate the quantity of epsilons
-if epsilon_step_text > 0
-    epsilon_quantity = ((epsilon_max_text-epsilon_min_text)/epsilon_step_text)+1;
+if epsilon_step_input > 0
+    epsilon_quantity = ((epsilon_max_input-epsilon_min_input)/epsilon_step_input)+1;
 else
     epsilon_quantity = 1;
 end
@@ -1504,10 +1504,10 @@ while i <= temperature_quantity
                    end
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_logarithmic_array(j,1) temperature_array(i,1)]);     
                         k = k + 1;
-                        % epsilon = epsilon + epsilon_step_text;
+                        % epsilon = epsilon + epsilon_step_input;
                 end
                     k = 1;
-                    % epsilon = epsilon_min_text;
+                    % epsilon = epsilon_min_input;
                     j = j + 1;
             end
                 k = 1;
@@ -1521,7 +1521,7 @@ msgbox('Saved', 'Ok');
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
 
-%% =======================BEGIN OF CALCULATE BUTTON =======================
+%% =======================BEGIN OF PLOT BUTTON =======================
 %  ========================================================================
 % --- Executes on button press in plot_button.
 function plot_button_Callback(hObject, eventdata, handles)
@@ -1529,4 +1529,3 @@ function plot_button_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-epsilon_dot_min_linear_text
