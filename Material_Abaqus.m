@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 20-Mar-2018 15:29:07
+% Last Modified by GUIDE v2.5 20-Mar-2018 16:37:33
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -589,23 +589,23 @@ epsilon_max_text = 0;
 assignin('base', 'epsilon_max_text', epsilon_max_text);
 
 % Initial var values for strain_rate panel
-save_strain_rate_type = 0;
-assignin('base', 'save_strain_rate_type', save_strain_rate_type);
+save_epsilon_dot_strain_rate_type = 0;
+assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 % LOGARITHMIC
-logarithmic_quantity = 0; % Quantity of logarithmic values for popup menu
-assignin('base', 'logarithmic_quantity', logarithmic_quantity);
-logarithmic_array = 0; 
-assignin('base', 'logarithmic_array', logarithmic_array);
-logarithmic_text = 0; % Text box initialization
-assignin('base', 'logarithmic_text', logarithmic_text);
+epsilon_dot_logarithmic_quantity = 0; % Quantity of logarithmic values for popup menu
+assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
+epsilon_dot_logarithmic_array = 0; 
+assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
+epsilon_dot_logarithmic_input = 0; % Text box initialization
+assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
 
 % LINEAR
-linear_step_text = 0; 
-assignin('base', 'linear_step_text', linear_step_text);
-linear_min_text = 0; 
-assignin('base', 'linear_min_text', linear_min_text);
-linear_max_text = 0; 
-assignin('base', 'linear_max_text', linear_max_text);
+epsilon_dot_step_linear_input = 0; 
+assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+epsilon_dot_min_linear_input = 0; 
+assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+epsilon_dot_max_linear_input = 0; 
+assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
@@ -763,56 +763,56 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-%% =================== BEGIN OF PANEL STRAIN RATE =========================
+%% =================== BEGIN OF PANEL EPSILON DOT (STRAIN RATE) ===========
 %  ========================================================================
 
-% --- Executes on button press in linear_checkbox.
-function linear_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_checkbox (see GCBO)
+% --- Executes on button press in epsilon_dot_linear_checkbox.
+function epsilon_dot_linear_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_linear_checkbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of linear_checkbox
+% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_linear_checkbox
 
 % Control if the user selected the type of Strain Rate
-save_strain_rate_type = 1;
-assignin('base', 'save_strain_rate_type', save_strain_rate_type);
+save_epsilon_dot_strain_rate_type = 1;
+assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 
 % Refresh automatic the logarithmic fields
-logarithmic_text = 0; 
-assignin('base', 'logarithmic_text', logarithmic_text);
-logarithmic_array = 0; 
-assignin('base', 'logarithmic_array', logarithmic_array);
+epsilon_dot_logarithmic_input = 0; 
+assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
+epsilon_dot_logarithmic_array = 0; 
+assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
 refresh_logarithmic_popup = {''};
-set(handles.logarithmic_popup_menu,'String',refresh_logarithmic_popup);
-logarithmic_quantity = 0; 
-assignin('base', 'logarithmic_quantity', logarithmic_quantity);
+set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup);
+epsilon_dot_logarithmic_quantity = 0; 
+assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
 
-set(handles.linear_checkbox, 'Value', 1);
-set(handles.logarithmic_checkbox, 'Value', 0);
+set(handles.epsilon_dot_linear_checkbox, 'Value', 1);
+set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
 
 
-function linear_step_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_step_text (see GCBO)
+function epsilon_dot_step_linear_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_step_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_step_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_step_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_dot_step_linear_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_dot_step_linear_input as a double
 
 % Reading the textbox fields
-linear_step_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_step_text) || linear_step_text <= 0)
-        linear_step_text = 0;
-        assignin('base', 'linear_step_text', linear_step_text);
+epsilon_dot_step_linear_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_step_linear_input) || epsilon_dot_step_linear_input <= 0)
+        epsilon_dot_step_linear_input = 0;
+        assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_step_text', linear_step_text);
+    assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
 
 % --- Executes during object creation, after setting all properties.
-function linear_step_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_step_text (see GCBO)
+function epsilon_dot_step_linear_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_step_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -823,28 +823,28 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function linear_min_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_min_text (see GCBO)
+function epsilon_dot_min_linear_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_min_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_min_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_min_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_dot_min_linear_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_dot_min_linear_input as a double
 
 % Reading the textbox fields
-linear_min_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_min_text) || linear_min_text <= 0)
-        linear_min_text = 0;
-        assignin('base', 'linear_min_text', linear_min_text);
+epsilon_dot_min_linear_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_min_linear_input) || epsilon_dot_min_linear_input <= 0)
+        epsilon_dot_min_linear_input = 0;
+        assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_min_text', linear_min_text);
+    assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
     
     
 % --- Executes during object creation, after setting all properties.
-function linear_min_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_min_text (see GCBO)
+function epsilon_dot_min_linear_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_min_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -855,27 +855,27 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-function linear_max_text_Callback(hObject, eventdata, handles)
-% hObject    handle to linear_max_text (see GCBO)
+function epsilon_dot_max_linear_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_max_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of linear_max_text as text
-%        str2double(get(hObject,'String')) returns contents of linear_max_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_dot_max_linear_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_dot_max_linear_input as a double
 
 % Reading the textbox fields
-linear_max_text = str2double(get(hObject, 'String'));
-    if (isnan(linear_max_text) || linear_max_text <= 0)
-        linear_max_text = 0;
-        assignin('base', 'linear_max_text', linear_max_text);
+epsilon_dot_max_linear_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_max_linear_input) || epsilon_dot_max_linear_input <= 0)
+        epsilon_dot_max_linear_input = 0;
+        assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'linear_max_text', linear_max_text);
+    assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
 
 % --- Executes during object creation, after setting all properties.
-function linear_max_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to linear_max_text (see GCBO)
+function epsilon_dot_max_linear_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_max_linear_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -886,54 +886,54 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in logarithmic_checkbox.
-function logarithmic_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to logarithmic_checkbox (see GCBO)
+% --- Executes on button press in epsilon_dot_logarithmic_checkbox.
+function epsilon_dot_logarithmic_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_checkbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of logarithmic_checkbox
+% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_logarithmic_checkbox
 
 % Control if the user selected the type of Strain Rate
-save_strain_rate_type = 2;
-assignin('base', 'save_strain_rate_type', save_strain_rate_type);
+save_epsilon_dot_strain_rate_type = 2;
+assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 
 % Refresh automatic the linear fields
-set(handles.linear_max_text, 'string', '');
-set(handles.linear_min_text, 'string', '');
-set(handles.linear_step_text, 'string', '');
-linear_step_text = 0; 
-assignin('base', 'linear_step_text', linear_step_text);
-linear_min_text = 0; 
-assignin('base', 'linear_min_text', linear_min_text);
-linear_max_text = 0; 
-assignin('base', 'linear_max_text', linear_max_text);
+set(handles.epsilon_dot_max_linear_input, 'string', '');
+set(handles.epsilon_dot_min_linear_input, 'string', '');
+set(handles.epsilon_dot_step_linear_input, 'string', '');
+epsilon_dot_step_linear_input = 0; 
+assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+epsilon_dot_min_linear_input = 0; 
+assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+epsilon_dot_max_linear_input = 0; 
+assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
 
-set(handles.logarithmic_checkbox, 'Value', 1);
-set(handles.linear_checkbox, 'Value', 0);
+set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 1);
+set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
 
 
-function logarithmic_text_Callback(hObject, eventdata, handles)
-% hObject    handle to logarithmic_text (see GCBO)
+function epsilon_dot_logarithmic_input_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of logarithmic_text as text
-%        str2double(get(hObject,'String')) returns contents of logarithmic_text as a double
+% Hints: get(hObject,'String') returns contents of epsilon_dot_logarithmic_input as text
+%        str2double(get(hObject,'String')) returns contents of epsilon_dot_logarithmic_input as a double
 
 % Reading the textbox fields
-logarithmic_text = str2double(get(hObject, 'String'));
-    if (isnan(logarithmic_text) || logarithmic_text <= 0)
-        logarithmic_text = 0;
-        assignin('base', 'logarithmic_text', logarithmic_text);
+epsilon_dot_logarithmic_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_logarithmic_input) || epsilon_dot_logarithmic_input <= 0)
+        epsilon_dot_logarithmic_input = 0;
+        assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'logarithmic_text', logarithmic_text);
+    assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
 
 % --- Executes during object creation, after setting all properties.
-function logarithmic_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to logarithmic_text (see GCBO)
+function epsilon_dot_logarithmic_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_input (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -944,32 +944,32 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in logarithmic_ADD_button.
-function logarithmic_ADD_button_Callback(hObject, eventdata, handles)
-% hObject    handle to logarithmic_ADD_button (see GCBO)
+% --- Executes on button press in epsilon_dot_logarithmic_ADD_button.
+function epsilon_dot_logarithmic_ADD_button_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_ADD_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-logarithmic_quantity = evalin('base', 'logarithmic_quantity');  
-logarithmic_array = evalin('base', 'logarithmic_array');
-logarithmic_text = evalin('base', 'logarithmic_text');
+epsilon_dot_logarithmic_quantity = evalin('base', 'epsilon_dot_logarithmic_quantity');  
+epsilon_dot_logarithmic_array = evalin('base', 'epsilon_dot_logarithmic_array');
+epsilon_dot_logarithmic_input = evalin('base', 'epsilon_dot_logarithmic_input');
 
 % prevent to add null values to the popupmenu
-if logarithmic_text == 0 
+if epsilon_dot_logarithmic_input == 0 
     return;
 end
 
 % Test if the value was already added
 i_logarithmic = 1;
-while i_logarithmic <= logarithmic_quantity
+while i_logarithmic <= epsilon_dot_logarithmic_quantity
     
-    if logarithmic_array(i_logarithmic,1) == logarithmic_text 
+    if epsilon_dot_logarithmic_array(i_logarithmic,1) == epsilon_dot_logarithmic_input 
         % Warning and interrupt the loop
         % Variable i is used to recognize the error
         errordlg('This value is already used', 'Error');
          % To refresh the temperature textbox
-        logarithmic_text = '';
-        set(handles.logarithmic_text,'String',logarithmic_text)
+        epsilon_dot_logarithmic_input = '';
+        set(handles.epsilon_dot_logarithmic_input,'String',epsilon_dot_logarithmic_input)
         i_logarithmic = 0;
         break;
     end
@@ -978,31 +978,31 @@ end
 
 % If i ~= 0, add the value, else do nothing 
 if i_logarithmic ~= 0
-    logarithmic_quantity = logarithmic_quantity + 1;
-    logarithmic_array(logarithmic_quantity,1) = logarithmic_text;
-    set(handles.logarithmic_popup_menu,'String',logarithmic_array);
+    epsilon_dot_logarithmic_quantity = epsilon_dot_logarithmic_quantity + 1;
+    epsilon_dot_logarithmic_array(epsilon_dot_logarithmic_quantity,1) = epsilon_dot_logarithmic_input;
+    set(handles.epsilon_dot_logarithmic_popup_menu,'String',epsilon_dot_logarithmic_array);
     % To refresh the logarithmic textbox
-    logarithmic_text = '';
-    set(handles.logarithmic_text,'String',logarithmic_text)
+    epsilon_dot_logarithmic_input = '';
+    set(handles.epsilon_dot_logarithmic_input,'String',epsilon_dot_logarithmic_input)
 end    
 
-assignin('base', 'logarithmic_array', logarithmic_array);
-assignin('base', 'logarithmic_quantity', logarithmic_quantity);
+assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
+assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
 
 
-% --- Executes on selection change in logarithmic_popup_menu.
-function logarithmic_popup_menu_Callback(hObject, eventdata, handles)
-% hObject    handle to logarithmic_popup_menu (see GCBO)
+% --- Executes on selection change in epsilon_dot_logarithmic_popup_menu.
+function epsilon_dot_logarithmic_popup_menu_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_popup_menu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns logarithmic_popup_menu contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from logarithmic_popup_menu
+% Hints: contents = cellstr(get(hObject,'String')) returns epsilon_dot_logarithmic_popup_menu contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from epsilon_dot_logarithmic_popup_menu
 
 
 % --- Executes during object creation, after setting all properties.
-function logarithmic_popup_menu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to logarithmic_popup_menu (see GCBO)
+function epsilon_dot_logarithmic_popup_menu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_logarithmic_popup_menu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1013,109 +1013,110 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in strain_rate_clear_button.
-function strain_rate_clear_button_Callback(hObject, eventdata, handles)
-% hObject    handle to strain_rate_clear_button (see GCBO)
+% --- Executes on button press in epsilon_dot_clear_button.
+function epsilon_dot_clear_button_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_clear_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of strain_rate_clear_button
+% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_clear_button
 
 % Refresh all fields
-save_strain_rate_type = 0;
-assignin('base', 'save_strain_rate_type', save_strain_rate_type);
+save_epsilon_dot_strain_rate_type = 0;
+assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 save_strain_rate_panel = 0;
 assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 
 % LOGARITHMIC
-logarithmic_text = 0; 
-assignin('base', 'logarithmic_text', logarithmic_text);
-logarithmic_array = 0; 
-assignin('base', 'logarithmic_array', logarithmic_array);
+epsilon_dot_logarithmic_input = 0; 
+assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
+epsilon_dot_logarithmic_array = 0; 
+assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
 refresh_logarithmic_popup = {''};
-set(handles.logarithmic_popup_menu,'String',refresh_logarithmic_popup);
-logarithmic_quantity = 0; 
-assignin('base', 'logarithmic_quantity', logarithmic_quantity);
-set(handles.logarithmic_checkbox, 'Value', 0);
+set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup);
+epsilon_dot_logarithmic_quantity = 0; 
+assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
+set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
 
 % LINEAR
-set(handles.linear_max_text, 'string', '');
-set(handles.linear_min_text, 'string', '');
-set(handles.linear_step_text, 'string', '');
-linear_step_text = 0; 
-assignin('base', 'linear_step_text', linear_step_text);
-linear_min_text = 0; 
-assignin('base', 'linear_min_text', linear_min_text);
-linear_max_text = 0; 
-assignin('base', 'linear_max_text', linear_max_text);
-set(handles.linear_checkbox, 'Value', 0);
+set(handles.epsilon_dot_max_linear_input, 'string', '');
+set(handles.epsilon_dot_min_linear_input, 'string', '');
+set(handles.epsilon_dot_step_linear_input, 'string', '');
+epsilon_dot_step_linear_input = 0; 
+assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+epsilon_dot_min_linear_input = 0; 
+assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+epsilon_dot_max_linear_input = 0; 
+assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
 
-%%               save_strain_rate_linear_checkbox
+%%               save_epsilon_dot_strain_rate_linear_checkbox
 
-function save_strain_rate_linear_checkbox(hObject, eventdata, handles);
+function save_epsilon_dot_strain_rate_linear_checkbox(hObject, eventdata, handles);
 % Verify if the values were added
-linear_step_text = evalin('base', 'linear_step_text'); 
-linear_min_text = evalin('base', 'linear_min_text'); 
-linear_max_text = evalin('base', 'linear_max_text');
+epsilon_dot_step_linear_input = evalin('base', 'epsilon_dot_step_linear_input'); 
+epsilon_dot_min_linear_input = evalin('base', 'epsilon_dot_min_linear_input'); 
+epsilon_dot_max_linear_input = evalin('base', 'epsilon_dot_max_linear_input');
 
-if linear_step_text == 0 || linear_min_text == 0 || linear_max_text == 0
+if epsilon_dot_step_linear_input == 0 || epsilon_dot_min_linear_input == 0 || epsilon_dot_max_linear_input == 0
     errordlg('Fullfil all the fields', 'Error');
-    set(handles.linear_max_text, 'string', '');
-    set(handles.linear_min_text, 'string', '');
-    set(handles.linear_step_text, 'string', '');
-    linear_step_text = 0; 
-    assignin('base', 'linear_step_text', linear_step_text);
-    linear_min_text = 0; 
-    assignin('base', 'linear_min_text', linear_min_text);
-    linear_max_text = 0; 
-    assignin('base', 'linear_max_text', linear_max_text);
+    set(handles.epsilon_dot_max_linear_input, 'string', '');
+    set(handles.epsilon_dot_min_linear_input, 'string', '');
+    set(handles.epsilon_dot_step_linear_input, 'string', '');
+    epsilon_dot_step_linear_input = 0; 
+    assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+    epsilon_dot_min_linear_input = 0; 
+    assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+    epsilon_dot_max_linear_input = 0; 
+    assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
 else
     msgbox('Clique to close the window','OK')
-    refresh_linear_max_text = '';
-    set(handles.linear_max_text,'String',refresh_linear_max_text);
-    refresh_linear_min_text = '';
-    set(handles.linear_min_text,'String',refresh_linear_min_text);
-    refresh_linear_step_text = '';
-    set(handles.linear_step_text,'String',refresh_linear_step_text);
-    set(handles.linear_checkbox, 'Value', 0);
+    refresh_epsilon_dot_max_linear_input = '';
+    set(handles.epsilon_dot_max_linear_input,'String',refresh_epsilon_dot_max_linear_input);
+    refresh_epsilon_dot_min_linear_input = '';
+    set(handles.epsilon_dot_min_linear_input,'String',refresh_epsilon_dot_min_linear_input);
+    refresh_epsilon_dot_step_linear_input = '';
+    set(handles.epsilon_dot_step_linear_input,'String',refresh_epsilon_dot_step_linear_input);
+    set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
    
     % Control if the user saved the data
     save_strain_rate_panel = 1;
     assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 end
      
-%%               save_strain_rate_logarithmic_checkbox
+%%               save_epsilon_dot_strain_rate_logarithmic_checkbox
 
-function save_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
+function save_epsilon_dot_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
 
 % Verify if the logarithmic values were added
-logarithmic_quantity = evalin('base', 'logarithmic_quantity'); 
+epsilon_dot_logarithmic_quantity = evalin('base', 'epsilon_dot_logarithmic_quantity'); 
 
-if logarithmic_quantity == 0
+if epsilon_dot_logarithmic_quantity == 0
     errordlg('Fullfil the logarithmic field', 'Error');
 else
     msgbox('Clique to close the window','OK')
     refresh_logarithmic_popup = {''};
-    set(handles.logarithmic_popup_menu,'String',refresh_logarithmic_popup); 
-    set(handles.logarithmic_checkbox, 'Value', 0);
+    set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup); 
+    set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
     % Control if the user saved the data
     save_strain_rate_panel = 1;
     assignin('base', 'save_strain_rate_panel', save_strain_rate_panel);
 end
 
-% --- Executes on button press in strain_rate_save_button.
-function strain_rate_save_button_Callback(hObject, eventdata, handles)
-% hObject    handle to strain_rate_save_button (see GCBO)
+% --- Executes on button press in epsilon_dot_save_button.
+function epsilon_dot_save_button_Callback(hObject, eventdata, handles)
+% hObject    handle to epsilon_dot_save_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-save_strain_rate_type = evalin('base', 'save_strain_rate_type');
+save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
 
-switch (save_strain_rate_type)
+switch (save_epsilon_dot_strain_rate_type)
     case 1
-        save_strain_rate_linear_checkbox(hObject, eventdata, handles);      
+        save_epsilon_dot_strain_rate_linear_checkbox(hObject, eventdata, handles);
+ 
     case 2
-        save_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
-               
+        save_epsilon_dot_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
+            
     otherwise
         errordlg('Choose between Linear or Logarithmic','Error');
 end
@@ -1347,14 +1348,14 @@ save_temperature_panel = evalin('base','save_temperature_panel');
 save_epsilon_panel = evalin('base','save_epsilon_panel');
 save_strain_rate_panel = evalin('base','save_strain_rate_panel');
 
-save_strain_rate_type = evalin('base','save_strain_rate_type');
+save_epsilon_dot_strain_rate_type = evalin('base','save_epsilon_dot_strain_rate_type');
 
 % control if all the panels are filled
 if save_material_panel == 0 || save_temperature_panel == 0 || ...
         save_epsilon_panel == 0 || save_strain_rate_panel == 0
     errordlg('Please fullfil the all data fields','Error');
 else
-        switch(save_strain_rate_type)
+        switch(save_epsilon_dot_strain_rate_type)
             case 1
                 calculate_strain_rate_linear(hObject, eventdata, handles);
             case 2
@@ -1376,9 +1377,9 @@ epsilon_step_text = evalin('base','epsilon_step_text');
 epsilon_min_text = evalin('base','epsilon_min_text');
 epsilon_max_text = evalin('base','epsilon_max_text');
 % strain_rate
-linear_step_text = evalin('base','linear_step_text');
-linear_min_text = evalin('base','linear_min_text');
-linear_max_text = evalin('base','linear_max_text');
+epsilon_dot_step_linear_input = evalin('base','epsilon_dot_step_linear_input');
+epsilon_dot_min_linear_input = evalin('base','epsilon_dot_min_linear_input');
+epsilon_dot_max_linear_input = evalin('base','epsilon_dot_max_linear_input');
 % Temperature
 temperature_quantity = evalin('base','temperature_quantity');
 temperature_array = evalin('base','temperature_array');
@@ -1401,7 +1402,7 @@ if epsilon_step_text > 0
 else
     epsilon_quantity = 1;
 end
-strain_rate_linear_quantity = round((linear_max_text-linear_min_text)/linear_step_text)+1;
+strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_min_linear_input)/epsilon_dot_step_linear_input)+1;
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
@@ -1412,7 +1413,7 @@ i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
 epsilon = 0.1;
-strain_rate_linear = linear_min_text;
+strain_rate_linear = epsilon_dot_min_linear_input;
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
@@ -1429,12 +1430,12 @@ while i <= temperature_quantity
                     k = 1;
                     %epsilon = epsilon_min_text;
                     j = j + 1;
-                    strain_rate_linear = strain_rate_linear + linear_step_text;
+                    strain_rate_linear = strain_rate_linear + epsilon_dot_step_linear_input;
             end
                 k = 1;
                 j = 1;
                 %epsilon = epsilon_min_text;
-                strain_rate_linear = linear_min_text;
+                strain_rate_linear = epsilon_dot_min_linear_input;
                 i = i + 1;
 end
 fclose(fid);
@@ -1458,8 +1459,8 @@ epsilon_step_text = evalin('base','epsilon_step_text');
 epsilon_min_text = evalin('base','epsilon_min_text');
 epsilon_max_text = evalin('base','epsilon_max_text');
 % strain_rate
-logarithmic_quantity = evalin('base','logarithmic_quantity');
-logarithmic_array = evalin('base','logarithmic_array');
+epsilon_dot_logarithmic_quantity = evalin('base','epsilon_dot_logarithmic_quantity');
+epsilon_dot_logarithmic_array = evalin('base','epsilon_dot_logarithmic_array');
 % Temperature
 temperature_quantity = evalin('base','temperature_quantity');
 temperature_array = evalin('base','temperature_array');
@@ -1495,13 +1496,13 @@ epsilon = 0.1;
 
 % Write the sigmas in the file
 while i <= temperature_quantity 
-            while j <= logarithmic_quantity
+            while j <= epsilon_dot_logarithmic_quantity
                 while k <= epsilon_quantity 
-                    sigma = (A+B*epsilon^n)*(1+C*log(logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                    sigma = (A+B*epsilon^n)*(1+C*log(epsilon_dot_logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
-                       sigma = (A+B)*(1+C*log(logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                       sigma = (A+B)*(1+C*log(epsilon_dot_logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    end
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon logarithmic_array(j,1) temperature_array(i,1)]);     
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_logarithmic_array(j,1) temperature_array(i,1)]);     
                         k = k + 1;
                         % epsilon = epsilon + epsilon_step_text;
                 end
@@ -1527,3 +1528,5 @@ function plot_button_Callback(hObject, eventdata, handles)
 % hObject    handle to plot_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+epsilon_dot_min_linear_text
