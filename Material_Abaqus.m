@@ -1412,7 +1412,7 @@ strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_mi
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
-epsilon = 0.1;
+epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_linear = epsilon_dot_min_linear_input;
 
 % Write the Sigmas in the file
@@ -1428,13 +1428,13 @@ while i <= temperature_quantity
                         epsilon = epsilon + epsilon_step_input;
                 end
                     k = 1;
-                    %epsilon = epsilon_min_input;
+                    epsilon = epsilon_min_input;
                     j = j + 1;
                     strain_rate_linear = strain_rate_linear + epsilon_dot_step_linear_input;
             end
                 k = 1;
                 j = 1;
-                %epsilon = epsilon_min_input;
+                epsilon = epsilon_min_input;
                 strain_rate_linear = epsilon_dot_min_linear_input;
                 i = i + 1;
 end
@@ -1492,7 +1492,7 @@ end
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
-epsilon = 0.1;
+epsilon = epsilon_min_input; % gets the initial value from epsilon
 
 % Write the sigmas in the file
 while i <= temperature_quantity 
@@ -1504,10 +1504,10 @@ while i <= temperature_quantity
                    end
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_logarithmic_array(j,1) temperature_array(i,1)]);     
                         k = k + 1;
-                        % epsilon = epsilon + epsilon_step_input;
+                        epsilon = epsilon + epsilon_step_input;
                 end
                     k = 1;
-                    % epsilon = epsilon_min_input;
+                    epsilon = epsilon_min_input;
                     j = j + 1;
             end
                 k = 1;
