@@ -1402,7 +1402,9 @@ if epsilon_step_input > 0
 else
     epsilon_quantity = 1;
 end
+
 strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_min_linear_input)/epsilon_dot_step_linear_input)+1;
+%calculate the number of epsilons dot (not correct)
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
@@ -1430,7 +1432,7 @@ while i <= temperature_quantity
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
-                    strain_rate_linear = strain_rate_linear + epsilon_dot_step_linear_input;
+                    strain_rate_linear = strain_rate_linear * epsilon_dot_step_linear_input;
             end
                 k = 1;
                 j = 1;
