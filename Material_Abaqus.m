@@ -1402,8 +1402,8 @@ if epsilon_step_input > 0
 else
     epsilon_quantity = 1;
 end
-
-strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_min_linear_input)/epsilon_dot_step_linear_input)+1;
+strain_rate_linear_quantity = log10(epsilon_dot_max_linear_input / epsilon_dot_min_linear_input) +1;
+%strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_min_linear_input)/epsilon_dot_step_linear_input)+1;
 %calculate the number of epsilons dot (not correct)
 
 % First and second line of the file
