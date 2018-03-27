@@ -1211,8 +1211,8 @@ fclose(fid);
 msgbox('Saved', 'Ok');
 
 % refresh the workpspace for a new file
-evalin( 'base', 'clearvars *' ) 
-initial(hObject, eventdata, handles) 
+%evalin( 'base', 'clearvars *' ) 
+%initial(hObject, eventdata, handles) 
 
 %%              calculate_strain_rate_logarithmic
 function calculate_strain_rate_logarithmic(hObject, eventdata, handles);
@@ -1288,11 +1288,54 @@ fclose(fid);
 msgbox('Saved', 'Ok');
 
 % refresh the workpspace for a new file
-evalin( 'base', 'clearvars *' ) 
-initial(hObject, eventdata, handles) 
+%evalin( 'base', 'clearvars *' ) 
+%initial(hObject, eventdata, handles) 
 
 %% =======================BEGIN OF PLOT BUTTON =======================
 %  ========================================================================
 % --- Executes on button press in plot_button.
 function plot_button_Callback(hObject, eventdata, handles)
+
+exp_name = evalin('base','exp_name');    %retrieve the last txt file
+fid = fopen(exp_name, 'r' );
+fgetl(fid);                              %ignores the first line
+fgetl(fid);                              %ignores the second line
+sizeA = [4 inf];                         %break it into right format
+dataPlot = fscanf(fid,'%e',sizeA);
+dataPlot = dataPlot';
+assignin('base', 'dataPlot', dataPlot);  %save in workspace
+
+%plot(dataPlot(:,3),dataPlot(:,1),'r+-')
+
+%new code
+
+numEpsilon=size(dataPlot,1)/(temperature_quantity*strain_rate_linear_quantity)
+figure;
+
+
+for i=1:temperature_quantity
+    subplot(1,temperature_quantity,i)
+    hold on;
+    for j=1:numEpsilon
+        plot(dataPlot(j:numEpsilon:end,3),dataPlot(j:numEpsilon:end,1))
+        hold on;
+    end
+end
+
+for i=1:temperature_quantity
+    subplot(1,temperature_quantity,i)
+    hold on;
+    for j=1:numEpsilon
+        a{1,j}(:,1)=dataPlot(j:numEpsilon:end,3)
+        a{1,j}(:,2)=dataPlot(j:numEpsilon:end,1)
+    end
+    for j=1:2
+        plot(a{1,j}(:,1),a{1,j}(:,2))
+        hold on;
+    end
+end
+
+
+
+
 
