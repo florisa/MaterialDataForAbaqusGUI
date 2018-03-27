@@ -88,11 +88,7 @@ varargout{1} = handles.output;
 %%                       material_grade_checkbox
 % --- Executes on button press in material_grade_checkbox.
 function material_grade_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to material_grade_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of material_grade_checkbox
 save_material_selection = 1;
 assignin('base', 'save_material_selection', save_material_selection);
 
@@ -103,13 +99,6 @@ set(handles.material_grade_checkbox, 'Value', 1);
 %%                        Material_Grade_popup
 % --- Executes on selection change in material_grade_popup.
 function material_grade_popup_Callback(hObject, eventdata, handles)
-% hObject    handle to material_grade_popup (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns material_grade_popup contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from material_grade_popup
-
 % Reading the popup menu
 % If the user don't choose any material, the default is 45CG
 material_choice = get(hObject,'Value');
@@ -118,12 +107,7 @@ assignin('base', 'material_choice', material_choice);
 
 % --- Executes during object creation, after setting all properties.
 function material_grade_popup_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_grade_popup (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -131,11 +115,6 @@ end
 %%                Pure_Ferrite_Checkbox
 % --- Executes on button press in pure_ferrite_checkbox.
 function pure_ferrite_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to pure_ferrite_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of pure_ferrite_checkbox
 
 save_material_selection = 2;
 assignin('base', 'save_material_selection', save_material_selection);
@@ -146,12 +125,6 @@ set(handles.material_grade_checkbox, 'Value', 0);
 
 %%                    S_text_box
 function s_text_Callback(hObject, eventdata, handles)
-% hObject    handle to s_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of s_text as text
-%        str2double(get(hObject,'String')) returns contents of s_text as a double
 
 s_text = str2double(get(hObject, 'String'));
 if (isnan(s_text) || s_text <= 0)
@@ -164,12 +137,7 @@ assignin('base', 's_text', s_text);
 
 % --- Executes during object creation, after setting all properties.
 function s_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to s_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -177,11 +145,6 @@ end
 %%                    Pure_Pearlite_Checkbox
 % --- Executes on button press in pure_pearlite_checkbox.
 function pure_pearlite_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to pure_pearlite_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of pure_pearlite_checkbox
 
 save_material_selection = 3;
 assignin('base', 'save_material_selection', save_material_selection);
@@ -192,12 +155,6 @@ set(handles.material_grade_checkbox, 'Value', 0);
 
 %%                      Dp_text_box
 function dp_text_Callback(hObject, eventdata, handles)
-% hObject    handle to dp_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of dp_text as text
-%        str2double(get(hObject,'String')) returns contents of dp_text as a double
 
 dp_text = str2double(get(hObject, 'String'));
 if (isnan(dp_text) || dp_text <= 0)
@@ -210,12 +167,7 @@ assignin('base', 'dp_text', dp_text);
 
 % --- Executes during object creation, after setting all properties.
 function dp_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to dp_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -223,12 +175,6 @@ end
 
 %%                   Df_text_box
 function df_text_Callback(hObject, eventdata, handles)
-% hObject    handle to df_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of df_text as text
-%        str2double(get(hObject,'String')) returns contents of df_text as a double
 
 df_text = str2double(get(hObject, 'String'));
 if (isnan(df_text) || df_text <= 0)
@@ -241,18 +187,12 @@ assignin('base', 'df_text', df_text);
 
 % --- Executes during object creation, after setting all properties.
 function df_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to df_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 %%             save_pure_ferrite_checkbox
-
 function save_pure_ferrite_checkbox(hObject, eventdata, handles)
 
 % Verify if the text values were added
@@ -501,9 +441,6 @@ end
 %%                       Save_Material_button
 % --- Executes on button press in save_material_selection.
 function save_material_selection_Callback(hObject, eventdata, handles)
-% hObject    handle to save_material_selection (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 save_material_selection = evalin('base', 'save_material_selection');
 
@@ -521,10 +458,6 @@ save_material_selection = evalin('base', 'save_material_selection');
 %%                  Clear_Material_Selection_button
 % --- Executes on button press in refresh_fields_button.
 function refresh_fields_button_Callback(hObject, eventdata, handles)
-% hObject    handle to refresh_fields_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% Hint: get(hObject,'Value') returns toggle state of refresh_fields_button
 
 % Refresh all fields
 set(handles.df_text, 'string', '');
@@ -611,11 +544,7 @@ assignin('base', 'strain_rate_linear_quantity', strain_rate_linear_quantity);
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
-% hObject    handle to figure1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hint: delete(hObject) closes the figure
 delete(hObject);
 
 %% =================== BEGIN OF PANEL TEMPERATURE =========================
@@ -623,12 +552,6 @@ delete(hObject);
 
 %%                    Temperature
 function temperature_text_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of temperature_text as text
-%        str2double(get(hObject,'String')) returns contents of temperature_text as a double
 
 % Reading the textbox fields
 temperature_text = str2double(get(hObject, 'String'));
@@ -642,23 +565,13 @@ temperature_text = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function temperature_text_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_text (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 % --- Executes on button press in temperature_clear_button.
 function temperature_clear_button_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_clear_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of temperature_clear_button
 
 % Refresh all fields
 temperature_text = 0; 
@@ -678,9 +591,6 @@ assignin('base', 'save_temperature_panel', save_temperature_panel);
 
 % --- Executes on button press in temperature_save_button.
 function temperature_save_button_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_save_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % Verify if the temperatures were added
 temperature_quantity = evalin('base', 'temperature_quantity'); 
@@ -699,9 +609,6 @@ end
 
 % --- Executes on button press in temperature_ADD_button.
 function temperature_ADD_button_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_ADD_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 temperature_quantity = evalin('base', 'temperature_quantity');  
 temperature_array = evalin('base', 'temperature_array');
@@ -743,24 +650,9 @@ assignin('base', 'temperature_array', temperature_array);
 assignin('base', 'temperature_quantity', temperature_quantity);
 
 
-% --- Executes on selection change in temperature_popup_menu.
-function temperature_popup_menu_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns temperature_popup_menu contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from temperature_popup_menu
-
-
 % --- Executes during object creation, after setting all properties.
 function temperature_popup_menu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -770,11 +662,6 @@ end
 
 % --- Executes on button press in epsilon_dot_linear_checkbox.
 function epsilon_dot_linear_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_linear_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_linear_checkbox
 
 % Control if the user selected the type of Strain Rate
 save_epsilon_dot_strain_rate_type = 1;
@@ -795,12 +682,6 @@ set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
 
 
 function epsilon_dot_step_linear_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_step_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_dot_step_linear_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_dot_step_linear_input as a double
 
 % Reading the textbox fields
 epsilon_dot_step_linear_input = str2double(get(hObject, 'String'));
@@ -814,24 +695,13 @@ epsilon_dot_step_linear_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_dot_step_linear_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_step_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
 function epsilon_dot_min_linear_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_min_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_dot_min_linear_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_dot_min_linear_input as a double
 
 % Reading the textbox fields
 epsilon_dot_min_linear_input = str2double(get(hObject, 'String'));
@@ -846,24 +716,13 @@ epsilon_dot_min_linear_input = str2double(get(hObject, 'String'));
     
 % --- Executes during object creation, after setting all properties.
 function epsilon_dot_min_linear_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_min_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
 function epsilon_dot_max_linear_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_max_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_dot_max_linear_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_dot_max_linear_input as a double
 
 % Reading the textbox fields
 epsilon_dot_max_linear_input = str2double(get(hObject, 'String'));
@@ -877,12 +736,7 @@ epsilon_dot_max_linear_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_dot_max_linear_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_max_linear_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -890,11 +744,6 @@ end
 
 % --- Executes on button press in epsilon_dot_logarithmic_checkbox.
 function epsilon_dot_logarithmic_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_logarithmic_checkbox
 
 % Control if the user selected the type of Strain Rate
 save_epsilon_dot_strain_rate_type = 2;
@@ -916,12 +765,6 @@ set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
 
 
 function epsilon_dot_logarithmic_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_dot_logarithmic_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_dot_logarithmic_input as a double
 
 % Reading the textbox fields
 epsilon_dot_logarithmic_input = str2double(get(hObject, 'String'));
@@ -935,12 +778,7 @@ epsilon_dot_logarithmic_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_dot_logarithmic_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -948,9 +786,6 @@ end
 
 % --- Executes on button press in epsilon_dot_logarithmic_ADD_button.
 function epsilon_dot_logarithmic_ADD_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_ADD_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 epsilon_dot_logarithmic_quantity = evalin('base', 'epsilon_dot_logarithmic_quantity');  
 epsilon_dot_logarithmic_array = evalin('base', 'epsilon_dot_logarithmic_array');
@@ -992,24 +827,9 @@ assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array)
 assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
 
 
-% --- Executes on selection change in epsilon_dot_logarithmic_popup_menu.
-function epsilon_dot_logarithmic_popup_menu_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns epsilon_dot_logarithmic_popup_menu contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from epsilon_dot_logarithmic_popup_menu
-
-
 % --- Executes during object creation, after setting all properties.
 function epsilon_dot_logarithmic_popup_menu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_logarithmic_popup_menu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -1017,11 +837,6 @@ end
 
 % --- Executes on button press in epsilon_dot_clear_button.
 function epsilon_dot_clear_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_clear_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of epsilon_dot_clear_button
 
 % Refresh all fields
 save_epsilon_dot_strain_rate_type = 0;
@@ -1107,9 +922,7 @@ end
 
 % --- Executes on button press in epsilon_dot_save_button.
 function epsilon_dot_save_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_dot_save_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+
 save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
 
 switch (save_epsilon_dot_strain_rate_type)
@@ -1127,12 +940,6 @@ end
 %  ========================================================================
 
 function epsilon_step_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_step_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_step_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_step_input as a double
 
 % Reading the textbox fields
 epsilon_step_input = str2double(get(hObject, 'String'));
@@ -1146,24 +953,13 @@ epsilon_step_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_step_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_step_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
 function epsilon_min_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_min_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_min_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_min_input as a double
 
 % Reading the textbox fields
 epsilon_min_input = str2double(get(hObject, 'String'));
@@ -1177,24 +973,13 @@ epsilon_min_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_min_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_min_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
 function epsilon_max_input_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_max_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of epsilon_max_input as text
-%        str2double(get(hObject,'String')) returns contents of epsilon_max_input as a double
 
 % Reading the textbox fields
 epsilon_max_input = str2double(get(hObject, 'String'));
@@ -1209,12 +994,7 @@ epsilon_max_input = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
 function epsilon_max_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to epsilon_max_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -1222,11 +1002,6 @@ end
 
 % --- Executes on button press in epsilon_clear_button.
 function epsilon_clear_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_clear_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of epsilon_clear_button
 
 % Refresh all fields
 set(handles.epsilon_max_input, 'string', '');
@@ -1245,9 +1020,6 @@ assignin('base', 'save_epsilon_panel', save_epsilon_panel);
 
 % --- Executes on button press in epsilon_save_button.
 function epsilon_save_button_Callback(hObject, eventdata, handles)
-% hObject    handle to epsilon_save_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % Verify if the values were added
 epsilon_step_input = evalin('base', 'epsilon_step_input'); 
@@ -1282,9 +1054,6 @@ end
 %  ========================================================================
 % --- Executes on button press in save_file_button.
 function save_file_button_Callback(hObject, eventdata, handles)
-% hObject    handle to save_file_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % This block creates the .txt file *************************************
 % Creates the dialog box
@@ -1292,7 +1061,7 @@ prompt = {'Save as:'};             % open a dialog box for saving the file
 dlg_title = 'Save';                % window title
 num_lines = 1;                     % text field
 defaultans = {''};                 % default file name
-PathName = 'output\';                % default path
+PathName = 'output\';              % default path
 
 fid = inputdlg(prompt,dlg_title,num_lines,defaultans);
 
@@ -1340,9 +1109,6 @@ end
 %  ========================================================================
 % --- Executes on button press in calculate_button.
 function calculate_button_Callback(hObject, eventdata, handles)
-% hObject    handle to calculate_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % Check the values of all panels
 save_material_panel = evalin('base','save_material_panel');
@@ -1447,6 +1213,7 @@ msgbox('Saved', 'Ok');
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
+
 %%              calculate_strain_rate_logarithmic
 function calculate_strain_rate_logarithmic(hObject, eventdata, handles);
 
@@ -1528,7 +1295,4 @@ initial(hObject, eventdata, handles)
 %  ========================================================================
 % --- Executes on button press in plot_button.
 function plot_button_Callback(hObject, eventdata, handles)
-% hObject    handle to plot_button (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
