@@ -1299,6 +1299,7 @@ function plot_button_Callback(hObject, eventdata, handles)
 exp_name = evalin('base','exp_name');    %retrieve the last txt file
 temperature_quantity = evalin('base','temperature_quantity');
 strain_rate_linear_quantity = evalin('base','strain_rate_linear_quantity');
+epsilon_dot_logarithmic_quantity = evalin('base','epsilon_dot_logarithmic_quantity');
 temperature_array = evalin('base','temperature_array');
 fid = fopen(exp_name, 'r' );
 fgetl(fid);                              %ignores the first line
@@ -1308,7 +1309,8 @@ dataPlot = fscanf(fid,'%e',sizeA);
 dataPlot = dataPlot';
 assignin('base', 'dataPlot', dataPlot);  %save in workspace
 
-numEpsilon = size(dataPlot,1)/(temperature_quantity*strain_rate_linear_quantity);
+%It should be setted according to linear or log scales
+numEpsilon = size(dataPlot,1)/(temperature_quantity*epsilon_dot_logarithmic_quantity);
 figure;
 
 for i=1:temperature_quantity
@@ -1316,6 +1318,7 @@ for i=1:temperature_quantity
     hold on;
     for j=1:numEpsilon
         plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
+        %set(gca, 'XScale', 'log')
         xlabel('Strain Rate');
         ylabel('Sigma');
         dataLegend = num2str(dataPlot(j,2));
