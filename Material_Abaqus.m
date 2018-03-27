@@ -606,6 +606,8 @@ epsilon_dot_min_linear_input = 0;
 assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
 epsilon_dot_max_linear_input = 0; 
 assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+strain_rate_linear_quantity = 0;
+assignin('base', 'strain_rate_linear_quantity', strain_rate_linear_quantity);
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
@@ -1403,8 +1405,7 @@ else
     epsilon_quantity = 1;
 end
 strain_rate_linear_quantity = log10(epsilon_dot_max_linear_input / epsilon_dot_min_linear_input) +1;
-%strain_rate_linear_quantity = round((epsilon_dot_max_linear_input-epsilon_dot_min_linear_input)/epsilon_dot_step_linear_input)+1;
-%calculate the number of epsilons dot (not correct)
+assignin('base', 'strain_rate_linear_quantity', strain_rate_linear_quantity);
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
