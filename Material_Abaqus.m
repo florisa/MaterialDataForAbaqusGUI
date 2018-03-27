@@ -1297,6 +1297,9 @@ msgbox('Saved', 'Ok');
 function plot_button_Callback(hObject, eventdata, handles)
 
 exp_name = evalin('base','exp_name');    %retrieve the last txt file
+temperature_quantity = evalin('base','temperature_quantity');
+strain_rate_linear_quantity = evalin('base','strain_rate_linear_quantity');
+temperature_array = evalin('base','temperature_array');
 fid = fopen(exp_name, 'r' );
 fgetl(fid);                              %ignores the first line
 fgetl(fid);                              %ignores the second line
@@ -1305,37 +1308,21 @@ dataPlot = fscanf(fid,'%e',sizeA);
 dataPlot = dataPlot';
 assignin('base', 'dataPlot', dataPlot);  %save in workspace
 
-%plot(dataPlot(:,3),dataPlot(:,1),'r+-')
-
-%new code
-
-numEpsilon=size(dataPlot,1)/(temperature_quantity*strain_rate_linear_quantity)
+numEpsilon = size(dataPlot,1)/(temperature_quantity*strain_rate_linear_quantity);
 figure;
 
-
 for i=1:temperature_quantity
     subplot(1,temperature_quantity,i)
     hold on;
     for j=1:numEpsilon
-        plot(dataPlot(j:numEpsilon:end,3),dataPlot(j:numEpsilon:end,1))
-        hold on;
+        plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
+        xlabel('Strain Rate');
+        ylabel('Sigma');
+        dataLegend = num2str(dataPlot(j,2));
+        leg{1,j} = dataLegend;
+        
     end
+    legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
+    temp=int2str(temperature_array(i));
+    title(strcat(' Temperature =','',temp,' °C'))
 end
-
-for i=1:temperature_quantity
-    subplot(1,temperature_quantity,i)
-    hold on;
-    for j=1:numEpsilon
-        a{1,j}(:,1)=dataPlot(j:numEpsilon:end,3)
-        a{1,j}(:,2)=dataPlot(j:numEpsilon:end,1)
-    end
-    for j=1:2
-        plot(a{1,j}(:,1),a{1,j}(:,2))
-        hold on;
-    end
-end
-
-
-
-
-
