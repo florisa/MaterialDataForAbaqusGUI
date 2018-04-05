@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 20-Mar-2018 17:16:21
+% Last Modified by GUIDE v2.5 05-Apr-2018 10:46:46
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -524,23 +524,23 @@ assignin('base', 'epsilon_max_input', epsilon_max_input);
 % Initial var values for epsilon_dot_strain_rate panel
 save_epsilon_dot_strain_rate_type = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
-% LOGARITHMIC
-epsilon_dot_logarithmic_quantity = 0; % Quantity of logarithmic values for popup menu
-assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
-epsilon_dot_logarithmic_array = 0; 
-assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
-epsilon_dot_logarithmic_input = 0; % Text box initialization
-assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
+% Manual
+epsilon_dot_manual_quantity = 0; % Quantity of logarithmic values for popup menu
+assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
+epsilon_dot_manual_array = 0; 
+assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
+epsilon_dot_manual_input = 0; % Text box initialization
+assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
 
-% LINEAR
-epsilon_dot_step_linear_input = 0; 
-assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
-epsilon_dot_min_linear_input = 0; 
-assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
-epsilon_dot_max_linear_input = 0; 
-assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
-strain_rate_linear_quantity = 0;
-assignin('base', 'strain_rate_linear_quantity', strain_rate_linear_quantity);
+% Automatic
+epsilon_dot_step_automatic_input = 0; 
+assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
+epsilon_dot_min_automatic_input = 0; 
+assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
+epsilon_dot_max_automatic_input = 0; 
+assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
+strain_rate_automatic_quantity = 0;
+assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
@@ -660,153 +660,153 @@ end
 %% =================== BEGIN OF PANEL EPSILON DOT (STRAIN RATE) ===========
 %  ========================================================================
 
-% --- Executes on button press in epsilon_dot_linear_checkbox.
-function epsilon_dot_linear_checkbox_Callback(hObject, eventdata, handles)
+% --- Executes on button press in epsilon_dot_automatic_checkbox.
+function epsilon_dot_automatic_checkbox_Callback(hObject, eventdata, handles)
 
 % Control if the user selected the type of Strain Rate
 save_epsilon_dot_strain_rate_type = 1;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 
-% Refresh automatic the logarithmic fields
-epsilon_dot_logarithmic_input = 0; 
-assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
-epsilon_dot_logarithmic_array = 0; 
-assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
-refresh_logarithmic_popup = {''};
-set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup);
-epsilon_dot_logarithmic_quantity = 0; 
-assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
+% Refresh automatic the manual fields
+epsilon_dot_manual_input = 0; 
+assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
+epsilon_dot_manual_array = 0; 
+assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
+refresh_manual_popup = {''};
+set(handles.epsilon_dot_manual_popup_menu,'String',refresh_manual_popup);
+epsilon_dot_manual_quantity = 0; 
+assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
 
-set(handles.epsilon_dot_linear_checkbox, 'Value', 1);
-set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
+set(handles.epsilon_dot_automatic_checkbox, 'Value', 1);
+set(handles.epsilon_dot_manual_checkbox, 'Value', 0);
 
 
-function epsilon_dot_step_linear_input_Callback(hObject, eventdata, handles)
+function epsilon_dot_step_automatic_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
-epsilon_dot_step_linear_input = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_dot_step_linear_input) || epsilon_dot_step_linear_input <= 0)
-        epsilon_dot_step_linear_input = 0;
-        assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+epsilon_dot_step_automatic_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_step_automatic_input) || epsilon_dot_step_automatic_input <= 0)
+        epsilon_dot_step_automatic_input = 0;
+        assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
+    assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_dot_step_linear_input_CreateFcn(hObject, eventdata, handles)
+function epsilon_dot_step_automatic_input_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-function epsilon_dot_min_linear_input_Callback(hObject, eventdata, handles)
+function epsilon_dot_min_automatic_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
-epsilon_dot_min_linear_input = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_dot_min_linear_input) || epsilon_dot_min_linear_input <= 0)
-        epsilon_dot_min_linear_input = 0;
-        assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+epsilon_dot_min_automatic_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_min_automatic_input) || epsilon_dot_min_automatic_input <= 0)
+        epsilon_dot_min_automatic_input = 0;
+        assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
+    assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
     
     
 % --- Executes during object creation, after setting all properties.
-function epsilon_dot_min_linear_input_CreateFcn(hObject, eventdata, handles)
+function epsilon_dot_min_automatic_input_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-function epsilon_dot_max_linear_input_Callback(hObject, eventdata, handles)
+function epsilon_dot_max_automatic_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
-epsilon_dot_max_linear_input = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_dot_max_linear_input) || epsilon_dot_max_linear_input <= 0)
-        epsilon_dot_max_linear_input = 0;
-        assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+epsilon_dot_max_automatic_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_max_automatic_input) || epsilon_dot_max_automatic_input <= 0)
+        epsilon_dot_max_automatic_input = 0;
+        assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+    assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_dot_max_linear_input_CreateFcn(hObject, eventdata, handles)
+function epsilon_dot_max_automatic_input_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-% --- Executes on button press in epsilon_dot_logarithmic_checkbox.
-function epsilon_dot_logarithmic_checkbox_Callback(hObject, eventdata, handles)
+% --- Executes on button press in epsilon_dot_manual_checkbox.
+function epsilon_dot_manual_checkbox_Callback(hObject, eventdata, handles)
 
 % Control if the user selected the type of Strain Rate
 save_epsilon_dot_strain_rate_type = 2;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
 
 % Refresh automatic the linear fields
-set(handles.epsilon_dot_max_linear_input, 'string', '');
-set(handles.epsilon_dot_min_linear_input, 'string', '');
-set(handles.epsilon_dot_step_linear_input, 'string', '');
-epsilon_dot_step_linear_input = 0; 
-assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
-epsilon_dot_min_linear_input = 0; 
-assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
-epsilon_dot_max_linear_input = 0; 
-assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+set(handles.epsilon_dot_max_automatic_input, 'string', '');
+set(handles.epsilon_dot_min_automatic_input, 'string', '');
+set(handles.epsilon_dot_step_automatic_input, 'string', '');
+epsilon_dot_step_automatic_input = 0; 
+assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
+epsilon_dot_min_automatic_input = 0; 
+assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
+epsilon_dot_max_automatic_input = 0; 
+assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
 
-set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 1);
-set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
+set(handles.epsilon_dot_manual_checkbox, 'Value', 1);
+set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
 
 
-function epsilon_dot_logarithmic_input_Callback(hObject, eventdata, handles)
+function epsilon_dot_manual_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
-epsilon_dot_logarithmic_input = str2double(get(hObject, 'String'));
-    if (isnan(epsilon_dot_logarithmic_input) || epsilon_dot_logarithmic_input <= 0)
-        epsilon_dot_logarithmic_input = 0;
-        assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
+epsilon_dot_manual_input = str2double(get(hObject, 'String'));
+    if (isnan(epsilon_dot_manual_input) || epsilon_dot_manual_input <= 0)
+        epsilon_dot_manual_input = 0;
+        assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
         set(hObject, 'String', '');
         errordlg('Enter the correct data','Error');
     end
-    assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
+    assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_dot_logarithmic_input_CreateFcn(hObject, eventdata, handles)
+function epsilon_dot_manual_input_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-% --- Executes on button press in epsilon_dot_logarithmic_ADD_button.
-function epsilon_dot_logarithmic_ADD_button_Callback(hObject, eventdata, handles)
+% --- Executes on button press in epsilon_dot_manual_ADD_button.
+function epsilon_dot_manual_ADD_button_Callback(hObject, eventdata, handles)
 
-epsilon_dot_logarithmic_quantity = evalin('base', 'epsilon_dot_logarithmic_quantity');  
-epsilon_dot_logarithmic_array = evalin('base', 'epsilon_dot_logarithmic_array');
-epsilon_dot_logarithmic_input = evalin('base', 'epsilon_dot_logarithmic_input');
+epsilon_dot_manual_quantity = evalin('base', 'epsilon_dot_manual_quantity');  
+epsilon_dot_manual_array = evalin('base', 'epsilon_dot_manual_array');
+epsilon_dot_manual_input = evalin('base', 'epsilon_dot_manual_input');
 
 % prevent to add null values to the popupmenu
-if epsilon_dot_logarithmic_input == 0 
+if epsilon_dot_manual_input == 0 
     return;
 end
 
 % Test if the value was already added
 i_logarithmic = 1;
-while i_logarithmic <= epsilon_dot_logarithmic_quantity
+while i_logarithmic <= epsilon_dot_manual_quantity
     
-    if epsilon_dot_logarithmic_array(i_logarithmic,1) == epsilon_dot_logarithmic_input 
+    if epsilon_dot_manual_array(i_logarithmic,1) == epsilon_dot_manual_input 
         % Warning and interrupt the loop
         % Variable i is used to recognize the error
         errordlg('This value is already used', 'Error');
          % To refresh the temperature textbox
-        epsilon_dot_logarithmic_input = '';
-        set(handles.epsilon_dot_logarithmic_input,'String',epsilon_dot_logarithmic_input)
+        epsilon_dot_manual_input = '';
+        set(handles.epsilon_dot_manual_input,'String',epsilon_dot_manual_input)
         i_logarithmic = 0;
         break;
     end
@@ -815,20 +815,20 @@ end
 
 % If i ~= 0, add the value, else do nothing 
 if i_logarithmic ~= 0
-    epsilon_dot_logarithmic_quantity = epsilon_dot_logarithmic_quantity + 1;
-    epsilon_dot_logarithmic_array(epsilon_dot_logarithmic_quantity,1) = epsilon_dot_logarithmic_input;
-    set(handles.epsilon_dot_logarithmic_popup_menu,'String',epsilon_dot_logarithmic_array);
+    epsilon_dot_manual_quantity = epsilon_dot_manual_quantity + 1;
+    epsilon_dot_manual_array(epsilon_dot_manual_quantity,1) = epsilon_dot_manual_input;
+    set(handles.epsilon_dot_manual_popup_menu,'String',epsilon_dot_manual_array);
     % To refresh the logarithmic textbox
-    epsilon_dot_logarithmic_input = '';
-    set(handles.epsilon_dot_logarithmic_input,'String',epsilon_dot_logarithmic_input)
+    epsilon_dot_manual_input = '';
+    set(handles.epsilon_dot_manual_input,'String',epsilon_dot_manual_input)
 end    
 
-assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
-assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
+assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
+assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
 
 
 % --- Executes during object creation, after setting all properties.
-function epsilon_dot_logarithmic_popup_menu_CreateFcn(hObject, eventdata, handles)
+function epsilon_dot_manual_popup_menu_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
@@ -844,77 +844,77 @@ assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_ra
 save_epsilon_dot_strain_rate_panel = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 
-% LOGARITHMIC
-epsilon_dot_logarithmic_input = 0; 
-assignin('base', 'epsilon_dot_logarithmic_input', epsilon_dot_logarithmic_input);
-epsilon_dot_logarithmic_array = 0; 
-assignin('base', 'epsilon_dot_logarithmic_array', epsilon_dot_logarithmic_array);
-refresh_logarithmic_popup = {''};
-set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup);
-epsilon_dot_logarithmic_quantity = 0; 
-assignin('base', 'epsilon_dot_logarithmic_quantity', epsilon_dot_logarithmic_quantity);
-set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
+% MANUAL
+epsilon_dot_manual_input = 0; 
+assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
+epsilon_dot_manual_array = 0; 
+assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
+refresh_manual_popup = {''};
+set(handles.epsilon_dot_manual_popup_menu,'String',refresh_manual_popup);
+epsilon_dot_manual_quantity = 0; 
+assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
+set(handles.epsilon_dot_manual_checkbox, 'Value', 0);
 
-% LINEAR
-set(handles.epsilon_dot_max_linear_input, 'string', '');
-set(handles.epsilon_dot_min_linear_input, 'string', '');
-set(handles.epsilon_dot_step_linear_input, 'string', '');
-epsilon_dot_step_linear_input = 0; 
-assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
-epsilon_dot_min_linear_input = 0; 
-assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
-epsilon_dot_max_linear_input = 0; 
-assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
-set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
+% AUTOMATIC
+set(handles.epsilon_dot_max_automatic_input, 'string', '');
+set(handles.epsilon_dot_min_automatic_input, 'string', '');
+set(handles.epsilon_dot_step_automatic_input, 'string', '');
+epsilon_dot_step_automatic_input = 0; 
+assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
+epsilon_dot_min_automatic_input = 0; 
+assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
+epsilon_dot_max_automatic_input = 0; 
+assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
+set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
 
-%%               save_epsilon_dot_strain_rate_linear_checkbox
+%%               save_epsilon_dot_strain_rate_automatic_checkbox
 
-function save_epsilon_dot_strain_rate_linear_checkbox(hObject, eventdata, handles);
+function save_epsilon_dot_strain_rate_automatic_checkbox(hObject, eventdata, handles);
 % Verify if the values were added
-epsilon_dot_step_linear_input = evalin('base', 'epsilon_dot_step_linear_input'); 
-epsilon_dot_min_linear_input = evalin('base', 'epsilon_dot_min_linear_input'); 
-epsilon_dot_max_linear_input = evalin('base', 'epsilon_dot_max_linear_input');
+epsilon_dot_step_automatic_input = evalin('base', 'epsilon_dot_step_automatic_input'); 
+epsilon_dot_min_automatic_input = evalin('base', 'epsilon_dot_min_automatic_input'); 
+epsilon_dot_max_automatic_input = evalin('base', 'epsilon_dot_max_automatic_input');
 
-if epsilon_dot_step_linear_input == 0 || epsilon_dot_min_linear_input == 0 || epsilon_dot_max_linear_input == 0
+if epsilon_dot_step_automatic_input == 0 || epsilon_dot_min_automatic_input == 0 || epsilon_dot_max_automatic_input == 0
     errordlg('Fullfil all the fields', 'Error');
-    set(handles.epsilon_dot_max_linear_input, 'string', '');
-    set(handles.epsilon_dot_min_linear_input, 'string', '');
-    set(handles.epsilon_dot_step_linear_input, 'string', '');
-    epsilon_dot_step_linear_input = 0; 
-    assignin('base', 'epsilon_dot_step_linear_input', epsilon_dot_step_linear_input);
-    epsilon_dot_min_linear_input = 0; 
-    assignin('base', 'epsilon_dot_min_linear_input', epsilon_dot_min_linear_input);
-    epsilon_dot_max_linear_input = 0; 
-    assignin('base', 'epsilon_dot_max_linear_input', epsilon_dot_max_linear_input);
+    set(handles.epsilon_dot_max_automatic_input, 'string', '');
+    set(handles.epsilon_dot_min_automatic_input, 'string', '');
+    set(handles.epsilon_dot_step_automatic_input, 'string', '');
+    epsilon_dot_step_automatic_input = 0; 
+    assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
+    epsilon_dot_min_automatic_input = 0; 
+    assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
+    epsilon_dot_max_automatic_input = 0; 
+    assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
 else
     msgbox('Clique to close the window','OK')
-    refresh_epsilon_dot_max_linear_input = '';
-    set(handles.epsilon_dot_max_linear_input,'String',refresh_epsilon_dot_max_linear_input);
-    refresh_epsilon_dot_min_linear_input = '';
-    set(handles.epsilon_dot_min_linear_input,'String',refresh_epsilon_dot_min_linear_input);
-    refresh_epsilon_dot_step_linear_input = '';
-    set(handles.epsilon_dot_step_linear_input,'String',refresh_epsilon_dot_step_linear_input);
-    set(handles.epsilon_dot_linear_checkbox, 'Value', 0);
+    refresh_epsilon_dot_max_automatic_input = '';
+    set(handles.epsilon_dot_max_automatic_input,'String',refresh_epsilon_dot_max_automatic_input);
+    refresh_epsilon_dot_min_automatic_input = '';
+    set(handles.epsilon_dot_min_automatic_input,'String',refresh_epsilon_dot_min_automatic_input);
+    refresh_epsilon_dot_step_automatic_input = '';
+    set(handles.epsilon_dot_step_automatic_input,'String',refresh_epsilon_dot_step_automatic_input);
+    set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
    
     % Control if the user saved the data
     save_epsilon_dot_strain_rate_panel = 1;
     assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 end
      
-%%               save_epsilon_dot_strain_rate_logarithmic_checkbox
+%%               save_epsilon_dot_strain_rate_manual_checkbox
 
-function save_epsilon_dot_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
+function save_epsilon_dot_strain_rate_manual_checkbox(hObject, eventdata, handles);
 
-% Verify if the logarithmic values were added
-epsilon_dot_logarithmic_quantity = evalin('base', 'epsilon_dot_logarithmic_quantity'); 
+% Verify if the manual values were added
+epsilon_dot_manual_quantity = evalin('base', 'epsilon_dot_manual_quantity'); 
 
-if epsilon_dot_logarithmic_quantity == 0
-    errordlg('Fullfil the logarithmic field', 'Error');
+if epsilon_dot_manual_quantity == 0
+    errordlg('Fullfil the manual field', 'Error');
 else
     msgbox('Clique to close the window','OK')
-    refresh_logarithmic_popup = {''};
-    set(handles.epsilon_dot_logarithmic_popup_menu,'String',refresh_logarithmic_popup); 
-    set(handles.epsilon_dot_logarithmic_checkbox, 'Value', 0);
+    refresh_manual_popup = {''};
+    set(handles.epsilon_dot_manual_popup_menu,'String',refresh_manual_popup); 
+    set(handles.epsilon_dot_manual_checkbox, 'Value', 0);
     % Control if the user saved the data
     save_epsilon_dot_strain_rate_panel = 1;
     assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
@@ -927,13 +927,13 @@ save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate
 
 switch (save_epsilon_dot_strain_rate_type)
     case 1
-        save_epsilon_dot_strain_rate_linear_checkbox(hObject, eventdata, handles);
+        save_epsilon_dot_strain_rate_automatic_checkbox(hObject, eventdata, handles);
  
     case 2
-        save_epsilon_dot_strain_rate_logarithmic_checkbox(hObject, eventdata, handles);
+        save_epsilon_dot_strain_rate_manual_checkbox(hObject, eventdata, handles);
             
     otherwise
-        errordlg('Choose between Linear or Logarithmic','Error');
+        errordlg('Choose between Automatic or Manual','Error');
 end
 
 %% =================== BEGIN OF PANEL EPSILON =============================
@@ -1125,13 +1125,13 @@ if save_material_panel == 0 || save_temperature_panel == 0 || ...
 else
         switch(save_epsilon_dot_strain_rate_type)
             case 1
-                calculate_strain_rate_linear(hObject, eventdata, handles);
+                calculate_strain_rate_automatic(hObject, eventdata, handles);
             case 2
-                calculate_strain_rate_logarithmic(hObject, eventdata, handles);
+                calculate_strain_rate_manual(hObject, eventdata, handles);
         end
 end
-%%              calculate_epsilon_dot_strain_rate_linear
-function calculate_strain_rate_linear(hObject, eventdata, handles);
+%%              calculate_epsilon_dot_strain_rate_automatic
+function calculate_strain_rate_automatic(hObject, eventdata, handles);
 
 % Load the vars from Workspace
 % JC Parameters
@@ -1145,9 +1145,9 @@ epsilon_step_input = evalin('base','epsilon_step_input');
 epsilon_min_input = evalin('base','epsilon_min_input');
 epsilon_max_input = evalin('base','epsilon_max_input');
 % Epsilon Dot
-epsilon_dot_step_linear_input = evalin('base','epsilon_dot_step_linear_input');
-epsilon_dot_min_linear_input = evalin('base','epsilon_dot_min_linear_input');
-epsilon_dot_max_linear_input = evalin('base','epsilon_dot_max_linear_input');
+epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_input');
+epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
+epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature
 temperature_quantity = evalin('base','temperature_quantity');
 temperature_array = evalin('base','temperature_array');
@@ -1170,8 +1170,8 @@ if epsilon_step_input > 0
 else
     epsilon_quantity = 1;
 end
-strain_rate_linear_quantity = log10(epsilon_dot_max_linear_input / epsilon_dot_min_linear_input) +1;
-assignin('base', 'strain_rate_linear_quantity', strain_rate_linear_quantity);
+strain_rate_automatic_quantity = log10(epsilon_dot_max_automatic_input / epsilon_dot_min_automatic_input) +1;
+assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
 
 % First and second line of the file
  fprintf(fid,'Flow STRESS \n');
@@ -1182,40 +1182,36 @@ i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
 epsilon = epsilon_min_input; % gets the initial value from epsilon
-strain_rate_linear = epsilon_dot_min_linear_input;
+strain_rate_automatic = epsilon_dot_min_automatic_input;
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
-            while j <= strain_rate_linear_quantity
+            while j <= strain_rate_automatic_quantity
                 while k <= epsilon_quantity 
-                        sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_linear/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                        sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
-                        sigma = (A+B)*(1+C*log(strain_rate_linear/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                        sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
                    end                
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_linear temperature_array(i,1)]);            
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
                 end
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
-                    strain_rate_linear = strain_rate_linear * epsilon_dot_step_linear_input;
+                    strain_rate_automatic = strain_rate_automatic * epsilon_dot_step_automatic_input;
             end
                 k = 1;
                 j = 1;
                 epsilon = epsilon_min_input;
-                strain_rate_linear = epsilon_dot_min_linear_input;
+                strain_rate_automatic = epsilon_dot_min_automatic_input;
                 i = i + 1;
 end
 fclose(fid);
 msgbox('Saved', 'Ok');
 
-% refresh the workpspace for a new file
-%evalin( 'base', 'clearvars *' ) 
-%initial(hObject, eventdata, handles) 
-
-%%              calculate_strain_rate_logarithmic
-function calculate_strain_rate_logarithmic(hObject, eventdata, handles);
+%%              calculate_strain_rate_manual
+function calculate_strain_rate_manual(hObject, eventdata, handles);
 
 % Load the vars from Workspace
 % JC Parameters
@@ -1229,8 +1225,8 @@ epsilon_step_input = evalin('base','epsilon_step_input');
 epsilon_min_input = evalin('base','epsilon_min_input');
 epsilon_max_input = evalin('base','epsilon_max_input');
 % Epsilon Dot
-epsilon_dot_logarithmic_quantity = evalin('base','epsilon_dot_logarithmic_quantity');
-epsilon_dot_logarithmic_array = evalin('base','epsilon_dot_logarithmic_array');
+epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
+epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 % Temperature
 temperature_quantity = evalin('base','temperature_quantity');
 temperature_array = evalin('base','temperature_array');
@@ -1266,13 +1262,13 @@ epsilon = epsilon_min_input; % gets the initial value from epsilon
 
 % Write the sigmas in the file
 while i <= temperature_quantity 
-            while j <= epsilon_dot_logarithmic_quantity
+            while j <= epsilon_dot_manual_quantity
                 while k <= epsilon_quantity 
-                    sigma = (A+B*epsilon^n)*(1+C*log(epsilon_dot_logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                    sigma = (A+B*epsilon^n)*(1+C*log(epsilon_dot_manual_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
-                       sigma = (A+B)*(1+C*log(epsilon_dot_logarithmic_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                       sigma = (A+B)*(1+C*log(epsilon_dot_manual_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    end
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_logarithmic_array(j,1) temperature_array(i,1)]);     
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_manual_array(j,1) temperature_array(i,1)]);     
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
                 end
@@ -1287,10 +1283,6 @@ end
 fclose(fid);
 msgbox('Saved', 'Ok');
 
-% refresh the workpspace for a new file
-%evalin( 'base', 'clearvars *' ) 
-%initial(hObject, eventdata, handles) 
-
 %% =======================BEGIN OF PLOT BUTTON =======================
 %  ========================================================================
 % --- Executes on button press in plot_button.
@@ -1298,8 +1290,8 @@ function plot_button_Callback(hObject, eventdata, handles)
 
 exp_name = evalin('base','exp_name');    %retrieve the last txt file
 temperature_quantity = evalin('base','temperature_quantity');
-strain_rate_linear_quantity = evalin('base','strain_rate_linear_quantity');
-epsilon_dot_logarithmic_quantity = evalin('base','epsilon_dot_logarithmic_quantity');
+strain_rate_automatic_quantity = evalin('base','strain_rate_automatic_quantity');
+epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 temperature_array = evalin('base','temperature_array');
 fid = fopen(exp_name, 'r' );
 fgetl(fid);                              %ignores the first line
@@ -1310,7 +1302,15 @@ dataPlot = dataPlot';
 assignin('base', 'dataPlot', dataPlot);  %save in workspace
 
 %It should be setted according to linear or log scales
-numEpsilon = size(dataPlot,1)/(temperature_quantity*epsilon_dot_logarithmic_quantity);
+save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
+switch (save_epsilon_dot_strain_rate_type)
+    case 1
+        numEpsilon = size(dataPlot,1)/(temperature_quantity*strain_rate_automatic_quantity);
+    case 2
+        numEpsilon = size(dataPlot,1)/(temperature_quantity*epsilon_dot_manual_quantity);
+                
+end
+
 figure;
 
 for i=1:temperature_quantity
@@ -1318,7 +1318,9 @@ for i=1:temperature_quantity
     hold on;
     for j=1:numEpsilon
         plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
-        %set(gca, 'XScale', 'log')
+        if save_epsilon_dot_strain_rate_type == 2
+        set(gca, 'XScale', 'log')
+        set(gca, 'XTick',epsilon_dot_manual_array);
         xlabel('Strain Rate');
         ylabel('Sigma');
         dataLegend = num2str(dataPlot(j,2));
@@ -1329,3 +1331,7 @@ for i=1:temperature_quantity
     temp=int2str(temperature_array(i));
     title(strcat(' Temperature =','',temp,' °C'))
 end
+
+% refresh the workpspace for a new file
+evalin( 'base', 'clearvars *' ) 
+initial(hObject, eventdata, handles) 
