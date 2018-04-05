@@ -1293,6 +1293,7 @@ temperature_quantity = evalin('base','temperature_quantity');
 strain_rate_automatic_quantity = evalin('base','strain_rate_automatic_quantity');
 epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 temperature_array = evalin('base','temperature_array');
+epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 fid = fopen(exp_name, 'r' );
 fgetl(fid);                              %ignores the first line
 fgetl(fid);                              %ignores the second line
@@ -1319,13 +1320,19 @@ for i=1:temperature_quantity
     for j=1:numEpsilon
         plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
         if (save_epsilon_dot_strain_rate_type == 2)
-            set(gca, 'XScale', 'log')
+            %set(gca, 'XScale', 'log')
             set(gca, 'XTick',epsilon_dot_manual_array);
+            %set(gca, 'XTickLabelMode','manual');
+            %set(gca, 'XTickMode','auto');
+             xlabel('Strain Rate');
+             ylabel('Sigma');
+             dataLegend = num2str(dataPlot(j,2));
+             leg{1,j} = dataLegend;
         else
-        xlabel('Strain Rate');
-        ylabel('Sigma');
-        dataLegend = num2str(dataPlot(j,2));
-        leg{1,j} = dataLegend;
+            xlabel('Strain Rate');
+            ylabel('Sigma');
+            dataLegend = num2str(dataPlot(j,2));
+            leg{1,j} = dataLegend;
         end
     end
     legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
