@@ -1171,6 +1171,7 @@ else
     epsilon_quantity = 1;
 end
 strain_rate_automatic_quantity = log10(epsilon_dot_max_automatic_input / epsilon_dot_min_automatic_input) +1;
+%strain_rate_automatic_quantity = round((epsilon_dot_max_automatic_input - epsilon_dot_min_automatic_input)/ epsilon_dot_step_automatic_input) +1;
 assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
 
 % First and second line of the file
@@ -1181,6 +1182,7 @@ assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantit
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
+a = 1;
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_automatic = epsilon_dot_min_automatic_input;
 
@@ -1193,19 +1195,57 @@ while i <= temperature_quantity
                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
                    end                
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
+                        matAuxPlot(a,1) = sigma;
+                        matAuxPlot(a,2) = epsilon;
+                        matAuxPlot(a,3) = strain_rate_automatic;
+                        matAuxPlot(a,4) = temperature_array(i,1);
+                        a=a+1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
+                        
+                        
                 end
+                    if j < strain_rate_automatic_quantity% - 1 || j == strain_rate_automatic_quantity - 2)
+                        ult = strain_rate_automatic * epsilon_dot_step_automatic_input;
+                        penult=strain_rate_automatic;
+                        N=100
+                        delta = (ult-penult)/N;
+                        for f=1:N
+                            strain_rate_automatic2(f) = penult + delta *f;
+%                             strain_rate_automatic2(f) = strain_rate_automatic2(f)';
+                        
+                                       while k <= epsilon_quantity 
+                                            sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic2(f)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                                       if(epsilon >= 1)                        
+                                            sigma = (A+B)*(1+C*log(strain_rate_automatic2(f)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                                       end                        
+                                            matAuxPlot(a,1) = sigma;
+                                            matAuxPlot(a,2) = epsilon;
+                                            matAuxPlot(a,3) = strain_rate_automatic2(f);
+                                            matAuxPlot(a,4) = temperature_array(i,1);
+                                            a=a+1;
+                                            k = k + 1;
+                                            epsilon = epsilon + epsilon_step_input;
+
+                                       end
+                                        k = 1;
+                                        epsilon = epsilon_min_input;
+
+                        end
+                    end
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
+                    %strain_rate_automatic = strain_rate_automatic + epsilon_dot_step_automatic_input;
                     strain_rate_automatic = strain_rate_automatic * epsilon_dot_step_automatic_input;
+
             end
                 k = 1;
                 j = 1;
                 epsilon = epsilon_min_input;
                 strain_rate_automatic = epsilon_dot_min_automatic_input;
                 i = i + 1;
+               assignin('base', 'matAuxPlot', matAuxPlot);
 end
 fclose(fid);
 msgbox('Saved', 'Ok');
@@ -1294,21 +1334,23 @@ strain_rate_automatic_quantity = evalin('base','strain_rate_automatic_quantity')
 epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 temperature_array = evalin('base','temperature_array');
 epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
-fid = fopen(exp_name, 'r' );
-fgetl(fid);                              %ignores the first line
-fgetl(fid);                              %ignores the second line
-sizeA = [4 inf];                         %break it into right format
-dataPlot = fscanf(fid,'%e',sizeA);
-dataPlot = dataPlot';
-assignin('base', 'dataPlot', dataPlot);  %save in workspace
+matAuxPlot = evalin('base','matAuxPlot');
+%fid = fopen(exp_name, 'r' );
+%fgetl(fid);                              %ignores the first line
+%fgetl(fid);                              %ignores the second line
+%sizeA = [4 inf];                         %break it into right format
+% dataPlot = fscanf(fid,'%e',sizeA);
+% dataPlot = dataPlot';
+% assignin('base', 'dataPlot', dataPlot);  %save in workspace
+
 
 %It should be setted according to linear or log scales
 save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
 switch (save_epsilon_dot_strain_rate_type)
     case 1
-        numEpsilon = size(dataPlot,1)/(temperature_quantity*strain_rate_automatic_quantity);
+        numEpsilon = size(matAuxPlot,1)/(temperature_quantity*(strain_rate_automatic_quantity+((99)*(strain_rate_automatic_quantity-1))));
     case 2
-        numEpsilon = size(dataPlot,1)/(temperature_quantity*epsilon_dot_manual_quantity);
+        numEpsilon = size(matAuxPlot,1)/(temperature_quantity*epsilon_dot_manual_quantity);
                 
 end
 
@@ -1318,7 +1360,7 @@ for i=1:temperature_quantity
     subplot(1,temperature_quantity,i)
     hold on;
     for j=1:numEpsilon
-        plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
+        plot(matAuxPlot(j:numEpsilon:end/temperature_quantity,3),matAuxPlot(j:numEpsilon:end/temperature_quantity,1))
         if (save_epsilon_dot_strain_rate_type == 2)
             %set(gca, 'XScale', 'log')
             set(gca, 'XTick',epsilon_dot_manual_array);
@@ -1326,12 +1368,12 @@ for i=1:temperature_quantity
             %set(gca, 'XTickMode','auto');
              xlabel('Strain Rate');
              ylabel('Sigma');
-             dataLegend = num2str(dataPlot(j,2));
+             dataLegend = num2str(matAuxPlot(j,2));
              leg{1,j} = dataLegend;
         else
             xlabel('Strain Rate');
             ylabel('Sigma');
-            dataLegend = num2str(dataPlot(j,2));
+            dataLegend = num2str(matAuxPlot(j,2));
             leg{1,j} = dataLegend;
         end
     end
