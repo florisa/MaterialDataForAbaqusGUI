@@ -1315,16 +1315,14 @@ while i <= temperature_quantity
                         epsilon = epsilon + epsilon_step_input;
                 end
                     if j < epsilon_dot_manual_quantity
-                            %lastStrainRateValue = epsilon_dot_manual_array(end); 
-                            minStrainRateValue = epsilon_dot_manual_array(j,1);
-                            %lastButOneStrainRateValue =  epsilon_dot_manual_array(end - 1);
-                            maxStrainRateValue = epsilon_dot_manual_array(j+1,1);
+                            
+                            lastStrainRateValue = epsilon_dot_manual_array(j,1);
+                            lastButOneStrainRateValue = epsilon_dot_manual_array(j+1,1);
                             numberOfExtraPoints = 100;
-                            %delta = (lastStrainRateValue - lastButOneStrainRateValue)/numberOfExtraPoints;
-                            delta = (maxStrainRateValue - minStrainRateValue)/numberOfExtraPoints;
+                            
+                            delta = (lastButOneStrainRateValue - lastStrainRateValue)/numberOfExtraPoints;
                             for w = 1:numberOfExtraPoints
-                                    %strain_rate_manual_plot(w) = lastButOneStrainRateValue + delta * w;
-                                    strain_rate_manual_plot(w) = minStrainRateValue + delta * w;
+                                    strain_rate_manual_plot(w) = lastStrainRateValue + delta * w;
                                         while k <= epsilon_quantity
                                                 sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_manual_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                                             if(epsilon >= 1)                        
@@ -1345,12 +1343,10 @@ while i <= temperature_quantity
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
-                    %strain_rate_automatic = strain_rate_automatic * epsilon_dot_step_automatic_input;
             end
                 k = 1;
                 j = 1;
                 epsilon = epsilon_min_input;
-                %strain_rate_automatic = epsilon_dot_min_automatic_input;
                 i = i + 1;
                 assignin('base', 'matAuxPlot', matAuxPlot);
 end
