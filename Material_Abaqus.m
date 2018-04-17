@@ -1386,23 +1386,22 @@ for i=1:temperature_quantity
     hold on;
     for j=1:numEpsilon
         plot(matAuxPlot(j:numEpsilon:end/temperature_quantity,3),matAuxPlot(j:numEpsilon:end/temperature_quantity,1))
-        if (save_epsilon_dot_strain_rate_type == 2)
-            %set(gca, 'XScale', 'log')
-            %set(gca, 'XTick',epsilon_dot_manual_array);
-            xlabel('Strain Rate');
-            ylabel('Sigma');
-            dataLegend = num2str(matAuxPlot(j,2));
-            leg{1,j} = dataLegend;
-        else
-            xlabel('Strain Rate');
-            ylabel('Sigma');
-            dataLegend = num2str(matAuxPlot(j,2));
-            leg{1,j} = dataLegend;
-        end
+        xlabel('Strain Rate');
+        ylabel('Sigma');
+        dataLegend = num2str(matAuxPlot(j,2));
+        leg{1,j} = dataLegend;
+        
     end
-    legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
-    temp = int2str(temperature_array(i));
-    title(strcat(' Temperature =','',temp,' °C'))
+    if (numEpsilon > 6)
+        legend(leg,'Location','northwestoutside','Orientation','vertical','FontSize',12,'TextColor','black')
+        temp = int2str(temperature_array(i));
+        title(strcat(' Temperature =','',temp,' °C'))
+  
+    else
+        legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
+        temp = int2str(temperature_array(i));
+        title(strcat(' Temperature =','',temp,' °C'))
+    end
 end
 
 % refresh the workpspace for a new file
