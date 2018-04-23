@@ -94,6 +94,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 1);
 
 %%                        Material_Grade_popup
@@ -122,6 +123,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 set(handles.pure_ferrite_checkbox, 'Value', 1);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 
 %%                    S_text_box
 function s_text_Callback(hObject, eventdata, handles)
@@ -152,6 +154,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 1);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 
 %%                      Dp_text_box
 function dp_text_Callback(hObject, eventdata, handles)
@@ -192,6 +195,122 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%%                User_Defined_Checkbox
+% --- Executes on button press in user_defined_checkbox.
+function user_defined_checkbox_Callback(hObject, eventdata, handles)
+
+save_material_selection = 4;
+assignin('base', 'save_material_selection', save_material_selection);
+
+set(handles.pure_ferrite_checkbox, 'Value', 0);
+set(handles.pure_pearlite_checkbox, 'Value', 0);
+set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 1);
+
+%%                 User_Defined_input_A
+
+function user_defined_input_A_Callback(hObject, eventdata, handles)
+
+user_defined_input_A = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_A) || user_defined_input_A <= 0)
+    user_defined_input_A = 0;
+    assignin('base', 'user_defined_input_A', user_defined_input_A);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_A_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                User_Defined_input_B
+
+function user_defined_input_B_Callback(hObject, eventdata, handles)
+
+user_defined_input_B = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_B) || user_defined_input_B <= 0)
+    user_defined_input_B = 0;
+    assignin('base', 'user_defined_input_B', user_defined_input_B);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_B_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  User_Defined_input_C
+
+function user_defined_input_C_Callback(hObject, eventdata, handles)
+
+user_defined_input_C = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_C) || user_defined_input_C <= 0)
+    user_defined_input_C = 0;
+    assignin('base', 'user_defined_input_C', user_defined_input_C);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_C_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%               User_Defined_input_m
+
+function user_defined_input_m_Callback(hObject, eventdata, handles)
+
+user_defined_input_m = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_m) || user_defined_input_m <= 0)
+    user_defined_input_m = 0;
+    assignin('base', 'user_defined_input_m', user_defined_input_m);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_m_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  User_defined_input_n
+
+function user_defined_input_n_Callback(hObject, eventdata, handles)
+
+user_defined_input_n = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_n) || user_defined_input_n <= 0)
+    user_defined_input_n = 0;
+    assignin('base', 'user_defined_input_n', user_defined_input_n);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_n', user_defined_input_n);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_n_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
 %%             save_pure_ferrite_checkbox
 function save_pure_ferrite_checkbox(hObject, eventdata, handles)
 
@@ -212,6 +331,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.user_defined_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -278,6 +398,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.user_defined_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -345,15 +466,31 @@ assignin('base', 'save_material_panel', save_material_panel);
 set(handles.df_text, 'string', '');
 set(handles.dp_text, 'string', '');
 set(handles.s_text, 'string', '');
+set(handles.user_defined_input_A, 'string', '');
+set(handles.user_defined_input_B, 'string', '');
+set(handles.user_defined_input_C, 'string', '');
+set(handles.user_defined_input_m, 'string', '');
+set(handles.user_defined_input_n, 'string', '');
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 
 % Msg Box for the user
@@ -438,6 +575,61 @@ switch(material_choice)
      
 end
 
+%%                     save_user_defined_checkbox
+
+function save_user_defined_checkbox(hObject, eventdata, handles)
+
+% Verify if the text values were added
+user_defined_input_A = evalin('base', 'user_defined_input_A'); 
+user_defined_input_B = evalin('base', 'user_defined_input_B'); 
+user_defined_input_C = evalin('base', 'user_defined_input_C'); 
+user_defined_input_m = evalin('base', 'user_defined_input_m'); 
+user_defined_input_n = evalin('base', 'user_defined_input_n');
+
+if user_defined_input_A == 0 || user_defined_input_B == 0 || user_defined_input_C == 0 || ...
+        user_defined_input_m == 0 || user_defined_input_n == 0
+  errordlg('Fullfil all the fields', 'Error');
+else
+   msgbox('Clique to close the window','OK') 
+   % Refresh all the other options
+        set(handles.df_text, 'string', '');
+        set(handles.dp_text, 'string', '');
+        set(handles.s_text, 'string', '');
+        set(handles.user_defined_input_A, 'string', '');
+        set(handles.user_defined_input_B, 'string', '');
+        set(handles.user_defined_input_C, 'string', '');
+        set(handles.user_defined_input_m, 'string', '');
+        set(handles.user_defined_input_n, 'string', '');
+        s_text = 0;
+        assignin('base', 's_text', s_text);
+        dp_text = 0;
+        assignin('base', 'dp_text', dp_text);
+        df_text = 0;
+        assignin('base', 'df_text', df_text);
+        set(handles.pure_ferrite_checkbox, 'Value', 0);
+        set(handles.pure_pearlite_checkbox, 'Value', 0);
+        set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.user_defined_checkbox, 'Value', 0);
+        set(handles.material_grade_popup,'Value', 1);
+   
+end
+
+% Control if the user saved the data
+save_material_panel = 1;
+assignin('base', 'save_material_panel', save_material_panel);
+
+% User-Defined JC 
+A = user_defined_input_A;
+assignin('base', 'A', A);
+B = user_defined_input_B;
+assignin('base', 'B',B);
+C = user_defined_input_C;
+assignin('base', 'C',C);
+m = user_defined_input_m;
+assignin('base', 'm',m);
+n = user_defined_input_n;
+assignin('base', 'n',n);
+
 %%                       Save_Material_button
 % --- Executes on button press in save_material_selection.
 function save_material_selection_Callback(hObject, eventdata, handles)
@@ -451,6 +643,8 @@ save_material_selection = evalin('base', 'save_material_selection');
             save_pure_ferrite_checkbox(hObject, eventdata, handles);
         case 3
             save_pure_pearlite_checkbox(hObject, eventdata, handles);
+        case 4 
+            save_user_defined_checkbox(hObject, eventdata, handles);
        otherwise
             errordlg('Please enter the material input data','Error');
    end
@@ -463,15 +657,31 @@ function refresh_fields_button_Callback(hObject, eventdata, handles)
 set(handles.df_text, 'string', '');
 set(handles.dp_text, 'string', '');
 set(handles.s_text, 'string', '');
+set(handles.user_defined_input_A, 'string', '');
+set(handles.user_defined_input_B, 'string', '');
+set(handles.user_defined_input_C, 'string', '');
+set(handles.user_defined_input_m, 'string', '');
+set(handles.user_defined_input_n, 'string', '');
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 material_choice = 1; 
 assignin('base', 'material_choice',material_choice);
@@ -504,6 +714,16 @@ dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 
 % Initial var values for panel temperature
 temperature_quantity = 0; % Quantity of temperature for popup menu
@@ -1403,127 +1623,3 @@ end
 % refresh the workpspace for a new file
 %evalin( 'base', 'clearvars *' ) 
 %initial(hObject, eventdata, handles) 
-
-
-% --- Executes on button press in user_defined_checkbox.
-function user_defined_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of user_defined_checkbox
-
-
-
-function user_defined_input_A_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_A (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of user_defined_input_A as text
-%        str2double(get(hObject,'String')) returns contents of user_defined_input_A as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function user_defined_input_A_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_A (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function user_defined_input_B_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_B (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of user_defined_input_B as text
-%        str2double(get(hObject,'String')) returns contents of user_defined_input_B as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function user_defined_input_B_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_B (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function user_defined_input_C_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_C (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of user_defined_input_C as text
-%        str2double(get(hObject,'String')) returns contents of user_defined_input_C as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function user_defined_input_C_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_C (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function user_defined_input_m_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_m (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of user_defined_input_m as text
-%        str2double(get(hObject,'String')) returns contents of user_defined_input_m as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function user_defined_input_m_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_m (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function user_defined_input_n_Callback(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_n (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of user_defined_input_n as text
-%        str2double(get(hObject,'String')) returns contents of user_defined_input_n as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function user_defined_input_n_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to user_defined_input_n (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
