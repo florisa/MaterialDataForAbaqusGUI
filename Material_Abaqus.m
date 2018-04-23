@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 05-Apr-2018 10:46:46
+% Last Modified by GUIDE v2.5 23-Apr-2018 11:42:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1403,3 +1403,127 @@ end
 % refresh the workpspace for a new file
 %evalin( 'base', 'clearvars *' ) 
 %initial(hObject, eventdata, handles) 
+
+
+% --- Executes on button press in user_defined_checkbox.
+function user_defined_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of user_defined_checkbox
+
+
+
+function user_defined_input_A_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_A (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of user_defined_input_A as text
+%        str2double(get(hObject,'String')) returns contents of user_defined_input_A as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_A_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_A (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_B_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_B (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of user_defined_input_B as text
+%        str2double(get(hObject,'String')) returns contents of user_defined_input_B as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_B_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_B (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_C_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_C (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of user_defined_input_C as text
+%        str2double(get(hObject,'String')) returns contents of user_defined_input_C as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_C_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_C (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_m_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_m (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of user_defined_input_m as text
+%        str2double(get(hObject,'String')) returns contents of user_defined_input_m as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_m_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_m (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_n_Callback(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_n (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of user_defined_input_n as text
+%        str2double(get(hObject,'String')) returns contents of user_defined_input_n as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_n_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to user_defined_input_n (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
