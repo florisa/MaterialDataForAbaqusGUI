@@ -1395,8 +1395,8 @@ strain_rate_automatic_quantity = log10(epsilon_dot_max_automatic_input / epsilon
 assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
 
 % First and second line of the file
- fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
@@ -1507,8 +1507,8 @@ else
 end
 
 % First and second line of the file
- fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
@@ -1621,5 +1621,5 @@ for i=1:temperature_quantity
 end
 
 % refresh the workpspace for a new file
-%evalin( 'base', 'clearvars *' ) 
-%initial(hObject, eventdata, handles) 
+evalin( 'base', 'clearvars *' ) 
+initial(hObject, eventdata, handles) 
