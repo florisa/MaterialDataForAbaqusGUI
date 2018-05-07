@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 05-Apr-2018 10:46:46
+% Last Modified by GUIDE v2.5 23-Apr-2018 11:42:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -85,137 +85,257 @@ varargout{1} = handles.output;
 %% ======================= BEGIN OF PANEL MATERIAL SELECTION ==============
 %  ========================================================================
 
-%%                       material_grade_checkbox
-% --- Executes on button press in material_grade_checkbox.
-function material_grade_checkbox_Callback(hObject, eventdata, handles)
-
-save_material_selection = 1;
-assignin('base', 'save_material_selection', save_material_selection);
-
-set(handles.pure_ferrite_checkbox, 'Value', 0);
-set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 1);
+% %%                       material_grade_checkbox
+% % --- Executes on button press in material_grade_checkbox.
+% function material_grade_checkbox_Callback(hObject, eventdata, handles)
+% 
+% save_material_selection = 1;
+% assignin('base', 'save_material_selection', save_material_selection);
+% 
+% set(handles.pure_ferrite_checkbox, 'Value', 0);
+% set(handles.pure_pearlite_checkbox, 'Value', 0);
+% set(handles.user_defined_checkbox, 'Value', 0);
+% set(handles.material_grade_checkbox, 'Value', 1);
 
 %%                        Material_Grade_popup
 % --- Executes on selection change in material_grade_popup.
-function material_grade_popup_Callback(hObject, eventdata, handles)
-% Reading the popup menu
-% If the user don't choose any material, the default is 45CG
-material_choice = get(hObject,'Value');
-assignin('base', 'material_choice', material_choice);
+% function material_grade_popup_Callback(hObject, eventdata, handles)
+% % Reading the popup menu
+% % If the user don't choose any material, the default is 45CG
+% material_choice = get(hObject,'Value');
+% assignin('base', 'material_choice', material_choice);
 
 
 % --- Executes during object creation, after setting all properties.
-function material_grade_popup_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
+% function material_grade_popup_CreateFcn(hObject, eventdata, handles)
+% 
+% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%     set(hObject,'BackgroundColor','white');
+% end
 
 %%                Pure_Ferrite_Checkbox
 % --- Executes on button press in pure_ferrite_checkbox.
-function pure_ferrite_checkbox_Callback(hObject, eventdata, handles)
-
-save_material_selection = 2;
-assignin('base', 'save_material_selection', save_material_selection);
-
-set(handles.pure_ferrite_checkbox, 'Value', 1);
-set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.material_grade_checkbox, 'Value', 0);
+% function pure_ferrite_checkbox_Callback(hObject, eventdata, handles)
+% 
+% save_material_selection = 2;
+% assignin('base', 'save_material_selection', save_material_selection);
+% 
+% set(handles.pure_ferrite_checkbox, 'Value', 1);
+% set(handles.pure_pearlite_checkbox, 'Value', 0);
+% set(handles.material_grade_checkbox, 'Value', 0);
+% set(handles.user_defined_checkbox, 'Value', 0);
 
 %%                    S_text_box
-function s_text_Callback(hObject, eventdata, handles)
-
-s_text = str2double(get(hObject, 'String'));
-if (isnan(s_text) || s_text <= 0)
-    s_text = 0;
-    assignin('base', 's_text', s_text);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 's_text', s_text);
+% function s_text_Callback(hObject, eventdata, handles)
+% 
+% s_text = str2double(get(hObject, 'String'));
+% if (isnan(s_text) || s_text <= 0)
+%     s_text = 0;
+%     assignin('base', 's_text', s_text);
+%     set(hObject, 'String','');
+%     errordlg('Please enter the correct data','Error');    
+% end
+% assignin('base', 's_text', s_text);
 
 % --- Executes during object creation, after setting all properties.
-function s_text_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
+% function s_text_CreateFcn(hObject, eventdata, handles)
+% 
+% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%     set(hObject,'BackgroundColor','white');
+% end
 
 %%                    Pure_Pearlite_Checkbox
 % --- Executes on button press in pure_pearlite_checkbox.
-function pure_pearlite_checkbox_Callback(hObject, eventdata, handles)
-
-save_material_selection = 3;
-assignin('base', 'save_material_selection', save_material_selection);
-
-set(handles.pure_ferrite_checkbox, 'Value', 0);
-set(handles.pure_pearlite_checkbox, 'Value', 1);
-set(handles.material_grade_checkbox, 'Value', 0);
+% function pure_pearlite_checkbox_Callback(hObject, eventdata, handles)
+% 
+% save_material_selection = 3;
+% assignin('base', 'save_material_selection', save_material_selection);
+% 
+% set(handles.pure_ferrite_checkbox, 'Value', 0);
+% set(handles.pure_pearlite_checkbox, 'Value', 1);
+% set(handles.material_grade_checkbox, 'Value', 0);
+% set(handles.user_defined_checkbox, 'Value', 0);
 
 %%                      Dp_text_box
-function dp_text_Callback(hObject, eventdata, handles)
-
-dp_text = str2double(get(hObject, 'String'));
-if (isnan(dp_text) || dp_text <= 0)
-    dp_text = 0;
-    assignin('base', 'dp_text', dp_text);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');   
-end
-assignin('base', 'dp_text', dp_text);
+% function dp_text_Callback(hObject, eventdata, handles)
+% 
+% dp_text = str2double(get(hObject, 'String'));
+% if (isnan(dp_text) || dp_text <= 0)
+%     dp_text = 0;
+%     assignin('base', 'dp_text', dp_text);
+%     set(hObject, 'String','');
+%     errordlg('Please enter the correct data','Error');   
+% end
+% assignin('base', 'dp_text', dp_text);
 
 % --- Executes during object creation, after setting all properties.
-function dp_text_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
+% function dp_text_CreateFcn(hObject, eventdata, handles)
+% 
+% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%     set(hObject,'BackgroundColor','white');
+% end
 
 
 %%                   Df_text_box
-function df_text_Callback(hObject, eventdata, handles)
+% function df_text_Callback(hObject, eventdata, handles)
+% 
+% df_text = str2double(get(hObject, 'String'));
+% if (isnan(df_text) || df_text <= 0)
+%     df_text = 0;
+%     assignin('base', 'df_text', df_text);
+%     set(hObject, 'String','');
+%     errordlg('Please enter the correct data','Error');    
+% end
+% assignin('base', 'df_text', df_text);
 
-df_text = str2double(get(hObject, 'String'));
-if (isnan(df_text) || df_text <= 0)
-    df_text = 0;
-    assignin('base', 'df_text', df_text);
+% --- Executes during object creation, after setting all properties.
+% function df_text_CreateFcn(hObject, eventdata, handles)
+% 
+% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%     set(hObject,'BackgroundColor','white');
+% end
+
+%%                User_Defined_Checkbox
+% --- Executes on button press in user_defined_checkbox.
+function user_defined_checkbox_Callback(hObject, eventdata, handles)
+
+save_material_selection = 4;
+assignin('base', 'save_material_selection', save_material_selection);
+
+% set(handles.pure_ferrite_checkbox, 'Value', 0);
+% set(handles.pure_pearlite_checkbox, 'Value', 0);
+% set(handles.material_grade_checkbox, 'Value', 0);
+% set(handles.user_defined_checkbox, 'Value', 1);
+
+%%                 User_Defined_input_A
+
+function user_defined_input_A_Callback(hObject, eventdata, handles)
+
+user_defined_input_A = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_A) || user_defined_input_A <= 0)
+    user_defined_input_A = 0;
+    assignin('base', 'user_defined_input_A', user_defined_input_A);
     set(hObject, 'String','');
     errordlg('Please enter the correct data','Error');    
 end
-assignin('base', 'df_text', df_text);
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+
 
 % --- Executes during object creation, after setting all properties.
-function df_text_CreateFcn(hObject, eventdata, handles)
+function user_defined_input_A_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-%%             save_pure_ferrite_checkbox
-function save_pure_ferrite_checkbox(hObject, eventdata, handles)
+%%                User_Defined_input_B
 
-% Verify if the text values were added
-df_text = evalin('base', 'df_text'); 
-if df_text == 0
-  errordlg('Fullfil all the fields', 'Error');
-else
-   msgbox('Clique to close the window','OK') 
-   % Refresh all the other options
-        set(handles.df_text, 'string', '');
-        set(handles.dp_text, 'string', '');
-        set(handles.s_text, 'string', '');
-        s_text = 0;
-        assignin('base', 's_text', s_text);
-        dp_text = 0;
-        assignin('base', 'dp_text', dp_text);
-        set(handles.pure_ferrite_checkbox, 'Value', 0);
-        set(handles.pure_pearlite_checkbox, 'Value', 0);
-        set(handles.material_grade_checkbox, 'Value', 0);
-        set(handles.material_grade_popup,'Value', 1);
-        material_choice = 1; 
-        assignin('base', 'material_choice',material_choice);
-end    
+function user_defined_input_B_Callback(hObject, eventdata, handles)
+
+user_defined_input_B = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_B) || user_defined_input_B <= 0)
+    user_defined_input_B = 0;
+    assignin('base', 'user_defined_input_B', user_defined_input_B);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_B_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  User_Defined_input_C
+
+function user_defined_input_C_Callback(hObject, eventdata, handles)
+
+user_defined_input_C = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_C) || user_defined_input_C <= 0)
+    user_defined_input_C = 0;
+    assignin('base', 'user_defined_input_C', user_defined_input_C);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_C_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%               User_Defined_input_m
+
+function user_defined_input_m_Callback(hObject, eventdata, handles)
+
+user_defined_input_m = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_m) || user_defined_input_m <= 0)
+    user_defined_input_m = 0;
+    assignin('base', 'user_defined_input_m', user_defined_input_m);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_m_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  User_defined_input_n
+
+function user_defined_input_n_Callback(hObject, eventdata, handles)
+
+user_defined_input_n = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_n) || user_defined_input_n <= 0)
+    user_defined_input_n = 0;
+    assignin('base', 'user_defined_input_n', user_defined_input_n);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_n', user_defined_input_n);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_n_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+%%             save_pure_ferrite_checkbox
+% function save_pure_ferrite_checkbox(hObject, eventdata, handles)
+% 
+% % Verify if the text values were added
+% df_text = evalin('base', 'df_text'); 
+% if df_text == 0
+%   errordlg('Fullfil all the fields', 'Error');
+% else
+%    msgbox('Clique to close the window','OK') 
+%    % Refresh all the other options
+%         set(handles.df_text, 'string', '');
+%         set(handles.dp_text, 'string', '');
+%         set(handles.s_text, 'string', '');
+%         s_text = 0;
+%         assignin('base', 's_text', s_text);
+%         dp_text = 0;
+%         assignin('base', 'dp_text', dp_text);
+%         set(handles.pure_ferrite_checkbox, 'Value', 0);
+%         set(handles.pure_pearlite_checkbox, 'Value', 0);
+%         set(handles.material_grade_checkbox, 'Value', 0);
+%         set(handles.user_defined_checkbox, 'Value', 0);
+%         set(handles.material_grade_popup,'Value', 1);
+%         material_choice = 1; 
+%         assignin('base', 'material_choice',material_choice);
+% end    
 
 % Control if the user saved the data
 save_material_panel = 1;
@@ -278,6 +398,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.user_defined_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -345,15 +466,31 @@ assignin('base', 'save_material_panel', save_material_panel);
 set(handles.df_text, 'string', '');
 set(handles.dp_text, 'string', '');
 set(handles.s_text, 'string', '');
+set(handles.user_defined_input_A, 'string', '');
+set(handles.user_defined_input_B, 'string', '');
+set(handles.user_defined_input_C, 'string', '');
+set(handles.user_defined_input_m, 'string', '');
+set(handles.user_defined_input_n, 'string', '');
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 
 % Msg Box for the user
@@ -438,6 +575,61 @@ switch(material_choice)
      
 end
 
+%%                     save_user_defined_checkbox
+
+function save_user_defined_checkbox(hObject, eventdata, handles)
+
+% Verify if the text values were added
+user_defined_input_A = evalin('base', 'user_defined_input_A'); 
+user_defined_input_B = evalin('base', 'user_defined_input_B'); 
+user_defined_input_C = evalin('base', 'user_defined_input_C'); 
+user_defined_input_m = evalin('base', 'user_defined_input_m'); 
+user_defined_input_n = evalin('base', 'user_defined_input_n');
+
+if user_defined_input_A == 0 || user_defined_input_B == 0 || user_defined_input_C == 0 || ...
+        user_defined_input_m == 0 || user_defined_input_n == 0
+  errordlg('Fullfil all the fields', 'Error');
+else
+   msgbox('Clique to close the window','OK') 
+   % Refresh all the other options
+        set(handles.df_text, 'string', '');
+        set(handles.dp_text, 'string', '');
+        set(handles.s_text, 'string', '');
+        set(handles.user_defined_input_A, 'string', '');
+        set(handles.user_defined_input_B, 'string', '');
+        set(handles.user_defined_input_C, 'string', '');
+        set(handles.user_defined_input_m, 'string', '');
+        set(handles.user_defined_input_n, 'string', '');
+        s_text = 0;
+        assignin('base', 's_text', s_text);
+        dp_text = 0;
+        assignin('base', 'dp_text', dp_text);
+        df_text = 0;
+        assignin('base', 'df_text', df_text);
+        set(handles.pure_ferrite_checkbox, 'Value', 0);
+        set(handles.pure_pearlite_checkbox, 'Value', 0);
+        set(handles.material_grade_checkbox, 'Value', 0);
+        set(handles.user_defined_checkbox, 'Value', 0);
+        set(handles.material_grade_popup,'Value', 1);
+   
+end
+
+% Control if the user saved the data
+save_material_panel = 1;
+assignin('base', 'save_material_panel', save_material_panel);
+
+% User-Defined JC 
+A = user_defined_input_A;
+assignin('base', 'A', A);
+B = user_defined_input_B;
+assignin('base', 'B',B);
+C = user_defined_input_C;
+assignin('base', 'C',C);
+m = user_defined_input_m;
+assignin('base', 'm',m);
+n = user_defined_input_n;
+assignin('base', 'n',n);
+
 %%                       Save_Material_button
 % --- Executes on button press in save_material_selection.
 function save_material_selection_Callback(hObject, eventdata, handles)
@@ -451,6 +643,8 @@ save_material_selection = evalin('base', 'save_material_selection');
             save_pure_ferrite_checkbox(hObject, eventdata, handles);
         case 3
             save_pure_pearlite_checkbox(hObject, eventdata, handles);
+        case 4 
+            save_user_defined_checkbox(hObject, eventdata, handles);
        otherwise
             errordlg('Please enter the material input data','Error');
    end
@@ -463,15 +657,31 @@ function refresh_fields_button_Callback(hObject, eventdata, handles)
 set(handles.df_text, 'string', '');
 set(handles.dp_text, 'string', '');
 set(handles.s_text, 'string', '');
+set(handles.user_defined_input_A, 'string', '');
+set(handles.user_defined_input_B, 'string', '');
+set(handles.user_defined_input_C, 'string', '');
+set(handles.user_defined_input_m, 'string', '');
+set(handles.user_defined_input_n, 'string', '');
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
+set(handles.user_defined_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 material_choice = 1; 
 assignin('base', 'material_choice',material_choice);
@@ -504,6 +714,16 @@ dp_text = 0;
 assignin('base', 'dp_text', dp_text);
 df_text = 0;
 assignin('base', 'df_text', df_text);
+user_defined_input_A = 0;
+assignin('base', 'user_defined_input_A', user_defined_input_A);
+user_defined_input_B = 0;
+assignin('base', 'user_defined_input_B', user_defined_input_B);
+user_defined_input_C = 0;
+assignin('base', 'user_defined_input_C', user_defined_input_C);
+user_defined_input_m = 0;
+assignin('base', 'user_defined_input_m', user_defined_input_m);
+user_defined_input_n = 0;
+assignin('base', 'user_defined_input_n', user_defined_input_n);
 
 % Initial var values for panel temperature
 temperature_quantity = 0; % Quantity of temperature for popup menu
@@ -1171,16 +1391,18 @@ else
     epsilon_quantity = 1;
 end
 strain_rate_automatic_quantity = log10(epsilon_dot_max_automatic_input / epsilon_dot_min_automatic_input) +1;
+%strain_rate_automatic_quantity = round((epsilon_dot_max_automatic_input - epsilon_dot_min_automatic_input)/ epsilon_dot_step_automatic_input) +1;
 assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
 
 % First and second line of the file
- fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
+a = 1; % counter for the plot matrix
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_automatic = epsilon_dot_min_automatic_input;
 
@@ -1193,19 +1415,53 @@ while i <= temperature_quantity
                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
                    end                
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
+                        matAuxPlot(a,1) = sigma;
+                        matAuxPlot(a,2) = epsilon;
+                        matAuxPlot(a,3) = strain_rate_automatic;
+                        matAuxPlot(a,4) = temperature_array(i,1);
+                        a = a + 1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
+                       
+                        
                 end
+                    if j < strain_rate_automatic_quantity
+                        lastStrainRateValue = strain_rate_automatic * epsilon_dot_step_automatic_input;
+                        lastButOneStrainRateValue = strain_rate_automatic;
+                        %numberOfExtraPoints = epsilon_dot_step_automatic_input ^(j-1);
+                        numberOfExtraPoints = 100;
+                        delta = (lastStrainRateValue - lastButOneStrainRateValue)/numberOfExtraPoints;
+                        for w = 1:numberOfExtraPoints
+                            strain_rate_automatic_plot(w) = lastButOneStrainRateValue + delta * w;                           
+                                while k <= epsilon_quantity 
+                                    sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                                        if(epsilon >= 1)                        
+                                            sigma = (A+B)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                                        end                        
+                                            matAuxPlot(a,1) = sigma;
+                                            matAuxPlot(a,2) = epsilon;
+                                            matAuxPlot(a,3) = strain_rate_automatic_plot(w);
+                                            matAuxPlot(a,4) = temperature_array(i,1);
+                                            a = a + 1;
+                                            k = k + 1;
+                                            epsilon = epsilon + epsilon_step_input;
+                                end
+                                    k = 1;
+                                    epsilon = epsilon_min_input;
+                        end
+                    end
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
                     strain_rate_automatic = strain_rate_automatic * epsilon_dot_step_automatic_input;
+
             end
                 k = 1;
                 j = 1;
                 epsilon = epsilon_min_input;
                 strain_rate_automatic = epsilon_dot_min_automatic_input;
                 i = i + 1;
+                assignin('base', 'matAuxPlot', matAuxPlot);
 end
 fclose(fid);
 msgbox('Saved', 'Ok');
@@ -1251,13 +1507,14 @@ else
 end
 
 % First and second line of the file
- fprintf(fid,'Flow STRESS \n');
- fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
 
 % Initial values for sigma
 i = 1; % counter for Temperature
 j = 1; % counter for epsilon dot
 k = 1; % counter for epsilon 
+a = 1; % counter for the plot matrix
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 
 % Write the sigmas in the file
@@ -1268,17 +1525,50 @@ while i <= temperature_quantity
                    if(epsilon >= 1)                        
                        sigma = (A+B)*(1+C*log(epsilon_dot_manual_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    end
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_manual_array(j,1) temperature_array(i,1)]);     
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_manual_array(j,1) temperature_array(i,1)]); 
+                        matAuxPlot(a,1) = sigma;
+                        matAuxPlot(a,2) = epsilon;
+                        matAuxPlot(a,3) = epsilon_dot_manual_array(j,1);
+                        matAuxPlot(a,4) = temperature_array(i,1);
+                        a = a + 1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
                 end
+                    if j < epsilon_dot_manual_quantity
+                            
+                            lastStrainRateValue = epsilon_dot_manual_array(j,1);
+                            lastButOneStrainRateValue = epsilon_dot_manual_array(j+1,1);
+                            numberOfExtraPoints = 100;
+                            
+                            delta = (lastButOneStrainRateValue - lastStrainRateValue)/numberOfExtraPoints;
+                            for w = 1:numberOfExtraPoints
+                                    strain_rate_manual_plot(w) = lastStrainRateValue + delta * w;
+                                        while k <= epsilon_quantity
+                                                sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_manual_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                                            if(epsilon >= 1)                        
+                                                sigma = (A+B)*(1+C*log(strain_rate_manual_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                                            end  
+                                            matAuxPlot(a,1) = sigma;
+                                            matAuxPlot(a,2) = epsilon;
+                                            matAuxPlot(a,3) = strain_rate_manual_plot(w);
+                                            matAuxPlot(a,4) = temperature_array(i,1);
+                                            a = a + 1;
+                                            k = k + 1;
+                                            epsilon = epsilon + epsilon_step_input;
+                                        end
+                                        k = 1;
+                                        epsilon = epsilon_min_input;
+                            end
+                    end
                     k = 1;
                     epsilon = epsilon_min_input;
                     j = j + 1;
             end
                 k = 1;
                 j = 1;
+                epsilon = epsilon_min_input;
                 i = i + 1;
+                assignin('base', 'matAuxPlot', matAuxPlot);
 end
 fclose(fid);
 msgbox('Saved', 'Ok');
@@ -1288,26 +1578,20 @@ msgbox('Saved', 'Ok');
 % --- Executes on button press in plot_button.
 function plot_button_Callback(hObject, eventdata, handles)
 
-exp_name = evalin('base','exp_name');    %retrieve the last txt file
 temperature_quantity = evalin('base','temperature_quantity');
 strain_rate_automatic_quantity = evalin('base','strain_rate_automatic_quantity');
 epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 temperature_array = evalin('base','temperature_array');
-fid = fopen(exp_name, 'r' );
-fgetl(fid);                              %ignores the first line
-fgetl(fid);                              %ignores the second line
-sizeA = [4 inf];                         %break it into right format
-dataPlot = fscanf(fid,'%e',sizeA);
-dataPlot = dataPlot';
-assignin('base', 'dataPlot', dataPlot);  %save in workspace
+epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
+matAuxPlot = evalin('base','matAuxPlot');
 
 %It should be setted according to linear or log scales
 save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
 switch (save_epsilon_dot_strain_rate_type)
     case 1
-        numEpsilon = size(dataPlot,1)/(temperature_quantity*strain_rate_automatic_quantity);
+        numEpsilon = size(matAuxPlot,1)/(temperature_quantity*(strain_rate_automatic_quantity+((99)*(strain_rate_automatic_quantity-1))));
     case 2
-        numEpsilon = size(dataPlot,1)/(temperature_quantity*epsilon_dot_manual_quantity);
+        numEpsilon = size(matAuxPlot,1)/(temperature_quantity*(epsilon_dot_manual_quantity+((99)*(epsilon_dot_manual_quantity-1))));
                 
 end
 
@@ -1317,19 +1601,23 @@ for i=1:temperature_quantity
     subplot(1,temperature_quantity,i)
     hold on;
     for j=1:numEpsilon
-        plot(dataPlot(j:numEpsilon:end/temperature_quantity,3),dataPlot(j:numEpsilon:end/temperature_quantity,1))
-        if save_epsilon_dot_strain_rate_type == 2
-        set(gca, 'XScale', 'log')
-        set(gca, 'XTick',epsilon_dot_manual_array);
+        plot(matAuxPlot(j:numEpsilon:end/temperature_quantity,3),matAuxPlot(j:numEpsilon:end/temperature_quantity,1))
         xlabel('Strain Rate');
         ylabel('Sigma');
-        dataLegend = num2str(dataPlot(j,2));
+        dataLegend = num2str(matAuxPlot(j,2));
         leg{1,j} = dataLegend;
         
     end
-    legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
-    temp=int2str(temperature_array(i));
-    title(strcat(' Temperature =','',temp,' °C'))
+    if (numEpsilon > 6)
+        legend(leg,'Location','northwestoutside','Orientation','vertical','FontSize',12,'TextColor','black')
+        temp = int2str(temperature_array(i));
+        title(strcat(' Temperature =','',temp,' °C'))
+  
+    else
+        legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
+        temp = int2str(temperature_array(i));
+        title(strcat(' Temperature =','',temp,' °C'))
+    end
 end
 
 % refresh the workpspace for a new file
