@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 23-Apr-2018 11:42:50
+% Last Modified by GUIDE v2.5 07-May-2018 15:06:16
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -94,7 +94,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 1);
 
 %%                        Material_Grade_popup
@@ -123,7 +123,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 set(handles.pure_ferrite_checkbox, 'Value', 1);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 
 %%                    S_text_box
 function s_text_Callback(hObject, eventdata, handles)
@@ -154,7 +154,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 1);
 set(handles.material_grade_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 
 %%                      Dp_text_box
 function dp_text_Callback(hObject, eventdata, handles)
@@ -195,9 +195,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-%%                User_Defined_Checkbox
-% --- Executes on button press in user_defined_checkbox.
-function user_defined_checkbox_Callback(hObject, eventdata, handles)
+%%                jc_general_checkbox
+% --- Executes on button press in jc_general_checkbox.
+function jc_general_checkbox_Callback(hObject, eventdata, handles)
 
 save_material_selection = 4;
 assignin('base', 'save_material_selection', save_material_selection);
@@ -205,7 +205,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 1);
+set(handles.jc_general_checkbox, 'Value', 1);
 
 %%                 User_Defined_input_A
 
@@ -331,7 +331,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
-        set(handles.user_defined_checkbox, 'Value', 0);
+        set(handles.jc_general_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -398,7 +398,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
-        set(handles.user_defined_checkbox, 'Value', 0);
+        set(handles.jc_general_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
         material_choice = 1; 
         assignin('base', 'material_choice',material_choice);
@@ -490,7 +490,7 @@ assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 
 % Msg Box for the user
@@ -609,7 +609,7 @@ else
         set(handles.pure_ferrite_checkbox, 'Value', 0);
         set(handles.pure_pearlite_checkbox, 'Value', 0);
         set(handles.material_grade_checkbox, 'Value', 0);
-        set(handles.user_defined_checkbox, 'Value', 0);
+        set(handles.jc_general_checkbox, 'Value', 0);
         set(handles.material_grade_popup,'Value', 1);
    
 end
@@ -681,7 +681,7 @@ assignin('base', 'user_defined_input_n', user_defined_input_n);
 set(handles.pure_ferrite_checkbox, 'Value', 0);
 set(handles.pure_pearlite_checkbox, 'Value', 0);
 set(handles.material_grade_checkbox, 'Value', 0);
-set(handles.user_defined_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 set(handles.material_grade_popup,'Value', 1);
 material_choice = 1; 
 assignin('base', 'material_choice',material_choice);
@@ -1623,3 +1623,35 @@ end
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
+
+
+% --- Executes on button press in microstructure_material_law_checkbox.
+function microstructure_material_law_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to microstructure_material_law_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of microstructure_material_law_checkbox
+
+
+
+function edit19_Callback(hObject, eventdata, handles)
+% hObject    handle to edit19 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit19 as text
+%        str2double(get(hObject,'String')) returns contents of edit19 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit19_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit19 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
