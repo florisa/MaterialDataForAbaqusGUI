@@ -82,118 +82,8 @@ function varargout = Material_Abaqus_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-%% ======================= BEGIN OF PANEL MATERIAL SELECTION ==============
+%% ======================= BEGIN OF PANEL MATERIAL SETTINGS ===============
 %  ========================================================================
-
-% %%                       material_grade_checkbox
-% % --- Executes on button press in material_grade_checkbox.
-% function material_grade_checkbox_Callback(hObject, eventdata, handles)
-% 
-% save_material_selection = 1;
-% assignin('base', 'save_material_selection', save_material_selection);
-% 
-% set(handles.pure_ferrite_checkbox, 'Value', 0);
-% set(handles.pure_pearlite_checkbox, 'Value', 0);
-% set(handles.user_defined_checkbox, 'Value', 0);
-% set(handles.material_grade_checkbox, 'Value', 1);
-
-%%                        Material_Grade_popup
-% --- Executes on selection change in material_grade_popup.
-% function material_grade_popup_Callback(hObject, eventdata, handles)
-% % Reading the popup menu
-% % If the user don't choose any material, the default is 45CG
-% material_choice = get(hObject,'Value');
-% assignin('base', 'material_choice', material_choice);
-
-
-% --- Executes during object creation, after setting all properties.
-% function material_grade_popup_CreateFcn(hObject, eventdata, handles)
-% 
-% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-%     set(hObject,'BackgroundColor','white');
-% end
-
-%%                Pure_Ferrite_Checkbox
-% --- Executes on button press in pure_ferrite_checkbox.
-% function pure_ferrite_checkbox_Callback(hObject, eventdata, handles)
-% 
-% save_material_selection = 2;
-% assignin('base', 'save_material_selection', save_material_selection);
-% 
-% set(handles.pure_ferrite_checkbox, 'Value', 1);
-% set(handles.pure_pearlite_checkbox, 'Value', 0);
-% set(handles.material_grade_checkbox, 'Value', 0);
-% set(handles.user_defined_checkbox, 'Value', 0);
-
-%%                    S_text_box
-% function s_text_Callback(hObject, eventdata, handles)
-% 
-% s_text = str2double(get(hObject, 'String'));
-% if (isnan(s_text) || s_text <= 0)
-%     s_text = 0;
-%     assignin('base', 's_text', s_text);
-%     set(hObject, 'String','');
-%     errordlg('Please enter the correct data','Error');    
-% end
-% assignin('base', 's_text', s_text);
-
-% --- Executes during object creation, after setting all properties.
-% function s_text_CreateFcn(hObject, eventdata, handles)
-% 
-% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-%     set(hObject,'BackgroundColor','white');
-% end
-
-%%                    Pure_Pearlite_Checkbox
-% --- Executes on button press in pure_pearlite_checkbox.
-% function pure_pearlite_checkbox_Callback(hObject, eventdata, handles)
-% 
-% save_material_selection = 3;
-% assignin('base', 'save_material_selection', save_material_selection);
-% 
-% set(handles.pure_ferrite_checkbox, 'Value', 0);
-% set(handles.pure_pearlite_checkbox, 'Value', 1);
-% set(handles.material_grade_checkbox, 'Value', 0);
-% set(handles.user_defined_checkbox, 'Value', 0);
-
-%%                      Dp_text_box
-% function dp_text_Callback(hObject, eventdata, handles)
-% 
-% dp_text = str2double(get(hObject, 'String'));
-% if (isnan(dp_text) || dp_text <= 0)
-%     dp_text = 0;
-%     assignin('base', 'dp_text', dp_text);
-%     set(hObject, 'String','');
-%     errordlg('Please enter the correct data','Error');   
-% end
-% assignin('base', 'dp_text', dp_text);
-
-% --- Executes during object creation, after setting all properties.
-% function dp_text_CreateFcn(hObject, eventdata, handles)
-% 
-% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-%     set(hObject,'BackgroundColor','white');
-% end
-
-
-%%                   Df_text_box
-% function df_text_Callback(hObject, eventdata, handles)
-% 
-% df_text = str2double(get(hObject, 'String'));
-% if (isnan(df_text) || df_text <= 0)
-%     df_text = 0;
-%     assignin('base', 'df_text', df_text);
-%     set(hObject, 'String','');
-%     errordlg('Please enter the correct data','Error');    
-% end
-% assignin('base', 'df_text', df_text);
-
-% --- Executes during object creation, after setting all properties.
-% function df_text_CreateFcn(hObject, eventdata, handles)
-% 
-% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-%     set(hObject,'BackgroundColor','white');
-% end
 
 %%                User_Defined_Checkbox
 % --- Executes on button press in user_defined_checkbox.
@@ -201,11 +91,6 @@ function user_defined_checkbox_Callback(hObject, eventdata, handles)
 
 save_material_selection = 4;
 assignin('base', 'save_material_selection', save_material_selection);
-
-% set(handles.pure_ferrite_checkbox, 'Value', 0);
-% set(handles.pure_pearlite_checkbox, 'Value', 0);
-% set(handles.material_grade_checkbox, 'Value', 0);
-% set(handles.user_defined_checkbox, 'Value', 1);
 
 %%                 User_Defined_input_A
 
@@ -310,271 +195,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-%%             save_pure_ferrite_checkbox
-% function save_pure_ferrite_checkbox(hObject, eventdata, handles)
-% 
-% % Verify if the text values were added
-% df_text = evalin('base', 'df_text'); 
-% if df_text == 0
-%   errordlg('Fullfil all the fields', 'Error');
-% else
-%    msgbox('Clique to close the window','OK') 
-%    % Refresh all the other options
-%         set(handles.df_text, 'string', '');
-%         set(handles.dp_text, 'string', '');
-%         set(handles.s_text, 'string', '');
-%         s_text = 0;
-%         assignin('base', 's_text', s_text);
-%         dp_text = 0;
-%         assignin('base', 'dp_text', dp_text);
-%         set(handles.pure_ferrite_checkbox, 'Value', 0);
-%         set(handles.pure_pearlite_checkbox, 'Value', 0);
-%         set(handles.material_grade_checkbox, 'Value', 0);
-%         set(handles.user_defined_checkbox, 'Value', 0);
-%         set(handles.material_grade_popup,'Value', 1);
-%         material_choice = 1; 
-%         assignin('base', 'material_choice',material_choice);
-% end    
-
-% Control if the user saved the data
-% save_material_panel = 1;
-% assignin('base', 'save_material_panel', save_material_panel);
-  
-% JC  Fixed Parameters
-% B_pure_ferrite = 405;
-% n_pure_ferrite = 0.15;
-% C_pure_ferrite = 0.037;
-% m_pure_ferrite = 0.900;
-% 
-% B = B_pure_ferrite;
-% assignin('base', 'B',B);
-% n = n_pure_ferrite;
-% assignin('base', 'n',n);
-% C = C_pure_ferrite;
-% assignin('base', 'C',C);
-% m = m_pure_ferrite;
-% assignin('base', 'm',m);
-
-% Calculating A parameter
-% df_text = evalin('base', 'df_text'); % µm
-
-% Unit Convertion
-% µm to mm ------- 0.001×l[µm]=l[mm]
-% df_mm = 0.001 * df_text;
-
-% Hall-Petch Relation
-% Constants used in the equations
-% Af_0 = 28;
-% Af_d = 18;
-
-% Equation for Af
-% Af = Af_0 + Af_d/nthroot(df_mm,2);
-
-% Equation for Ac
-%Ac = Af + fp_percent *(Ap - Af);
-% A_pure_ferrite = Af;
-% A = A_pure_ferrite;
-% assignin('base', 'A', A);
-
-%%             save_pure_pearlite_checkbox
-
-% function save_pure_pearlite_checkbox(hObject, eventdata, handles)
-% 
-% % Verify if the text values were added
-% dp_text = evalin('base', 'dp_text'); 
-% s_text = evalin('base', 's_text'); 
-% 
-% if dp_text == 0 || s_text == 0
-%   errordlg('Fullfil all the fields', 'Error');
-% else
-%    msgbox('Clique to close the window','OK') 
-%    % Refresh all the other options
-%         set(handles.df_text, 'string', '');
-%         set(handles.dp_text, 'string', '');
-%         set(handles.s_text, 'string', '');
-%         df_text = 0;
-%         assignin('base', 'df_text', df_text);
-%         set(handles.pure_ferrite_checkbox, 'Value', 0);
-%         set(handles.pure_pearlite_checkbox, 'Value', 0);
-%         set(handles.material_grade_checkbox, 'Value', 0);
-%         set(handles.user_defined_checkbox, 'Value', 0);
-%         set(handles.material_grade_popup,'Value', 1);
-%         material_choice = 1; 
-%         assignin('base', 'material_choice',material_choice);
-% end    
-% 
-% % Control if the user saved the data
-% save_material_panel = 1;
-% assignin('base', 'save_material_panel', save_material_panel);
-
-% JC Fixed Parameters for Pure Ferrite
-% B_pure_pearlite = 432;
-% n_pure_pearlite = 0.25;
-% C_pure_pearlite = 0.037;
-% m_pure_pearlite = 0.950;
-% 
-% B = B_pure_pearlite;
-% assignin('base', 'B',B);
-% n = n_pure_pearlite;
-% assignin('base', 'n',n);
-% C = C_pure_pearlite;
-% assignin('base', 'C',C);
-% m = m_pure_pearlite;
-% assignin('base', 'm',m);
-
-% Calculating A parameter
-% dp_text = evalin('base', 'dp_text'); % µm
-% s_text = evalin('base', 's_text');   % µm
-
-% Unit Convertion
-% µm to mm ------- 0.001×l[µm]= l[mm]
-% dp_mm = 0.001 * dp_text;
-
-% nm to µm ------  0.001×1[nm]= l[µm]
-% s_um = 0.001 * s_text;
-
-% Convert to percentual
-% fp_percent = 0.01 * 100;
-
-% Hall-Petch Relation
-% Constants used in the equations
-% Ap_0 = 576;
-% Ap_d = 18;
-% Ap_s = 36; 
-
-% Equation for Af
-% Ap = Ap_0 + Ap_d/nthroot(dp_mm,2) + (Ap_s/s_um);
-
-% Equation for Ac
-% Ac = fp_percent *(Ap);
-% A_pure_pearlite = Ac;
-% A = A_pure_pearlite;
-% assignin('base', 'A', A);
-
-%%             save_material_grade_checkbox
-
-% function save_material_grade_checkbox(hObject, eventdata, handles)
-% 
-% material_choice = evalin('base', 'material_choice');
-% 
-% % Control if the user saved the data
-% save_material_panel = 1;
-% assignin('base', 'save_material_panel', save_material_panel);
-% 
-% % Refresh all the other options
-% set(handles.df_text, 'string', '');
-% set(handles.dp_text, 'string', '');
-% set(handles.s_text, 'string', '');
-% set(handles.user_defined_input_A, 'string', '');
-% set(handles.user_defined_input_B, 'string', '');
-% set(handles.user_defined_input_C, 'string', '');
-% set(handles.user_defined_input_m, 'string', '');
-% set(handles.user_defined_input_n, 'string', '');
-% s_text = 0;
-% assignin('base', 's_text', s_text);
-% dp_text = 0;
-% assignin('base', 'dp_text', dp_text);
-% df_text = 0;
-% assignin('base', 'df_text', df_text);
-% user_defined_input_A = 0;
-% assignin('base', 'user_defined_input_A', user_defined_input_A);
-% user_defined_input_B = 0;
-% assignin('base', 'user_defined_input_B', user_defined_input_B);
-% user_defined_input_C = 0;
-% assignin('base', 'user_defined_input_C', user_defined_input_C);
-% user_defined_input_m = 0;
-% assignin('base', 'user_defined_input_m', user_defined_input_m);
-% user_defined_input_n = 0;
-% assignin('base', 'user_defined_input_n', user_defined_input_n);
-% set(handles.pure_ferrite_checkbox, 'Value', 0);
-% set(handles.pure_pearlite_checkbox, 'Value', 0);
-% set(handles.material_grade_checkbox, 'Value', 0);
-% set(handles.user_defined_checkbox, 'Value', 0);
-% set(handles.material_grade_popup,'Value', 1);
-% 
-% % Msg Box for the user
-% msgbox('Clique to close the window','OK') 
-% 
-% % JC parameters constants
-% switch(material_choice)
-%     
-%     case 1 % 45CG 
-%         A_45CG = 644;
-%         B_45CG = 428;
-%         n_45CG = 0.24;
-%         C_45CG = 0.037;
-%         m_45CG = 0.949;
-%         % Set to Workspace
-%         A = A_45CG;
-%         assignin('base', 'A', A);
-%         B = B_45CG;
-%         assignin('base', 'B',B);
-%         n = n_45CG;
-%         assignin('base', 'n',n);
-%         C = C_45CG;
-%         assignin('base', 'C',C);
-%         m = m_45CG;
-%         assignin('base', 'm',m);
-%         
-%     case 2 % 45R 
-%         A_45R = 515;
-%         B_45R = 421;
-%         n_45R = 0.21;
-%         C_45R = 0.037;
-%         m_45R = 0.944;
-%         % Set to Workspace
-%         A = A_45R;
-%         assignin('base', 'A', A);
-%         B = B_45R;
-%         assignin('base', 'B',B);
-%         n = n_45R;
-%         assignin('base', 'n',n);
-%         C = C_45R;
-%         assignin('base', 'C',C);
-%         m = m_45R;
-%         assignin('base', 'm',m);
-%         
-%         
-%     case 3 % 45WB
-%         A_45WB = 474;
-%         B_45WB = 421;
-%         n_45WB = 0.21;
-%         C_45WB = 0.037;
-%         m_45WB = 0.944;
-%         % Set to Workspace
-%         A = A_45WB;
-%         assignin('base', 'A', A);
-%         B = B_45WB;
-%         assignin('base', 'B',B);
-%         n = n_45WB;
-%         assignin('base', 'n',n);
-%         C = C_45WB;
-%         assignin('base', 'C',C);
-%         m = m_45WB;
-%         assignin('base', 'm',m);
-%         
-%        
-%     case 4 % 45GP
-%         A_45GP = 397;
-%         B_45GP = 418;
-%         n_45GP = 0.20;
-%         C_45GP = 0.037;
-%         m_45GP = 0.943;
-%         % Set to Workspace
-%         A = A_45GP;
-%         assignin('base', 'A', A);
-%         B = B_45GP;
-%         assignin('base', 'B',B);
-%         n = n_45GP;
-%         assignin('base', 'n',n);
-%         C = C_45GP;
-%         assignin('base', 'C',C);
-%         m = m_45GP;
-%         assignin('base', 'm',m);
-%      
-% end
-
 %%                     save_user_defined_checkbox
 
 function save_user_defined_checkbox(hObject, eventdata, handles)
@@ -591,27 +211,12 @@ if user_defined_input_A == 0 || user_defined_input_B == 0 || user_defined_input_
   errordlg('Fullfil all the fields', 'Error');
 else
    msgbox('Clique to close the window','OK') 
-   % Refresh all the other options
-%         set(handles.df_text, 'string', '');
-%         set(handles.dp_text, 'string', '');
-%         set(handles.s_text, 'string', '');
         set(handles.user_defined_input_A, 'string', '');
         set(handles.user_defined_input_B, 'string', '');
         set(handles.user_defined_input_C, 'string', '');
         set(handles.user_defined_input_m, 'string', '');
         set(handles.user_defined_input_n, 'string', '');
-%         s_text = 0;
-%         assignin('base', 's_text', s_text);
-%         dp_text = 0;
-%         assignin('base', 'dp_text', dp_text);
-%         df_text = 0;
-%         assignin('base', 'df_text', df_text);
-%         set(handles.pure_ferrite_checkbox, 'Value', 0);
-%         set(handles.pure_pearlite_checkbox, 'Value', 0);
-%         set(handles.material_grade_checkbox, 'Value', 0);
-        set(handles.user_defined_checkbox, 'Value', 0);
-%         set(handles.material_grade_popup,'Value', 1);
-   
+        set(handles.user_defined_checkbox, 'Value', 0);   
 end
 
 % Control if the user saved the data
@@ -639,10 +244,6 @@ save_material_selection = evalin('base', 'save_material_selection');
    switch(save_material_selection)
 %         case 1
 %             save_material_grade_checkbox(hObject, eventdata, handles);
-%         case 2
-%             save_pure_ferrite_checkbox(hObject, eventdata, handles);
-%         case 3
-%             save_pure_pearlite_checkbox(hObject, eventdata, handles);
         case 4 
             save_user_defined_checkbox(hObject, eventdata, handles);
        otherwise
@@ -654,20 +255,12 @@ save_material_selection = evalin('base', 'save_material_selection');
 function refresh_fields_button_Callback(hObject, eventdata, handles)
 
 % Refresh all fields
-% set(handles.df_text, 'string', '');
-% set(handles.dp_text, 'string', '');
-% set(handles.s_text, 'string', '');
 set(handles.user_defined_input_A, 'string', '');
 set(handles.user_defined_input_B, 'string', '');
 set(handles.user_defined_input_C, 'string', '');
 set(handles.user_defined_input_m, 'string', '');
 set(handles.user_defined_input_n, 'string', '');
-% s_text = 0;
-% assignin('base', 's_text', s_text);
-% dp_text = 0;
-% assignin('base', 'dp_text', dp_text);
-% df_text = 0;
-% assignin('base', 'df_text', df_text);
+
 user_defined_input_A = 0;
 assignin('base', 'user_defined_input_A', user_defined_input_A);
 user_defined_input_B = 0;
@@ -678,15 +271,9 @@ user_defined_input_m = 0;
 assignin('base', 'user_defined_input_m', user_defined_input_m);
 user_defined_input_n = 0;
 assignin('base', 'user_defined_input_n', user_defined_input_n);
-% set(handles.pure_ferrite_checkbox, 'Value', 0);
-% set(handles.pure_pearlite_checkbox, 'Value', 0);
-% set(handles.material_grade_checkbox, 'Value', 0);
 set(handles.user_defined_checkbox, 'Value', 0);
-% set(handles.material_grade_popup,'Value', 1);
-% material_choice = 1; 
-% assignin('base', 'material_choice',material_choice);
- save_material_selection = 0;
- assignin('base','save_material_selection',save_material_selection);
+save_material_selection = 0;
+assignin('base','save_material_selection',save_material_selection);
 save_material_panel = 0;
 assignin('base', 'save_material_panel', save_material_panel);
 
@@ -706,14 +293,6 @@ assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_r
 % Initial var values for panel material selection
 save_material_selection = 0;
 assignin('base','save_material_selection',save_material_selection);
-% material_choice = 1; % Default is 45CG popup menu
-% assignin('base', 'material_choice',material_choice);
-% s_text = 0;
-% assignin('base', 's_text', s_text);
-% dp_text = 0;
-% assignin('base', 'dp_text', dp_text);
-% df_text = 0;
-% assignin('base', 'df_text', df_text);
 user_defined_input_A = 0;
 assignin('base', 'user_defined_input_A', user_defined_input_A);
 user_defined_input_B = 0;
