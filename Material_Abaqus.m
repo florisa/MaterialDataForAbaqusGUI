@@ -408,7 +408,35 @@ Ac = Af + fp_percent *(Ap - Af);
 A = Ac;
 assignin('base', 'A', A);
 
+% Other parameters contants
+Bf = 405;
+Bp = 432;
+nf = 0.15;
+np = 0.25;
+Cf = 0.037;
+Cp = 0.037;
+mf = 0.900;
+mp = 0.950;
 
+% Calculating B Parameter
+Bc = Bf + fp_percent *(Bp - Bf);
+B = Bc;
+assignin('base', 'B', B);
+
+% Calculating n Parameter
+nc = (nf * Bf + fp_percent *(np * Bp - nf * Bf))/Bc;
+n = nc;
+assignin('base', 'n', n);
+
+% Calculating C Parameter
+Cc = (Cf * Af + fp_percent *(Cp * Ap - Cf * Af))/Ac;
+C = Cc;
+assignin('base', 'C', C);
+
+% Calculating m Parameter
+mc = (mf * Af + fp_percent *(mp * Ap - mf * Af))/Ac;
+m = mc;
+assignin('base', 'm', m);
 
 % Control if the user saved the data
 save_material_panel = 1;
