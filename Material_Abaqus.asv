@@ -511,10 +511,7 @@ save_epsilon_dot_strain_rate_panel = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 
 % Initial var values for panel material selection
-% save_material_selection = 0;
-% assignin('base','save_material_selection',save_material_selection);
-% material_choice = 1; % Default is 45CG popup menu
-% assignin('base', 'material_choice',material_choice);
+
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
