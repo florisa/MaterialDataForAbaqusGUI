@@ -1210,6 +1210,7 @@ k = 1; % counter for epsilon
 a = 1; % counter for the plot matrix
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_automatic = epsilon_dot_min_automatic_input;
+strain_rate_automatic_output_first_line = 0; % changes the first values of Strain Rate to zero (Abaqus bug)
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
@@ -1218,18 +1219,25 @@ while i <= temperature_quantity
                         sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
-                   end                
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
+                   end
+                   if j==1
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic_output_first_line temperature_array(i,1)]);
+                   else
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);
+                   end 
                         matAuxPlot(a,1) = sigma;
                         matAuxPlot(a,2) = epsilon;
                         matAuxPlot(a,3) = strain_rate_automatic;
                         matAuxPlot(a,4) = temperature_array(i,1);
+                        
+                    
+                        
+                         
                         a = a + 1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
-                       
-                        
-                end
+                                
+                 end
                     if j < strain_rate_automatic_quantity
                         lastStrainRateValue = strain_rate_automatic * epsilon_dot_step_automatic_input;
                         lastButOneStrainRateValue = strain_rate_automatic;
