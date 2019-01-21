@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 14-May-2018 10:57:38
+% Last Modified by GUIDE v2.5 21-Jan-2019 12:31:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1436,3 +1436,133 @@ end
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
+
+
+%% New Material Law functions
+% -- TODO -------------
+% - place it along with panel functions
+%% 
+
+
+% --- Executes on button press in material_law_checkbox.
+function material_law_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of material_law_checkbox
+
+
+
+function material_law_inputA_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputA (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputA as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputA as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputA_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputA (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function material_law_inputQ_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputQ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputQ as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputQ as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputQ_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputQ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function material_law_inputNu_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputNu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputNu as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputNu as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputNu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputNu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function material_law_inputY0_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputY0 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputY0 as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputY0 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputY0_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputY0 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function material_law_inputd_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputd (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputd as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputd as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputd_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputd (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

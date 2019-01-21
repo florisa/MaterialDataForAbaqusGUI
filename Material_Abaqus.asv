@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 14-May-2018 10:57:38
+% Last Modified by GUIDE v2.5 21-Jan-2019 12:15:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -511,7 +511,6 @@ save_epsilon_dot_strain_rate_panel = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_panel', save_epsilon_dot_strain_rate_panel);
 
 % Initial var values for panel material selection
-
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
@@ -1211,6 +1210,7 @@ k = 1; % counter for epsilon
 a = 1; % counter for the plot matrix
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_automatic = epsilon_dot_min_automatic_input;
+strain_rate_automatic_output_first_line = 0; % changes the first values of Strain Rate to zero (Abaqus bug)
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
@@ -1219,18 +1219,25 @@ while i <= temperature_quantity
                         sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
-                   end                
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
+                   end
+                   if j==1
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic_output_first_line temperature_array(i,1)]);
+                   else
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);
+                   end 
                         matAuxPlot(a,1) = sigma;
                         matAuxPlot(a,2) = epsilon;
                         matAuxPlot(a,3) = strain_rate_automatic;
                         matAuxPlot(a,4) = temperature_array(i,1);
+                        
+                    
+                        
+                         
                         a = a + 1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
-                       
-                        
-                end
+                                
+                 end
                     if j < strain_rate_automatic_quantity
                         lastStrainRateValue = strain_rate_automatic * epsilon_dot_step_automatic_input;
                         lastButOneStrainRateValue = strain_rate_automatic;
@@ -1429,3 +1436,40 @@ end
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
+
+%%
+%%New Material Law functions
+% -- TODO -------------
+% - place it along with panel functions
+%%
+
+% --- Executes on button press in material_law_checkbox.
+function material_law_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of material_law_checkbox
+
+
+
+function material_law_inputA_Callback(hObject, eventdata, handles)
+% hObject    handle to material_law_inputA (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of material_law_inputA as text
+%        str2double(get(hObject,'String')) returns contents of material_law_inputA as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function material_law_inputA_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to material_law_inputA (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
