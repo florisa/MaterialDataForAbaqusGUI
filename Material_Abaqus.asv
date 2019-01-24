@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 21-Jan-2019 12:15:31
+% Last Modified by GUIDE v2.5 24-Jan-2019 12:50:40
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1437,34 +1437,120 @@ end
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
 
-%%
-%%New Material Law functions
+
+%% New Material Law functions
 % -- TODO -------------
 % - place it along with panel functions
-%%
-
-% --- Executes on button press in material_law_checkbox.
-function material_law_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of material_law_checkbox
+%% 
 
 
+% --- Executes on button press in voce_material_law_checkbox.
+function voce_material_law_checkbox_Callback(hObject, eventdata, handles)
 
-function material_law_inputA_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputA (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+save_material_selection = 3;
+assignin('base', 'save_material_selection', save_material_selection);
 
-% Hints: get(hObject,'String') returns contents of material_law_inputA as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputA as a double
+set(handles.voce_material_law_checkbox, 'Value', 1);
+set(handles.microstructure_material_law_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
+
+
+function voce_material_law_inputA_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputA = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputA) || voce_material_law_inputA <= 0)
+    voce_material_law_inputA = 0;
+    assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
+
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputA_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function voce_material_law_inputQ_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputQ = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputQ) || voce_material_law_inputQ <= 0)
+    voce_material_law_inputQ = 0;
+    assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
 
 
 % --- Executes during object creation, after setting all properties.
-function material_law_inputA_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputA (see GCBO)
+function voce_material_law_inputQ_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function voce_material_law_inputNu_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputNu = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputNu) || voce_material_law_inputNu <= 0)
+    voce_material_law_inputNu = 0;
+    assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
+
+
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputNu_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function voce_material_law_inputY0_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputY0 = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputY0) || voce_material_law_inputY0 <= 0)
+    voce_material_law_inputY0 = 0;
+    assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
+
+
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputY0_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function voce_material_law_inputd_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputd = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputd) || voce_material_law_inputd <= 0)
+    voce_material_law_inputY0 = 0;
+    assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
+
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputd_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to voce_material_law_inputd (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

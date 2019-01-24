@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 21-Jan-2019 12:31:07
+% Last Modified by GUIDE v2.5 24-Jan-2019 12:50:40
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1443,126 +1443,119 @@ initial(hObject, eventdata, handles)
 % - place it along with panel functions
 %% 
 
+%%                 voce_material_law_checkbox
+% --- Executes on button press in voce_material_law_checkbox.
+function voce_material_law_checkbox_Callback(hObject, eventdata, handles)
 
-% --- Executes on button press in material_law_checkbox.
-function material_law_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+save_material_selection = 3;
+assignin('base', 'save_material_selection', save_material_selection);
 
-% Hint: get(hObject,'Value') returns toggle state of material_law_checkbox
+set(handles.voce_material_law_checkbox, 'Value', 1);
+set(handles.microstructure_material_law_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
 
+%%                  voce_material_law_inputA
 
+function voce_material_law_inputA_Callback(hObject, eventdata, handles)
 
-function material_law_inputA_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputA (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+voce_material_law_inputA = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputA) || voce_material_law_inputA <= 0)
+    voce_material_law_inputA = 0;
+    assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
 
-% Hints: get(hObject,'String') returns contents of material_law_inputA as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputA as a double
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputA_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  voce_material_law_inputQ
+
+function voce_material_law_inputQ_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputQ = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputQ) || voce_material_law_inputQ <= 0)
+    voce_material_law_inputQ = 0;
+    assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
 
 
 % --- Executes during object creation, after setting all properties.
-function material_law_inputA_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputA (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
+function voce_material_law_inputQ_CreateFcn(hObject, eventdata, handles)
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%                  voce_material_law_inputNu
+
+function voce_material_law_inputNu_Callback(hObject, eventdata, handles)
+
+voce_material_law_inputNu = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputNu) || voce_material_law_inputNu <= 0)
+    voce_material_law_inputNu = 0;
+    assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
+
+
+% --- Executes during object creation, after setting all properties.
+function voce_material_law_inputNu_CreateFcn(hObject, eventdata, handles)
+
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
+%%                  voce_material_law_inputY0
 
-function material_law_inputQ_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputQ (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function voce_material_law_inputY0_Callback(hObject, eventdata, handles)
 
-% Hints: get(hObject,'String') returns contents of material_law_inputQ as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputQ as a double
+voce_material_law_inputY0 = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputY0) || voce_material_law_inputY0 <= 0)
+    voce_material_law_inputY0 = 0;
+    assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
 
 
 % --- Executes during object creation, after setting all properties.
-function material_law_inputQ_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputQ (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
+function voce_material_law_inputY0_CreateFcn(hObject, eventdata, handles)
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
+%%                  voce_material_law_inputd
 
-function material_law_inputNu_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputNu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+function voce_material_law_inputd_Callback(hObject, eventdata, handles)
 
-% Hints: get(hObject,'String') returns contents of material_law_inputNu as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputNu as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function material_law_inputNu_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputNu (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
+voce_material_law_inputd = str2double(get(hObject, 'String'));
+if (isnan(voce_material_law_inputd) || voce_material_law_inputd <= 0)
+    voce_material_law_inputd = 0;
+    assignin('base', 'voce_material_law_inputd', voce_material_law_inputd);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
 end
-
-
-
-function material_law_inputY0_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputY0 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of material_law_inputY0 as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputY0 as a double
+assignin('base', 'voce_material_law_inputd', voce_material_law_inputd);
 
 
 % --- Executes during object creation, after setting all properties.
-function material_law_inputY0_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputY0 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
+function voce_material_law_inputd_CreateFcn(hObject, eventdata, handles)
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function material_law_inputd_Callback(hObject, eventdata, handles)
-% hObject    handle to material_law_inputd (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of material_law_inputd as text
-%        str2double(get(hObject,'String')) returns contents of material_law_inputd as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function material_law_inputd_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to material_law_inputd (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
