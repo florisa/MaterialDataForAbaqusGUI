@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 24-Jan-2019 12:50:40
+% Last Modified by GUIDE v2.5 05-Feb-2019 14:12:14
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -93,6 +93,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.microstructure_material_law_checkbox, 'Value', 1);
 set(handles.jc_general_checkbox, 'Value', 0);
+set(handles.voce_general_checkbox, 'Value', 0)
 
 %%                         fp_text_box
 function fp_text_Callback(hObject, eventdata, handles)
@@ -177,6 +178,7 @@ assignin('base', 'save_material_selection', save_material_selection);
 
 set(handles.microstructure_material_law_checkbox, 'Value', 0);
 set(handles.jc_general_checkbox, 'Value', 1);
+set(handles.voce_general_checkbox, 'Value', 0)
 
 %%                 User_Defined_input_A
 
@@ -281,6 +283,156 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%%                voce_general_checkbox
+% --- Executes on button press in voce_general_checkbox.
+function voce_general_checkbox_Callback(hObject, eventdata, handles)
+
+save_material_selection = 3;
+assignin('base', 'save_material_selection', save_material_selection);
+
+set(handles.microstructure_material_law_checkbox, 'Value', 0);
+set(handles.jc_general_checkbox, 'Value', 0);
+set(handles.voce_general_checkbox, 'Value', 1)
+
+function user_defined_input_A2_Callback(hObject, eventdata, handles)
+
+user_defined_input_A2 = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_A2) || user_defined_input_A2 <= 0)
+    user_defined_input_A2 = 0;
+    assignin('base', 'user_defined_input_A2', user_defined_input_A2);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_A2', user_defined_input_A2);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_A2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function user_defined_input_C2_Callback(hObject, eventdata, handles)
+    user_defined_input_C2 = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_C2) || user_defined_input_C2 <= 0)
+    user_defined_input_C2 = 0;
+    assignin('base', 'user_defined_input_C2', user_defined_input_C2);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_C2', user_defined_input_C2);
+
+function user_defined_input_C2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_Q_Callback(hObject, eventdata, handles)
+
+user_defined_input_Q = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_Q) || user_defined_input_Q <= 0)
+    user_defined_input_Q = 0;
+    assignin('base', 'user_defined_input_Q', user_defined_input_Q);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_Q', user_defined_input_Q);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_Q_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function user_defined_input_v_Callback(hObject, eventdata, handles)
+
+user_defined_input_v = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_v) || user_defined_input_v <= 0)
+    user_defined_input_v = 0;
+    assignin('base', 'user_defined_input_v', user_defined_input_v);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_v', user_defined_input_v);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_v_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_Y0_Callback(hObject, eventdata, handles)
+
+user_defined_input_Y0 = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_Y0) || user_defined_input_Y0 <= 0)
+    user_defined_input_Y0 = 0;
+    assignin('base', 'user_defined_input_Y0', user_defined_input_Y0);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_Y0', user_defined_input_Y0);
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_Y0_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_d_Callback(hObject, eventdata, handles)
+
+user_defined_input_d = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_d) || user_defined_input_d <= 0)
+    user_defined_input_d = 0;
+    assignin('base', 'user_defined_input_d', user_defined_input_d);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_d', user_defined_input_d);
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_d_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function user_defined_input_m2_Callback(hObject, eventdata, handles)
+
+user_defined_input_m2 = str2double(get(hObject, 'String'));
+if (isnan(user_defined_input_m2) || user_defined_input_m2 <= 0)
+    user_defined_input_m2 = 0;
+    assignin('base', 'user_defined_input_m2', user_defined_input_m2);
+    set(hObject, 'String','');
+    errordlg('Please enter the correct data','Error');    
+end
+assignin('base', 'user_defined_input_m2', user_defined_input_m2);
+
+
+
+% --- Executes during object creation, after setting all properties.
+function user_defined_input_m2_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
 %%                     save_user_defined_checkbox
 
 function save_user_defined_checkbox(hObject, eventdata, handles)
@@ -306,6 +458,15 @@ else
         set(handles.user_defined_input_C, 'string', '');
         set(handles.user_defined_input_m, 'string', '');
         set(handles.user_defined_input_n, 'string', '');
+        
+        set(handles.user_defined_input_A2, 'string', '');
+        set(handles.user_defined_input_C2, 'string', '');
+        set(handles.user_defined_input_Q, 'string', '');
+        set(handles.user_defined_input_v, 'string', '');
+        set(handles.user_defined_input_Y0, 'string', '');
+        set(handles.user_defined_input_d, 'string', '');
+        set(handles.user_defined_input_m2, 'string', '');
+        
         s_text = 0;
         assignin('base', 's_text', s_text);
         dp_text = 0;
@@ -317,7 +478,8 @@ else
 
         set(handles.jc_general_checkbox, 'Value', 0);
         set(handles.microstructure_material_law_checkbox,'Value', 0);
-   
+        set(handles.voce_general_checkbox, 'Value', 0);
+        
 end
 
 % Control if the user saved the data
@@ -335,6 +497,7 @@ m = user_defined_input_m;
 assignin('base', 'm',m);
 n = user_defined_input_n;
 assignin('base', 'n',n);
+
 
 %%            save_microstructure_material_law_checkbox
 
@@ -362,6 +525,14 @@ else
         set(handles.user_defined_input_m, 'string', '');
         set(handles.user_defined_input_n, 'string', '');
         
+        set(handles.user_defined_input_A2, 'string', '');
+        set(handles.user_defined_input_C2, 'string', '');
+        set(handles.user_defined_input_Q, 'string', '');
+        set(handles.user_defined_input_v, 'string', '');
+        set(handles.user_defined_input_Y0, 'string', '');
+        set(handles.user_defined_input_d, 'string', '');
+        set(handles.user_defined_input_m2, 'string', '');
+        
         user_defined_input_A = 0;
         assignin('base', 'user_defined_input_A', user_defined_input_A);
         user_defined_input_B = 0;
@@ -375,6 +546,9 @@ else
         
         set(handles.jc_general_checkbox, 'Value', 0);
         set(handles.microstructure_material_law_checkbox, 'Value', 0);
+        set(handles.voce_general_checkbox, 'Value', 0);
+end
+
         
 % Calculating A parameter
 
@@ -441,7 +615,80 @@ assignin('base', 'm', m);
 % Control if the user saved the data
 save_material_panel = 1;
 assignin('base', 'save_material_panel', save_material_panel);
+
+
+%%              save_voce_checkbox
+    function save_voce_checkbox(hObject, eventdata, handles)
+user_defined_input_A2 = evalin('base', 'user_defined_input_A2'); 
+user_defined_input_C2 = evalin('base', 'user_defined_input_C2'); 
+user_defined_input_Q = evalin('base', 'user_defined_input_Q'); 
+user_defined_input_v = evalin('base', 'user_defined_input_v'); 
+user_defined_input_Y0 = evalin('base', 'user_defined_input_Y0');
+user_defined_input_d = evalin('base', 'user_defined_input_d');
+user_defined_input_m2 = evalin('base', 'user_defined_input_m2'); 
+
+if user_defined_input_A2 == 0 || user_defined_input_Q == 0 || user_defined_input_v == 0 || ...
+        user_defined_input_Y0 == 0 || user_defined_input_d == 0 || user_defined_input_m2 == 0 || user_defined_input_C2 == 0
+  errordlg('Fullfil all the fields', 'Error');
+else
+   msgbox('Clique to close the window','OK') 
+   % Refresh all the other options
+        set(handles.df_text, 'string', '');
+        set(handles.dp_text, 'string', '');
+        set(handles.s_text, 'string', '');
+        set(handles.user_defined_input_A, 'string', '');
+        set(handles.user_defined_input_B, 'string', '');
+        set(handles.user_defined_input_C, 'string', '');
+        set(handles.user_defined_input_m, 'string', '');
+        set(handles.user_defined_input_n, 'string', '');
+        
+        set(handles.user_defined_input_A2, 'string', '');
+        set(handles.user_defined_input_C2, 'string', '');
+        set(handles.user_defined_input_Q, 'string', '');
+        set(handles.user_defined_input_v, 'string', '');
+        set(handles.user_defined_input_Y0, 'string', '');
+        set(handles.user_defined_input_d, 'string', '');
+        set(handles.user_defined_input_m2, 'string', '');
+        
+        user_defined_input_A = 0;
+        assignin('base', 'user_defined_input_A', user_defined_input_A);
+        user_defined_input_B = 0;
+        assignin('base', 'user_defined_input_B', user_defined_input_B);
+        user_defined_input_C = 0;
+        assignin('base', 'user_defined_input_C', user_defined_input_C);
+        user_defined_input_m = 0;
+        assignin('base', 'user_defined_input_m', user_defined_input_m);
+        user_defined_input_n = 0;
+        assignin('base', 'user_defined_input_n', user_defined_input_n);
+      
+
+        set(handles.jc_general_checkbox, 'Value', 0);
+        set(handles.microstructure_material_law_checkbox,'Value', 0);
+        set(handles.voce_general_checkbox, 'Value', 0);
 end
+
+save_material_panel = 1;
+assignin('base', 'save_material_panel', save_material_panel);
+
+% User-Defined voce
+A2 = user_defined_input_A2;
+assignin('base', 'A2', A2);
+C2 = user_defined_input_C2;
+assignin('base', 'C2', C2);
+Q = user_defined_input_Q;
+assignin('base', 'Q',Q);
+v = user_defined_input_v;
+assignin('base', 'v',v);
+Y0 = user_defined_input_Y0;
+assignin('base', 'Y0',Y0);
+d = user_defined_input_d;
+assignin('base', 'd',d);
+m2 = user_defined_input_m2;
+assignin('base', 'm2',m2);
+
+
+
+
 
 %%                       Save_Material_button
 % --- Executes on button press in save_material_selection.
@@ -454,6 +701,8 @@ save_material_selection = evalin('base', 'save_material_selection');
             save_microstructure_material_law_checkbox(hObject, eventdata, handles);
         case 2 
             save_user_defined_checkbox(hObject, eventdata, handles);
+        case 3
+            save_voce_checkbox(hObject, eventdata, handles);
        otherwise
             errordlg('Please enter the material input data','Error');
    end
@@ -472,6 +721,13 @@ set(handles.user_defined_input_B, 'string', '');
 set(handles.user_defined_input_C, 'string', '');
 set(handles.user_defined_input_m, 'string', '');
 set(handles.user_defined_input_n, 'string', '');
+set(handles.user_defined_input_A2, 'string', '');
+set(handles.user_defined_input_C2, 'string', '');
+set(handles.user_defined_input_Q, 'string', '');
+set(handles.user_defined_input_v, 'string', '');
+set(handles.user_defined_input_Y0, 'string', '');
+set(handles.user_defined_input_d, 'string', '');
+set(handles.user_defined_input_m2, 'string', '');
 s_text = 0;
 assignin('base', 's_text', s_text);
 dp_text = 0;
@@ -490,9 +746,24 @@ user_defined_input_m = 0;
 assignin('base', 'user_defined_input_m', user_defined_input_m);
 user_defined_input_n = 0;
 assignin('base', 'user_defined_input_n', user_defined_input_n);
+user_defined_input_A2 = 0;
+assignin('base', 'user_defined_input_A2', user_defined_input_A2);
+user_defined_input_C2 = 0;
+assignin('base', 'user_defined_input_C2', user_defined_input_C2);
+user_defined_input_Q = 0;
+assignin('base', 'user_defined_input_Q', user_defined_input_Q);
+user_defined_input_v = 0;
+assignin('base', 'user_defined_input_v', user_defined_input_v);
+user_defined_input_Y0 = 0;
+assignin('base', 'user_defined_input_Y0', user_defined_input_Y0);
+user_defined_input_d = 0;
+assignin('base', 'user_defined_input_d', user_defined_input_d);
+user_defined_input_m2 = 0;
+assignin('base', 'user_defined_input_m2', user_defined_input_m2);
 
 set(handles.microstructure_material_law_checkbox, 'Value', 0);
 set(handles.jc_general_checkbox, 'Value', 0);
+set(handles.voce_general_checkbox, 'Value', 0);
 
 save_material_panel = 0;
 assignin('base', 'save_material_panel', save_material_panel);
@@ -529,6 +800,21 @@ user_defined_input_m = 0;
 assignin('base', 'user_defined_input_m', user_defined_input_m);
 user_defined_input_n = 0;
 assignin('base', 'user_defined_input_n', user_defined_input_n);
+user_defined_input_A2 = 0;
+assignin('base', 'user_defined_input_A2', user_defined_input_A2);
+user_defined_input_C2 = 0;
+assignin('base', 'user_defined_input_C2', user_defined_input_C2);
+user_defined_input_Q = 0;
+assignin('base', 'user_defined_input_Q', user_defined_input_Q);
+user_defined_input_v = 0;
+assignin('base', 'user_defined_input_v', user_defined_input_v);
+user_defined_input_Y0 = 0;
+assignin('base', 'user_defined_input_Y0', user_defined_input_Y0);
+user_defined_input_d = 0;
+assignin('base', 'user_defined_input_d', user_defined_input_d);
+user_defined_input_m2 = 0;
+assignin('base', 'user_defined_input_m2', user_defined_input_m2);
+
 
 % Initial var values for panel temperature
 temperature_quantity = 0; % Quantity of temperature for popup menu
@@ -1140,22 +1426,262 @@ save_material_panel = evalin('base','save_material_panel');
 save_temperature_panel = evalin('base','save_temperature_panel');
 save_epsilon_panel = evalin('base','save_epsilon_panel');
 save_epsilon_dot_strain_rate_panel = evalin('base','save_epsilon_dot_strain_rate_panel');
+save_material_selection = evalin('base','save_material_selection');
 
 save_epsilon_dot_strain_rate_type = evalin('base','save_epsilon_dot_strain_rate_type');
-
+if (save_material_selection < 3 )
 % control if all the panels are filled
-if save_material_panel == 0 || save_temperature_panel == 0 || ...
+      if save_material_panel == 0 || save_temperature_panel == 0 || ...
         save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
     errordlg('Please fullfil the all data fields','Error');
-else
+        else
         switch(save_epsilon_dot_strain_rate_type)
             case 1
                 calculate_strain_rate_automatic(hObject, eventdata, handles);
             case 2
                 calculate_strain_rate_manual(hObject, eventdata, handles);
+        end  
+      end
+else
+          if save_material_panel == 0 || save_temperature_panel == 0 || ...
+        save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
+    errordlg('Please fullfil the all data fields','Error');
+        else
+        switch(save_epsilon_dot_strain_rate_type)
+            case 1
+                calculate_voce_strain_rate_automatic(hObject, eventdata, handles);
+            case 2
+                calculate_voce_strain_rate_manual(hObject, eventdata, handles);
+      
+  
+
         end
+          end
 end
-%%              calculate_epsilon_dot_strain_rate_automatic
+        
+        
+function calculate_voce_strain_rate_automatic(hObject, eventdata, handles);
+A2 = evalin('base','A2');
+C2 = evalin('base','C2');
+Q = evalin('base','Q');
+v = evalin('base','v');
+Y0 = evalin('base','Y0');
+d = evalin('base','d');
+m2 = evalin('base','m2');
+% Epsilon
+epsilon_step_input = evalin('base','epsilon_step_input');
+epsilon_min_input = evalin('base','epsilon_min_input');
+epsilon_max_input = evalin('base','epsilon_max_input');
+% Epsilon Dot
+epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_input');
+epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
+epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
+% Temperature
+temperature_quantity = evalin('base','temperature_quantity');
+temperature_array = evalin('base','temperature_array');
+% txt file
+exp_name = evalin('base','exp_name');
+
+% Constants
+% JC Fixed Parameters for all 
+sigma = 0;              % Flow stress
+T_0 = 20;               % Reference temperature
+T_m = 1500;             % Melting temperature
+eps_dot_0 = 0.002;      % Reference plastic strain
+
+% file open
+fid = fopen(exp_name, 'wt+' );
+
+% Calculate the quantity of epsilons and epsilons_dot
+if epsilon_step_input > 0
+    epsilon_quantity = round((epsilon_max_input-epsilon_min_input)/epsilon_step_input)+1;
+else
+    epsilon_quantity = 1;
+end
+strain_rate_automatic_quantity = log10(epsilon_dot_max_automatic_input / epsilon_dot_min_automatic_input) +1;
+%strain_rate_automatic_quantity = round((epsilon_dot_max_automatic_input - epsilon_dot_min_automatic_input)/ epsilon_dot_step_automatic_input) +1;
+assignin('base', 'strain_rate_automatic_quantity', strain_rate_automatic_quantity);
+
+% First and second line of the file
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+
+% Initial values for sigma
+i = 1; % counter for Temperature
+j = 1; % counter for epsilon dot
+k = 1; % counter for epsilon 
+a = 1; % counter for the plot matrix
+epsilon = epsilon_min_input; % gets the initial value from epsilon
+strain_rate_automatic = epsilon_dot_min_automatic_input;
+
+% Write the Sigmas in the file
+while i <= temperature_quantity 
+            while j <= strain_rate_automatic_quantity
+                while k <= epsilon_quantity 
+                        sigma = ((A2+Q*(1-exp(-v*epsilon))-(A2-Y0)/(1+epsilon)^d)*(1+C2*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m2));
+                  % if(epsilon >= 1)                        
+                    %    sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                   %end                
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
+                        matAuxPlot(a,1) = sigma;
+                        matAuxPlot(a,2) = epsilon;
+                        matAuxPlot(a,3) = strain_rate_automatic;
+                        matAuxPlot(a,4) = temperature_array(i,1);
+                        a = a + 1;
+                        k = k + 1;
+                        epsilon = epsilon + epsilon_step_input;
+                       
+                        
+                end
+                    if j < strain_rate_automatic_quantity
+                        lastStrainRateValue = strain_rate_automatic * epsilon_dot_step_automatic_input;
+                        lastButOneStrainRateValue = strain_rate_automatic;
+                        %numberOfExtraPoints = epsilon_dot_step_automatic_input ^(j-1);
+                        numberOfExtraPoints = 100;
+                        delta = (lastStrainRateValue - lastButOneStrainRateValue)/numberOfExtraPoints;
+                        for w = 1:numberOfExtraPoints
+                            strain_rate_automatic_plot(w) = lastButOneStrainRateValue + delta * w;                           
+                                while k <= epsilon_quantity 
+                                    sigma = ((A2+Q*(1-exp(-v*epsilon))-(A2-Y0)/(1+epsilon)^d)*(1+C2*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m2));
+                                        %if(epsilon >= 1)                        
+                                        %    sigma = (A+B)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                                        %end                        
+                                            matAuxPlot(a,1) = sigma;
+                                            matAuxPlot(a,2) = epsilon;
+                                            matAuxPlot(a,3) = strain_rate_automatic_plot(w);
+                                            matAuxPlot(a,4) = temperature_array(i,1);
+                                            a = a + 1;
+                                            k = k + 1;
+                                            epsilon = epsilon + epsilon_step_input;
+                                end
+                                    k = 1;
+                                    epsilon = epsilon_min_input;
+                        end
+                    end
+                    k = 1;
+                    epsilon = epsilon_min_input;
+                    j = j + 1;
+                    strain_rate_automatic = strain_rate_automatic * epsilon_dot_step_automatic_input;
+
+            end
+                k = 1;
+                j = 1;
+                epsilon = epsilon_min_input;
+                strain_rate_automatic = epsilon_dot_min_automatic_input;
+                i = i + 1;
+                assignin('base', 'matAuxPlot', matAuxPlot);
+end
+fclose(fid);
+msgbox('Saved', 'Ok');
+
+function calculate_voce_strain_rate_manual(hObject, eventdata, handles);
+% Load the vars from Workspace
+% JC Parameters
+A2 = evalin('base','A2');
+C2 = evalin('base','C2');
+Q = evalin('base','Q');
+v = evalin('base','v');
+Y0 = evalin('base','Y0');
+d = evalin('base','d');
+m2 = evalin('base','m2');
+% Epsilon
+epsilon_step_input = evalin('base','epsilon_step_input');
+epsilon_min_input = evalin('base','epsilon_min_input');
+epsilon_max_input = evalin('base','epsilon_max_input');
+% Epsilon Dot
+epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
+epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
+% Temperature
+temperature_quantity = evalin('base','temperature_quantity');
+temperature_array = evalin('base','temperature_array');
+% txt file
+exp_name = evalin('base','exp_name');
+
+% Constants
+% JC Fixed Parameters for all 
+sigma = 0;              % Flow stress
+T_0 = 20;               % Reference temperature
+T_m = 1500;             % Melting temperature
+eps_dot_0 = 0.002;       % Reference plastic strain
+
+% File open
+fid = fopen(exp_name, 'wt+' );
+
+% Calculate the quantity of epsilons
+if epsilon_step_input > 0
+    epsilon_quantity = ((epsilon_max_input-epsilon_min_input)/epsilon_step_input)+1;
+else
+    epsilon_quantity = 1;
+end
+
+% First and second line of the file
+%  fprintf(fid,'Flow STRESS \n');
+%  fprintf(fid,'Sigma \t   Epsilon \t  strain_rate \t  Temperature \n');
+
+% Initial values for sigma
+i = 1; % counter for Temperature
+j = 1; % counter for epsilon dot
+k = 1; % counter for epsilon 
+a = 1; % counter for the plot matrix
+epsilon = epsilon_min_input; % gets the initial value from epsilon
+
+% Write the sigmas in the file
+while i <= temperature_quantity 
+            while j <= epsilon_dot_manual_quantity
+                while k <= epsilon_quantity 
+                    sigma = ((A2+Q*(1-exp(-v*epsilon))-(A2-Y0)/(1+epsilon)^d)*(1+C2*log(epsilon_dot_manual_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m2));
+                  % if(epsilon >= 1)                        
+                  %     sigma = (A+B)*(1+C*log(epsilon_dot_manual_array(j,1)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
+                  % end
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon epsilon_dot_manual_array(j,1) temperature_array(i,1)]); 
+                        matAuxPlot(a,1) = sigma;
+                        matAuxPlot(a,2) = epsilon;
+                        matAuxPlot(a,3) = epsilon_dot_manual_array(j,1);
+                        matAuxPlot(a,4) = temperature_array(i,1);
+                        a = a + 1;
+                        k = k + 1;
+                        epsilon = epsilon + epsilon_step_input;
+                end
+                    if j < epsilon_dot_manual_quantity
+                            
+                            lastStrainRateValue = epsilon_dot_manual_array(j,1);
+                            lastButOneStrainRateValue = epsilon_dot_manual_array(j+1,1);
+                            numberOfExtraPoints = 100;
+                            
+                            delta = (lastButOneStrainRateValue - lastStrainRateValue)/numberOfExtraPoints;
+                            for w = 1:numberOfExtraPoints
+                                    strain_rate_manual_plot(w) = lastStrainRateValue + delta * w;
+                                        while k <= epsilon_quantity
+                                                sigma = ((A2+Q*(1-exp(-v*epsilon))-(A2-Y0)/(1+epsilon)^d)*(1+C2*log(strain_rate_manual_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m2));
+                                                
+                                            %if(epsilon >= 1)                        
+                                            %    sigma = (A+B)*(1+C*log(strain_rate_manual_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+                                            %end  
+                                            matAuxPlot(a,1) = sigma;
+                                            matAuxPlot(a,2) = epsilon;
+                                            matAuxPlot(a,3) = strain_rate_manual_plot(w);
+                                            matAuxPlot(a,4) = temperature_array(i,1);
+                                            a = a + 1;
+                                            k = k + 1;
+                                            epsilon = epsilon + epsilon_step_input;
+                                        end
+                                        k = 1;
+                                        epsilon = epsilon_min_input;
+                            end
+                    end
+                    k = 1;
+                    epsilon = epsilon_min_input;
+                    j = j + 1;
+            end
+                k = 1;
+                j = 1;
+                epsilon = epsilon_min_input;
+                i = i + 1;
+                assignin('base', 'matAuxPlot', matAuxPlot);
+end
+fclose(fid);
+msgbox('Saved', 'Ok');
+        %%             calculate_epsilon_dot_strain_rate_automatic
 function calculate_strain_rate_automatic(hObject, eventdata, handles);
 
 % Load the vars from Workspace
@@ -1210,7 +1736,6 @@ k = 1; % counter for epsilon
 a = 1; % counter for the plot matrix
 epsilon = epsilon_min_input; % gets the initial value from epsilon
 strain_rate_automatic = epsilon_dot_min_automatic_input;
-strain_rate_automatic_output_first_line = 0; % changes the first values of Strain Rate to zero (Abaqus bug)
 
 % Write the Sigmas in the file
 while i <= temperature_quantity 
@@ -1219,25 +1744,18 @@ while i <= temperature_quantity
                         sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
                    if(epsilon >= 1)                        
                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
-                   end
-                   if j==1
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic_output_first_line temperature_array(i,1)]);
-                   else
-                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);
-                   end 
+                   end                
+                        fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
                         matAuxPlot(a,1) = sigma;
                         matAuxPlot(a,2) = epsilon;
                         matAuxPlot(a,3) = strain_rate_automatic;
                         matAuxPlot(a,4) = temperature_array(i,1);
-                        
-                    
-                        
-                         
                         a = a + 1;
                         k = k + 1;
                         epsilon = epsilon + epsilon_step_input;
-                                
-                 end
+                       
+                        
+                end
                     if j < strain_rate_automatic_quantity
                         lastStrainRateValue = strain_rate_automatic * epsilon_dot_step_automatic_input;
                         lastButOneStrainRateValue = strain_rate_automatic;
@@ -1438,124 +1956,5 @@ evalin( 'base', 'clearvars *' )
 initial(hObject, eventdata, handles) 
 
 
-%% New Material Law functions
-% -- TODO -------------
-% - place it along with panel functions
-%% 
-
-%%                 voce_material_law_checkbox
-% --- Executes on button press in voce_material_law_checkbox.
-function voce_material_law_checkbox_Callback(hObject, eventdata, handles)
-
-save_material_selection = 3;
-assignin('base', 'save_material_selection', save_material_selection);
-
-set(handles.voce_material_law_checkbox, 'Value', 1);
-set(handles.microstructure_material_law_checkbox, 'Value', 0);
-set(handles.jc_general_checkbox, 'Value', 0);
-
-%%                  voce_material_law_inputA
-
-function voce_material_law_inputA_Callback(hObject, eventdata, handles)
-
-voce_material_law_inputA = str2double(get(hObject, 'String'));
-if (isnan(voce_material_law_inputA) || voce_material_law_inputA <= 0)
-    voce_material_law_inputA = 0;
-    assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 'voce_material_law_inputA', voce_material_law_inputA);
-
-% --- Executes during object creation, after setting all properties.
-function voce_material_law_inputA_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-%%                  voce_material_law_inputQ
-
-function voce_material_law_inputQ_Callback(hObject, eventdata, handles)
-
-voce_material_law_inputQ = str2double(get(hObject, 'String'));
-if (isnan(voce_material_law_inputQ) || voce_material_law_inputQ <= 0)
-    voce_material_law_inputQ = 0;
-    assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 'voce_material_law_inputQ', voce_material_law_inputQ);
 
 
-% --- Executes during object creation, after setting all properties.
-function voce_material_law_inputQ_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-%%                  voce_material_law_inputNu
-
-function voce_material_law_inputNu_Callback(hObject, eventdata, handles)
-
-voce_material_law_inputNu = str2double(get(hObject, 'String'));
-if (isnan(voce_material_law_inputNu) || voce_material_law_inputNu <= 0)
-    voce_material_law_inputNu = 0;
-    assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 'voce_material_law_inputNu', voce_material_law_inputNu);
-
-
-% --- Executes during object creation, after setting all properties.
-function voce_material_law_inputNu_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-%%                  voce_material_law_inputY0
-
-function voce_material_law_inputY0_Callback(hObject, eventdata, handles)
-
-voce_material_law_inputY0 = str2double(get(hObject, 'String'));
-if (isnan(voce_material_law_inputY0) || voce_material_law_inputY0 <= 0)
-    voce_material_law_inputY0 = 0;
-    assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 'voce_material_law_inputY0', voce_material_law_inputY0);
-
-
-% --- Executes during object creation, after setting all properties.
-function voce_material_law_inputY0_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-%%                  voce_material_law_inputd
-
-function voce_material_law_inputd_Callback(hObject, eventdata, handles)
-
-voce_material_law_inputd = str2double(get(hObject, 'String'));
-if (isnan(voce_material_law_inputd) || voce_material_law_inputd <= 0)
-    voce_material_law_inputd = 0;
-    assignin('base', 'voce_material_law_inputd', voce_material_law_inputd);
-    set(hObject, 'String','');
-    errordlg('Please enter the correct data','Error');    
-end
-assignin('base', 'voce_material_law_inputd', voce_material_law_inputd);
-
-
-% --- Executes during object creation, after setting all properties.
-function voce_material_law_inputd_CreateFcn(hObject, eventdata, handles)
-
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
