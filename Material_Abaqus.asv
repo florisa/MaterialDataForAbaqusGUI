@@ -86,6 +86,7 @@ varargout{1} = handles.output;
 %  ========================================================================
 
 %%                         microstructure_material_law_checkbox
+%--- Executes on button press in microstructure_material_law_checkbox.
 function microstructure_material_law_checkbox_Callback(hObject, eventdata, handles)
 save_material_selection = 1;
 assignin('base', 'save_material_selection', save_material_selection);
@@ -169,6 +170,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                jc_general_checkbox
+% --- Executes on button press in jc_general_checkbox.
 function jc_general_checkbox_Callback(hObject, eventdata, handles)
 
 save_material_selection = 2;
@@ -179,6 +181,7 @@ set(handles.jc_general_checkbox, 'Value', 1);
 set(handles.voce_general_checkbox, 'Value', 0)
 
 %%                 User_Defined_input_A
+
 function user_defined_input_A_Callback(hObject, eventdata, handles)
 
 user_defined_input_A = str2double(get(hObject, 'String'));
@@ -190,6 +193,8 @@ if (isnan(user_defined_input_A) || user_defined_input_A <= 0)
 end
 assignin('base', 'user_defined_input_A', user_defined_input_A);
 
+
+% --- Executes during object creation, after setting all properties.
 function user_defined_input_A_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -197,6 +202,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                User_Defined_input_B
+
 function user_defined_input_B_Callback(hObject, eventdata, handles)
 
 user_defined_input_B = str2double(get(hObject, 'String'));
@@ -208,6 +214,8 @@ if (isnan(user_defined_input_B) || user_defined_input_B <= 0)
 end
 assignin('base', 'user_defined_input_B', user_defined_input_B);
 
+
+% --- Executes during object creation, after setting all properties.
 function user_defined_input_B_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -215,6 +223,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                  User_Defined_input_C
+
 function user_defined_input_C_Callback(hObject, eventdata, handles)
 
 user_defined_input_C = str2double(get(hObject, 'String'));
@@ -226,6 +235,7 @@ if (isnan(user_defined_input_C) || user_defined_input_C <= 0)
 end
 assignin('base', 'user_defined_input_C', user_defined_input_C);
 
+% --- Executes during object creation, after setting all properties.
 function user_defined_input_C_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -233,6 +243,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%               User_Defined_input_m
+
 function user_defined_input_m_Callback(hObject, eventdata, handles)
 
 user_defined_input_m = str2double(get(hObject, 'String'));
@@ -244,6 +255,8 @@ if (isnan(user_defined_input_m) || user_defined_input_m <= 0)
 end
 assignin('base', 'user_defined_input_m', user_defined_input_m);
 
+
+% --- Executes during object creation, after setting all properties.
 function user_defined_input_m_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -251,6 +264,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                  User_defined_input_n
+
 function user_defined_input_n_Callback(hObject, eventdata, handles)
 
 user_defined_input_n = str2double(get(hObject, 'String'));
@@ -262,6 +276,7 @@ if (isnan(user_defined_input_n) || user_defined_input_n <= 0)
 end
 assignin('base', 'user_defined_input_n', user_defined_input_n);
 
+% --- Executes during object creation, after setting all properties.
 function user_defined_input_n_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -269,6 +284,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                voce_general_checkbox
+% --- Executes on button press in voce_general_checkbox.
 function voce_general_checkbox_Callback(hObject, eventdata, handles)
 
 save_material_selection = 3;
@@ -279,6 +295,7 @@ set(handles.jc_general_checkbox, 'Value', 0);
 set(handles.voce_general_checkbox, 'Value', 1)
 
 %%                   User_defined_input_A2
+
 function user_defined_input_A2_Callback(hObject, eventdata, handles)
 
 user_defined_input_A2 = str2double(get(hObject, 'String'));
@@ -298,6 +315,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                    User_defined_input_C2
+
 function user_defined_input_C2_Callback(hObject, eventdata, handles)
     user_defined_input_C2 = str2double(get(hObject, 'String'));
 if (isnan(user_defined_input_C2) || user_defined_input_C2 <= 0)
@@ -315,6 +333,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                      User_defined_input_Q
+
 function user_defined_input_Q_Callback(hObject, eventdata, handles)
 
 user_defined_input_Q = str2double(get(hObject, 'String'));
@@ -334,6 +353,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                     User_defined_input_v
+
 function user_defined_input_v_Callback(hObject, eventdata, handles)
 
 user_defined_input_v = str2double(get(hObject, 'String'));
@@ -352,6 +372,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                   User_defined_input_Y0
+
 function user_defined_input_Y0_Callback(hObject, eventdata, handles)
 
 user_defined_input_Y0 = str2double(get(hObject, 'String'));
@@ -370,6 +391,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                   User_defined_input_d
+
 function user_defined_input_d_Callback(hObject, eventdata, handles)
 
 user_defined_input_d = str2double(get(hObject, 'String'));
@@ -389,6 +411,7 @@ end
 
 
 %%                   User_defined_input_m2
+
 function user_defined_input_m2_Callback(hObject, eventdata, handles)
 
 user_defined_input_m2 = str2double(get(hObject, 'String'));
@@ -407,6 +430,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                   User_defined_input_H
+
 function user_defined_input_H_Callback(hObject, eventdata, handles)
     
 user_defined_input_H = str2double(get(hObject, 'String'));
@@ -424,7 +448,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 %%                     save_user_defined_checkbox
+
 function save_user_defined_checkbox(hObject, eventdata, handles)
 
 % Verify if the text values were added
@@ -491,6 +517,7 @@ assignin('base', 'n',n);
 
 
 %%            save_microstructure_material_law_checkbox
+
 function save_microstructure_material_law_checkbox(hObject, eventdata, handles)
 % Verify if the text values were added
 dp_text = evalin('base', 'dp_text'); % µm
@@ -609,6 +636,7 @@ assignin('base', 'save_material_panel', save_material_panel);
 
 
 %%              save_voce_checkbox
+
     function save_voce_checkbox(hObject, eventdata, handles)
 user_defined_input_A2 = evalin('base', 'user_defined_input_A2'); 
 user_defined_input_C2 = evalin('base', 'user_defined_input_C2'); 
@@ -684,6 +712,7 @@ assignin('base', 'H', H);
 
 
 %%                       Save_Material_button
+
 function save_material_selection_Callback(hObject, eventdata, handles)
 
 save_material_selection = evalin('base', 'save_material_selection');
@@ -700,6 +729,7 @@ save_material_selection = evalin('base', 'save_material_selection');
    end
 
 %%                    Clear_Material_Selection_button
+
 function refresh_fields_button_Callback(hObject, eventdata, handles)
 
 % Refresh all fields
@@ -763,6 +793,7 @@ save_material_panel = 0;
 assignin('base', 'save_material_panel', save_material_panel);
 
 %%                Initial Conditions - VAR initialization
+
 function initial(hObject, eventdata, handles)
 
 % Control if user saved the data in all panels
@@ -831,7 +862,7 @@ assignin('base', 'epsilon_max_input', epsilon_max_input);
 % Initial var values for epsilon_dot_strain_rate panel
 save_epsilon_dot_strain_rate_type = 0;
 assignin('base', 'save_epsilon_dot_strain_rate_type', save_epsilon_dot_strain_rate_type);
-% Manual ==================================================================
+% Manual
 epsilon_dot_manual_quantity = 0; % Quantity of logarithmic values for popup menu
 assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
 epsilon_dot_manual_array = 0; 
@@ -839,7 +870,7 @@ assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
 epsilon_dot_manual_input = 0; % Text box initialization
 assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
 
-% Automatic ===============================================================
+% Automatic
 epsilon_dot_step_automatic_input = 0; 
 assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
 epsilon_dot_min_automatic_input = 0; 
@@ -870,12 +901,16 @@ temperature_text = str2double(get(hObject, 'String'));
     end
     assignin('base', 'temperature_text', temperature_text);
 
+% --- Executes during object creation, after setting all properties.
 function temperature_text_CreateFcn(hObject, eventdata, handles)
+
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
+% --- Executes on button press in temperature_clear_button.
 function temperature_clear_button_Callback(hObject, eventdata, handles)
+
 % Refresh all fields
 temperature_text = 0; 
 assignin('base', 'temperature_text', temperature_text);
@@ -892,6 +927,7 @@ assignin('base', 'temperature_quantity', temperature_quantity);
 save_temperature_panel = 0;
 assignin('base', 'save_temperature_panel', save_temperature_panel);
 
+% --- Executes on button press in temperature_save_button.
 function temperature_save_button_Callback(hObject, eventdata, handles)
 
 % Verify if the temperatures were added
@@ -908,6 +944,8 @@ else
     assignin('base', 'save_temperature_panel', save_temperature_panel);
 end
 
+
+% --- Executes on button press in temperature_ADD_button.
 function temperature_ADD_button_Callback(hObject, eventdata, handles)
 
 temperature_quantity = evalin('base', 'temperature_quantity');  
@@ -949,6 +987,8 @@ end
 assignin('base', 'temperature_array', temperature_array);
 assignin('base', 'temperature_quantity', temperature_quantity);
 
+
+% --- Executes during object creation, after setting all properties.
 function temperature_popup_menu_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -979,6 +1019,7 @@ set(handles.epsilon_dot_automatic_checkbox, 'Value', 1);
 set(handles.epsilon_dot_manual_checkbox, 'Value', 0);
 
 %%                   epsilon_dot_step_automatic_input
+
 function epsilon_dot_step_automatic_input_Callback(hObject, eventdata, handles)
 % Reading the textbox fields
 epsilon_dot_step_automatic_input = str2double(get(hObject, 'String'));
@@ -997,6 +1038,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                   epsilon_dot_min_automatic_input
+
 function epsilon_dot_min_automatic_input_Callback(hObject, eventdata, handles)
 % Reading the textbox fields
 epsilon_dot_min_automatic_input = str2double(get(hObject, 'String'));
@@ -1014,7 +1056,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 %%                   epsilon_dot_max_automatic_input
+
 function epsilon_dot_max_automatic_input_Callback(hObject, eventdata, handles)
 % Reading the textbox fields
 epsilon_dot_max_automatic_input = str2double(get(hObject, 'String'));
@@ -1032,7 +1076,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 %%                   epsilon_dot_manual_checkbox
+
 function epsilon_dot_manual_checkbox_Callback(hObject, eventdata, handles)
 
 % Control if the user selected the type of Strain Rate
@@ -1054,6 +1100,7 @@ set(handles.epsilon_dot_manual_checkbox, 'Value', 1);
 set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
 
 %%               epsilon_dot_manual_input
+
 function epsilon_dot_manual_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
@@ -1073,6 +1120,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%               epsilon_dot_manual_ADD_button
+
 function epsilon_dot_manual_ADD_button_Callback(hObject, eventdata, handles)
 
 epsilon_dot_manual_quantity = evalin('base', 'epsilon_dot_manual_quantity');  
@@ -1116,13 +1164,16 @@ assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
 
 
 %%               epsilon_dot_manual_popup_menu
+
 function epsilon_dot_manual_popup_menu_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
+
 %%               epsilon_dot_clear_button
+
 function epsilon_dot_clear_button_Callback(hObject, eventdata, handles)
 
 % Refresh all fields
@@ -1156,6 +1207,7 @@ set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
 
 
 %%               save_epsilon_dot_strain_rate_automatic_checkbox
+
 function save_epsilon_dot_strain_rate_automatic_checkbox(hObject, eventdata, handles);
 % Verify if the values were added
 epsilon_dot_step_automatic_input = evalin('base', 'epsilon_dot_step_automatic_input'); 
@@ -1189,6 +1241,7 @@ else
 end
      
 %%               save_epsilon_dot_strain_rate_manual_checkbox
+
 function save_epsilon_dot_strain_rate_manual_checkbox(hObject, eventdata, handles);
 
 % Verify if the manual values were added
@@ -1208,6 +1261,7 @@ end
 
 
 %%               epsilon_dot_save_button
+
 function epsilon_dot_save_button_Callback(hObject, eventdata, handles)
 
 save_epsilon_dot_strain_rate_type = evalin('base', 'save_epsilon_dot_strain_rate_type');
@@ -1227,6 +1281,7 @@ end
 %  ========================================================================
 
 %%                    epsilon_step_input
+
  function epsilon_step_input_Callback(hObject, eventdata, handles)
 % Reading the textbox fields
 epsilon_step_input = str2double(get(hObject, 'String'));
@@ -1245,6 +1300,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                    epsilon_min_input
+
 function epsilon_min_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
@@ -1264,6 +1320,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 %%                    epsilon_max_input
+
 function epsilon_max_input_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
@@ -1284,6 +1341,7 @@ end
 
 
 %%                    epsilon_clear_button
+
 function epsilon_clear_button_Callback(hObject, eventdata, handles)
 
 % Refresh all fields
@@ -1301,6 +1359,7 @@ save_epsilon_panel = 0;
 assignin('base', 'save_epsilon_panel', save_epsilon_panel);
 
 %%                    epsilon_save_button
+
 function epsilon_save_button_Callback(hObject, eventdata, handles)
 
 % Verify if the values were added
@@ -1428,6 +1487,7 @@ else
 end
         
 %%       calculate_voce_strain_rate_automatic
+
 function calculate_voce_strain_rate_automatic(hObject, eventdata, handles);
 A2 = evalin('base','A2');
 C2 = evalin('base','C2');
@@ -1544,6 +1604,7 @@ fclose(fid);
 msgbox('Saved', 'Ok');
 
 %%                 calculate_voce_strain_rate_manual
+
 function calculate_voce_strain_rate_manual(hObject, eventdata, handles);
 % Load the vars from Workspace
 % JC Parameters
@@ -1653,7 +1714,8 @@ end
 fclose(fid);
 msgbox('Saved', 'Ok');
 
-%%                  calculate_epsilon_dot_strain_rate_automatic     
+        %%             calculate_epsilon_dot_strain_rate_automatic
+        
 function calculate_strain_rate_automatic(hObject, eventdata, handles);
 
 % Load the vars from Workspace
@@ -1878,7 +1940,7 @@ msgbox('Saved', 'Ok');
 
 %% =======================BEGIN OF PLOT BUTTON =======================
 %  ========================================================================
-
+% --- Executes on button press in plot_button.
 function plot_button_Callback(hObject, eventdata, handles)
 
 temperature_quantity = evalin('base','temperature_quantity');
@@ -1908,7 +1970,8 @@ for i=1:temperature_quantity
         xlabel('Strain Rate');
         ylabel('Sigma');
         dataLegend = num2str(matAuxPlot(j,2));
-        leg{1,j} = dataLegend; 
+        leg{1,j} = dataLegend;
+        
     end
     if (numEpsilon > 6)
         legend(leg,'Location','northwestoutside','Orientation','vertical','FontSize',12,'TextColor','black')
