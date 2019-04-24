@@ -861,19 +861,17 @@ function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
 
 % Control if the user selected the type of Temperature
 save_temperature_type = 1;
-assigin('base', 'save_temperature_type', save_temperature_type);
+assignin('base', 'save_temperature_type', save_temperature_type);
 
-% Refresh automatic the automatic fields
-
-% ToDO: change the var names ====================
-% epsilon_dot_manual_input = 0; 
-% assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
-% epsilon_dot_manual_array = 0; 
-% assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
-% refresh_manual_popup = {''};
-% set(handles.epsilon_dot_manual_popup_menu,'String',refresh_manual_popup);
-% epsilon_dot_manual_quantity = 0; 
-% assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
+% Refresh the manual fields
+temperature_text = 0; 
+assignin('base', 'temperature_text', temperature_text);
+temperature_array = 0; 
+assignin('base', 'temperature_array', temperature_array);
+temperature_popup_menu = {''};
+set(handles.temperature_popup_menu,'String',temperature_popup_menu);
+temperature_quantity = 0; 
+assignin('base', 'temperature_quantity', temperature_quantity);
 
 set(handles.temperature_automatic_checkbox, 'Value', 1);
 set(handles.temperature_manual_checkbox, 'Value', 0);
@@ -939,19 +937,18 @@ save_temperature_type = 2;
 assignin('base', 'save_temperature_type', save_temperature_type);
 
 % Refresh the automatic fields
-% ToDO: change the var names ====================
-% set(handles.epsilon_dot_max_automatic_input, 'string', '');
-% set(handles.epsilon_dot_min_automatic_input, 'string', '');
-% set(handles.epsilon_dot_step_automatic_input, 'string', '');
-% epsilon_dot_step_automatic_input = 0; 
-% assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
-% epsilon_dot_min_automatic_input = 0; 
-% assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
-% epsilon_dot_max_automatic_input = 0; 
-% assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
+set(handles.temperature_automatic_max_input, 'string', '');
+set(handles.temperature_automatic_min_input, 'string', '');
+set(handles.temperature_automatic_step_input, 'string', '');
+temperature_automatic_step_input = 0; 
+assignin('base', 'temperature_automatic_step_input', temperature_automatic_step_input);
+temperature_automatic_min_input = 0; 
+assignin('base', 'temperature_automatic_min_input', temperature_automatic_min_input);
+temperature_automatic_max_input = 0; 
+assignin('base', 'temperature_automatic_max_input', temperature_automatic_max_input);
 
 set(handles.temperature_manual_checkbox, 'Value', 1);
-set(handles.temperature_manual_checkbox, 'Value', 0);
+set(handles.temperature_automatic_checkbox, 'Value', 0);
 
 
 %%                    Temperature manual fields

@@ -863,11 +863,10 @@ function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
 save_temperature_type = 1;
 assigin('base', 'save_temperature_type', save_temperature_type);
 
-% Refresh automatic the manual fields
-
+% Refresh the manual fields
 % ToDO: change the var names ====================
-% epsilon_dot_manual_input = 0; 
-% assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
+% temperature_text = 0; 
+% assignin('base', 'temperature_text', temperature_text);
 % epsilon_dot_manual_array = 0; 
 % assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
 % refresh_manual_popup = {''};
@@ -938,27 +937,22 @@ function temperature_manual_checkbox_Callback(hObject, eventdata, handles)
 save_temperature_type = 2;
 assignin('base', 'save_temperature_type', save_temperature_type);
 
-% Refresh automatic the linear fields
-set(handles.epsilon_dot_max_automatic_input, 'string', '');
-set(handles.epsilon_dot_min_automatic_input, 'string', '');
-set(handles.epsilon_dot_step_automatic_input, 'string', '');
-epsilon_dot_step_automatic_input = 0; 
-assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
-epsilon_dot_min_automatic_input = 0; 
-assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
-epsilon_dot_max_automatic_input = 0; 
-assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
+% Refresh the automatic fields
+set(handles.temperature_automatic_max_input, 'string', '');
+set(handles.temperature_automatic_min_input, 'string', '');
+set(handles.temperature_automatic_step_input, 'string', '');
+temperature_automatic_step_input = 0; 
+assignin('base', 'temperature_automatic_step_input', temperature_automatic_step_input);
+temperature_automatic_min_input = 0; 
+assignin('base', 'temperature_automatic_min_input', temperature_automatic_min_input);
+temperature_automatic_max_input = 0; 
+assignin('base', 'temperature_automatic_max_input', temperature_automatic_max_input);
 
-set(handles.epsilon_dot_manual_checkbox, 'Value', 1);
-set(handles.epsilon_dot_automatic_checkbox, 'Value', 0);
-
-
+set(handles.temperature_manual_checkbox, 'Value', 1);
+set(handles.temperature_automatic_checkbox, 'Value', 0);
 
 
-
-
-
-%%                    Temperature
+%%                    Temperature manual fields
 function temperature_text_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
@@ -976,6 +970,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%%              temperature_clear_button
 function temperature_clear_button_Callback(hObject, eventdata, handles)
 % Refresh all fields
 temperature_text = 0; 
@@ -1009,6 +1004,7 @@ else
     assignin('base', 'save_temperature_panel', save_temperature_panel);
 end
 
+%%                  temperature_ADD_button
 function temperature_ADD_button_Callback(hObject, eventdata, handles)
 
 temperature_quantity = evalin('base', 'temperature_quantity');  
