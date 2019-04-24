@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 23-Apr-2019 12:39:00
+% Last Modified by GUIDE v2.5 24-Apr-2019 11:26:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -105,7 +105,6 @@ if (isnan(fp_text) || fp_text <= 0)
 end
 assignin('base', 'fp_text', fp_text);
 
-% --- Executes during object creation, after setting all properties.
 function fp_text_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -958,7 +957,6 @@ end
 %% =================== BEGIN OF PANEL EPSILON DOT (STRAIN RATE) ===========
 %  ========================================================================
 
-% --- Executes on button press in epsilon_dot_automatic_checkbox.
 function epsilon_dot_automatic_checkbox_Callback(hObject, eventdata, handles)
 
 % Control if the user selected the type of Strain Rate
@@ -1926,3 +1924,90 @@ end
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
 
+
+
+
+function edit28_Callback(hObject, eventdata, handles)
+% hObject    handle to edit28 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit28 as text
+%        str2double(get(hObject,'String')) returns contents of edit28 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit28_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit28 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function temperature_automatic_max_input_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature_automatic_max_input (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of temperature_automatic_max_input as text
+%        str2double(get(hObject,'String')) returns contents of temperature_automatic_max_input as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function temperature_automatic_max_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to temperature_automatic_max_input (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function temperature_automatic_min_input_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature_automatic_min_input (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of temperature_automatic_min_input as text
+%        str2double(get(hObject,'String')) returns contents of temperature_automatic_min_input as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function temperature_automatic_min_input_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to temperature_automatic_min_input (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in temperature_automatic_checkbox.
+function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature_automatic_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of temperature_automatic_checkbox
+
+
+% --- Executes on button press in temperature_manual_checkbox.
+function temperature_manual_checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature_manual_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of temperature_manual_checkbox
