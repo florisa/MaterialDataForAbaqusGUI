@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 24-Apr-2019 11:26:20
+% Last Modified by GUIDE v2.5 24-Apr-2019 12:14:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -856,7 +856,105 @@ delete(hObject);
 %% =================== BEGIN OF PANEL TEMPERATURE =========================
 %  ========================================================================
 
-%%                    Temperature
+
+function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
+
+% Control if the user selected the type of Temperature
+save_temperature_type = 1;
+assigin('base', 'save_temperature_type', save_temperature_type);
+
+% Refresh automatic the automatic fields
+
+% ToDO: change the var names ====================
+% epsilon_dot_manual_input = 0; 
+% assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
+% epsilon_dot_manual_array = 0; 
+% assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
+% refresh_manual_popup = {''};
+% set(handles.epsilon_dot_manual_popup_menu,'String',refresh_manual_popup);
+% epsilon_dot_manual_quantity = 0; 
+% assignin('base', 'epsilon_dot_manual_quantity', epsilon_dot_manual_quantity);
+
+set(handles.temperature_automatic_checkbox, 'Value', 1);
+set(handles.temperature_manual_checkbox, 'Value', 0);
+
+%%            temperature_automatic_max_input
+function temperature_automatic_max_input_Callback(hObject, eventdata, handles)
+% Reading the textbox fields
+temperature_automatic_max_input = str2double(get(hObject, 'String'));
+    if (isnan(temperature_automatic_max_input) || temperature_automatic_max_input <= 0)
+        temperature_automatic_max_input = 0;
+        assignin('base', 'temperature_automatic_max_input', temperature_automatic_max_input);
+        set(hObject, 'String', '');
+        errordlg('Enter the correct data','Error');
+    end
+    assignin('base', 'temperature_automatic_max_input', temperature_automatic_max_input);
+
+function temperature_automatic_max_input_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%            temperature_automatic_min_input
+function temperature_automatic_min_input_Callback(hObject, eventdata, handles)
+% Reading the textbox fields
+temperature_automatic_min = str2double(get(hObject, 'String'));
+    if (isnan(temperature_automatic_min) || temperature_automatic_min <= 0)
+        temperature_automatic_min = 0;
+        assignin('base', 'temperature_automatic_min', temperature_automatic_min);
+        set(hObject, 'String', '');
+        errordlg('Enter the correct data','Error');
+    end
+    assignin('base', 'temperature_automatic_min', temperature_automatic_min);
+    
+function temperature_automatic_min_input_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%           temperature_automatic_step_input
+function temperature_automatic_step_input_Callback(hObject, eventdata, handles)
+% Reading the textbox fields
+temperature_automatic_step_input = str2double(get(hObject, 'String'));
+    if (isnan(temperature_automatic_step_input) || temperature_automatic_step_input <= 0)
+        temperature_automatic_step_input = 0;
+        assignin('base', 'temperature_automatic_step_input', temperature_automatic_step_input);
+        set(hObject, 'String', '');
+        errordlg('Enter the correct data','Error');
+    end
+    assignin('base', 'temperature_automatic_step_input', temperature_automatic_step_input);
+function temperature_automatic_step_input_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%%            temperature_manual_checkbox
+function temperature_manual_checkbox_Callback(hObject, eventdata, handles)
+
+% Control if the user selected the type of Temperature
+save_temperature_type = 2;
+assignin('base', 'save_temperature_type', save_temperature_type);
+
+% Refresh the automatic fields
+% ToDO: change the var names ====================
+% set(handles.epsilon_dot_max_automatic_input, 'string', '');
+% set(handles.epsilon_dot_min_automatic_input, 'string', '');
+% set(handles.epsilon_dot_step_automatic_input, 'string', '');
+% epsilon_dot_step_automatic_input = 0; 
+% assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
+% epsilon_dot_min_automatic_input = 0; 
+% assignin('base', 'epsilon_dot_min_automatic_input', epsilon_dot_min_automatic_input);
+% epsilon_dot_max_automatic_input = 0; 
+% assignin('base', 'epsilon_dot_max_automatic_input', epsilon_dot_max_automatic_input);
+
+set(handles.temperature_manual_checkbox, 'Value', 1);
+set(handles.temperature_manual_checkbox, 'Value', 0);
+
+
+%%                    Temperature manual fields
 function temperature_text_Callback(hObject, eventdata, handles)
 
 % Reading the textbox fields
@@ -874,6 +972,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%%              temperature_clear_button
 function temperature_clear_button_Callback(hObject, eventdata, handles)
 % Refresh all fields
 temperature_text = 0; 
@@ -907,6 +1006,7 @@ else
     assignin('base', 'save_temperature_panel', save_temperature_panel);
 end
 
+%%                  temperature_ADD_button
 function temperature_ADD_button_Callback(hObject, eventdata, handles)
 
 temperature_quantity = evalin('base', 'temperature_quantity');  
@@ -1924,90 +2024,3 @@ end
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
 
-
-
-
-function edit28_Callback(hObject, eventdata, handles)
-% hObject    handle to edit28 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit28 as text
-%        str2double(get(hObject,'String')) returns contents of edit28 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit28_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit28 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function temperature_automatic_max_input_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_automatic_max_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of temperature_automatic_max_input as text
-%        str2double(get(hObject,'String')) returns contents of temperature_automatic_max_input as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function temperature_automatic_max_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_automatic_max_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function temperature_automatic_min_input_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_automatic_min_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of temperature_automatic_min_input as text
-%        str2double(get(hObject,'String')) returns contents of temperature_automatic_min_input as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function temperature_automatic_min_input_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to temperature_automatic_min_input (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in temperature_automatic_checkbox.
-function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_automatic_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of temperature_automatic_checkbox
-
-
-% --- Executes on button press in temperature_manual_checkbox.
-function temperature_manual_checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to temperature_manual_checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of temperature_manual_checkbox
