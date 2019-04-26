@@ -837,7 +837,6 @@ epsilon_dot_manual_array = 0;
 assignin('base', 'epsilon_dot_manual_array', epsilon_dot_manual_array);
 epsilon_dot_manual_input = 0; % Text box initialization
 assignin('base', 'epsilon_dot_manual_input', epsilon_dot_manual_input);
-
 % Automatic ===============================================================
 epsilon_dot_step_automatic_input = 0; 
 assignin('base', 'epsilon_dot_step_automatic_input', epsilon_dot_step_automatic_input);
@@ -855,7 +854,6 @@ delete(hObject);
 
 %% =================== BEGIN OF PANEL TEMPERATURE =========================
 %  ========================================================================
-
 
 function temperature_automatic_checkbox_Callback(hObject, eventdata, handles)
 
