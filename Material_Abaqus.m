@@ -65,7 +65,8 @@ guidata(hObject, handles);
 initial(hObject, eventdata, handles)
 
 %%                           WZL-LOGO 
-I = imread([pwd '\WZL_ABAQUS_no_logo.jpg']);
+% I = imread([pwd '\WZL_ABAQUS_no_logo.jpg']); % Windows path
+I = imread([pwd '/WZL_ABAQUS_no_logo.jpg']);   % Mac path
 handles = guihandles;
 handles.logo = newplot;
 image(I);
@@ -492,9 +493,9 @@ assignin('base', 'n',n);
 %%            save_microstructure_material_law_checkbox
 function save_microstructure_material_law_checkbox(hObject, eventdata, handles)
 % Verify if the text values were added
-dp_text = evalin('base', 'dp_text'); % µm
-s_text = evalin('base', 's_text');   % µm
-df_text = evalin('base', 'df_text'); % µm
+dp_text = evalin('base', 'dp_text'); % ï¿½m
+s_text = evalin('base', 's_text');   % ï¿½m
+df_text = evalin('base', 'df_text'); % ï¿½m
 fp_text = evalin('base', 'fp_text'); 
 
 if dp_text == 0 || s_text == 0 || df_text == 0 || ...
@@ -543,11 +544,11 @@ end
 % Calculating A parameter
 
 % Unit Convertion
-% µm to mm ------- 0.001×l[µm]= l[mm]
+% ï¿½m to mm ------- 0.001ï¿½l[ï¿½m]= l[mm]
 dp_mm = 0.001 * dp_text;
 df_mm = 0.001 * df_text;
 
-% nm to µm ------  0.001×1[nm]= l[µm]
+% nm to ï¿½m ------  0.001ï¿½1[nm]= l[ï¿½m]
 s_um = 0.001 * s_text;
 
 % Convert to percentual
@@ -2046,12 +2047,12 @@ for i=1:temperature_quantity
     if (numEpsilon > 6)
         legend(leg,'Location','northwestoutside','Orientation','vertical','FontSize',12,'TextColor','black')
         temp = int2str(temperature_array(i));
-        title(strcat(' Temperature =','',temp,' °C'))
+        title(strcat(' Temperature =','',temp,' ï¿½C'))
   
     else
         legend(leg,'Location','northwest','Orientation','vertical','FontSize',12,'TextColor','black')
         temp = int2str(temperature_array(i));
-        title(strcat(' Temperature =','',temp,' °C'))
+        title(strcat(' Temperature =','',temp,' ï¿½C'))
     end
 end
 
