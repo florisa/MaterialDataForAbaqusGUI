@@ -815,14 +815,14 @@ assignin('base', 'user_defined_input_H', user_defined_input_H);
 % Initial var values for panel temperature
 save_temperature_type = 0;
 assignin('base', 'save_temperature_type', save_temperature_type)
-% Manual =========================================================
+% Manual ==================================================================
 temperature_quantity = 0; % Quantity of temperature for popup menu
 assignin('base', 'temperature_quantity', temperature_quantity);
 temperature_array = 0; 
 assignin('base', 'temperature_array', temperature_array);
 temperature_text = 0; % Text box initialization
 assignin('base', 'temperature_text', temperature_text);
-% Automatic =======================================================
+% Automatic ===============================================================
 temperature_automatic_max_input = 0; 
 assignin('base', 'temperature_automatic_max_input', temperature_automatic_max_input);
 temperature_automatic_min_input = 0; 
@@ -1058,24 +1058,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-%%                temperature_save_button
-function temperature_save_button_Callback(hObject, eventdata, handles)
-save_temperature_type = evalin('base', 'save_temperature_type');
-
-switch(save_temperature_type)
-    case 1
-        temperature_automatic_checkbox_Callback(hObject, eventdata, handles);
-
-    case 2
-        temperature_manual_checkbox_Callback(hObject, eventdata, handles);
-
-    otherwise
-        errordlg('Choose between Automatic or Manual','Error');
-end
-
-
-% Verify if the temperatures were added
+%%               save_temperature_manual_checkbox
+function save_temperature_manual_checkbox(hObject, eventdata, handles)
+% Verify if the manual values were added
 temperature_quantity = evalin('base', 'temperature_quantity'); 
 
 if temperature_quantity == 0
@@ -1083,10 +1068,60 @@ if temperature_quantity == 0
 else
     msgbox('Clique to close the window','OK')
     refresh_popup = {''};
-    set(handles.temperature_popup_menu,'String',refresh_popup);   
+    set(handles.temperature_popup_menu,'String',refresh_popup); 
+    set(handles.temperature_manual_checkbox, 'Value', 0);
     % Control if the user saved the data
     save_temperature_panel = 1;
     assignin('base', 'save_temperature_panel', save_temperature_panel);
+end
+
+
+%%                  save_temperature_automatic_checkbox
+function save_temperature_automatic_checkbox(hObject, eventdata, handles)
+% Verify if the values were added
+temperature_automatic_step_input = evalin('base','temperature_automatic_step_input'); 
+temperature_automatic_min_input = evalin('base','temperature_automatic_min_input'); 
+temperature_automatic_max_input = evalin('base','temperature_automatic_max_input');
+
+if temperature_automatic_step_input == 0 || temperature_automatic_min_input == 0 || temperature_automatic_max_input == 0
+    errordlg('Fullfil all the fields', 'Error');
+    set(handles.temperature_automatic_max_input, 'string', '');
+    set(handles.temperature_automatic_min_input, 'string', '');
+    set(handles.temperature_automatic_step_input, 'string', '');
+    temperature_automatic_step_input = 0; 
+    assignin('base','temperature_automatic_step_input',temperature_automatic_step_input);
+    temperature_automatic_min_input = 0; 
+    assignin('base','temperature_automatic_min_input',temperature_automatic_min_input);
+    temperature_automatic_max_input = 0; 
+    assignin('base','temperature_automatic_max_input',temperature_automatic_max_input);
+else
+    msgbox('Clique to close the window','OK')
+    refresh_temperature_automatic_max_input = '';
+    set(handles.temperature_automatic_max_input,'String',refresh_temperature_automatic_max_input);
+    refresh_temperature_automatic_min_input = '';
+    set(handles.temperature_automatic_min_input,'String',refresh_temperature_automatic_min_input);
+    refresh_temperature_automatic_step_input = '';
+    set(handles.temperature_automatic_step_input,'String',refresh_temperature_automatic_step_input);
+    set(handles.temperature_automatic_checkbox, 'Value', 0);
+   
+    % Control if the user saved the data
+    save_temperature_panel = 1;
+    assignin('base', 'save_temperature_panel', save_temperature_panel);
+end    
+
+%%                temperature_save_button
+function temperature_save_button_Callback(hObject, eventdata, handles)
+save_temperature_type = evalin('base', 'save_temperature_type');
+
+switch(save_temperature_type)
+    case 1
+        %temperature_automatic_checkbox_Callback(hObject, eventdata, handles);
+        save_temperature_automatic_checkbox(hObject, eventdata, handles);
+    case 2
+        %temperature_manual_checkbox_Callback(hObject, eventdata, handles);
+        save_temperature_manual_checkbox(hObject, eventdata, handles);
+    otherwise
+        errordlg('Choose between Automatic or Manual','Error');
 end
  
 
