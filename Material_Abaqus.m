@@ -1115,10 +1115,9 @@ save_temperature_type = evalin('base', 'save_temperature_type');
 
 switch(save_temperature_type)
     case 1
-        %temperature_automatic_checkbox_Callback(hObject, eventdata, handles);
         save_temperature_automatic_checkbox(hObject, eventdata, handles);
+   
     case 2
-        %temperature_manual_checkbox_Callback(hObject, eventdata, handles);
         save_temperature_manual_checkbox(hObject, eventdata, handles);
     otherwise
         errordlg('Choose between Automatic or Manual','Error');
