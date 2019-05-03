@@ -1119,6 +1119,7 @@ switch(save_temperature_type)
    
     case 2
         save_temperature_manual_checkbox(hObject, eventdata, handles);
+    
     otherwise
         errordlg('Choose between Automatic or Manual','Error');
 end
@@ -1572,7 +1573,7 @@ if (save_material_selection < 3 )
 % control if all the panels are filled
       if save_material_panel == 0 || save_temperature_panel == 0 || ...
         save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
-    errordlg('Please fullfil the all data fields','Error');
+        errordlg('Please fullfil the all data fields','Error');
         else
         switch(save_epsilon_dot_strain_rate_type)
             case 1
@@ -1583,8 +1584,8 @@ if (save_material_selection < 3 )
       end
 else
           if save_material_panel == 0 || save_temperature_panel == 0 || ...
-        save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
-    errordlg('Please fullfil the all data fields','Error');
+            save_epsilon_panel == 0 || save_epsilon_dot_strain_rate_panel == 0
+            errordlg('Please fullfil the all data fields','Error');
         else
         switch(save_epsilon_dot_strain_rate_type)
             case 1
