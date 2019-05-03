@@ -22,7 +22,7 @@ function varargout = Material_Abaqus(varargin)
 
 % Edit the above text to modify the response to help Material_Abaqus
 
-% Last Modified by GUIDE v2.5 24-Apr-2019 12:14:42
+% Last Modified by GUIDE v2.5 29-Apr-2019 13:34:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -2059,4 +2059,3 @@ end
 % refresh the workpspace for a new file
 evalin( 'base', 'clearvars *' ) 
 initial(hObject, eventdata, handles) 
-
