@@ -1567,8 +1567,8 @@ save_temperature_panel = evalin('base','save_temperature_panel');
 save_epsilon_panel = evalin('base','save_epsilon_panel');
 save_epsilon_dot_strain_rate_panel = evalin('base','save_epsilon_dot_strain_rate_panel');
 save_material_selection = evalin('base','save_material_selection');
-
 save_epsilon_dot_strain_rate_type = evalin('base','save_epsilon_dot_strain_rate_type');
+
 if (save_material_selection < 3 )
 % control if all the panels are filled
       if save_material_panel == 0 || save_temperature_panel == 0 || ...
@@ -1615,8 +1615,15 @@ epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_inp
 epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
 epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature ===========================================
-temperature_quantity = evalin('base','temperature_quantity');
-temperature_array = evalin('base','temperature_array');
+save_temperature_type = evalin('base','save_teperature_type');
+switch(save_temperature_type)
+    case 1 
+        % automatic
+    case 2
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
+end
+ 
 % txt file ==============================================
 exp_name = evalin('base','exp_name');
 
@@ -1732,8 +1739,15 @@ epsilon_max_input = evalin('base','epsilon_max_input');
 epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 % Temperature
-temperature_quantity = evalin('base','temperature_quantity');
-temperature_array = evalin('base','temperature_array');
+save_temperature_type = evalin('base','save_teperature_type');
+switch(save_temperature_type)
+    case 1 
+        % automatic
+    case 2
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
+end
+
 % txt file
 exp_name = evalin('base','exp_name');
 
@@ -1841,8 +1855,15 @@ epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_inp
 epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
 epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature
-temperature_quantity = evalin('base','temperature_quantity');
-temperature_array = evalin('base','temperature_array');
+save_temperature_type = evalin('base','save_teperature_type');
+switch(save_temperature_type)
+    case 1 
+        % automatic
+    case 2
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
+end
+
 % txt file
 exp_name = evalin('base','exp_name');
 
@@ -1956,8 +1977,15 @@ epsilon_max_input = evalin('base','epsilon_max_input');
 epsilon_dot_manual_quantity = evalin('base','epsilon_dot_manual_quantity');
 epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 % Temperature
-temperature_quantity = evalin('base','temperature_quantity');
-temperature_array = evalin('base','temperature_array');
+save_temperature_type = evalin('base','save_teperature_type');
+switch(save_temperature_type)
+    case 1 
+        % automatic
+    case 2
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
+end
+
 % txt file
 exp_name = evalin('base','exp_name');
 
