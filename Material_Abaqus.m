@@ -1556,6 +1556,24 @@ else
     assignin('base', 'exp_name', exp_name);
 end   
 
+%%                    Calculate Automatic Temperature Array 
+function calculate_automatic_temperature_array(hObject, eventdata, handles)
+
+temperature_automatic_step_input = evalin('base','temperature_automatic_step_input'); 
+temperature_automatic_min_input = evalin('base','temperature_automatic_min_input'); 
+temperature_automatic_max_input = evalin('base','temperature_automatic_max_input');
+
+% Calculate array quantity
+temperature_automatic_quantity = round((temperature_automatic_max_input - temperature_automatic_min_input)...
+/ temperature_automatic_step_input);
+
+temp_array_automatic = temperature_automatic_min_input;
+% Iteration for the temperature array
+for i=1:temperature_automatic_quantity
+    %
+    temp_array_automatic(temperature_automatic_quantity,i) = temperature_automatic_min_input + temperature_automatic_step_input;
+    
+    
 %% =================== BEGIN OF CALCULATE BUTTON ==========================
 %  ========================================================================
 
