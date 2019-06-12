@@ -1573,7 +1573,7 @@ for i=1:temperature_automatic_quantity
     %
     temp_array_automatic(temperature_automatic_quantity,i) = temperature_automatic_min_input + temperature_automatic_step_input;
     
-    
+end    
 %% =================== BEGIN OF CALCULATE BUTTON ==========================
 %  ========================================================================
 
@@ -1615,7 +1615,7 @@ else
 end
         
 %%       calculate_voce_strain_rate_automatic
-function calculate_voce_strain_rate_automatic(hObject, eventdata, handles);
+function calculate_voce_strain_rate_automatic(hObject, eventdata, handles)
 A2 = evalin('base','A2');
 C2 = evalin('base','C2');
 Q = evalin('base','Q');
