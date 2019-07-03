@@ -1563,18 +1563,20 @@ temperature_automatic_step_input = evalin('base','temperature_automatic_step_inp
 temperature_automatic_min_input = evalin('base','temperature_automatic_min_input'); 
 temperature_automatic_max_input = evalin('base','temperature_automatic_max_input');
 
-% Calculate array quantity
+%Get the temperature array size
 temperature_automatic_quantity = round((temperature_automatic_max_input - temperature_automatic_min_input)...
 / temperature_automatic_step_input)+ 1;
 
-% Iteration for the temperature array
-valueOfArray = zeros(1,temperature_automatic_quantity);
 
-for array_quantity = 1:temperature_automatic_quantity
-    temperature_automatic_min_input = temperature_automatic_min_input + temperature_automatic_step_input;
-    valueOfArray(array_quantity) = temperature_automatic_min_input;
-end
+%Append the temperature values
+valueOfArrayTemperatureAutomatic = temperature_automatic_min_input:temperature_automatic_step_input:temperature_automatic_max_input;
 
+%Assign the values
+temperature_quantity = temperature_automatic_quantity;
+temperature_array = transpose(valueOfArrayTemperatureAutomatic);
+
+assignin('base', 'temperature_quantity', temperature_quantity);
+assignin('base', 'temperature_array', temperature_array);
 
 %% =================== BEGIN OF CALCULATE BUTTON ==========================
 %  ========================================================================
@@ -1636,9 +1638,12 @@ epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input
 epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature ===========================================
 save_temperature_type = evalin('base','save_teperature_type');
+
 switch(save_temperature_type)
     case 1 
-        % automatic
+        calculate_automatic_temperature_array(hObject, eventdata, handles);
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
     case 2
         temperature_quantity = evalin('base','temperature_quantity');
         temperature_array = evalin('base','temperature_array');
@@ -1762,7 +1767,9 @@ epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 save_temperature_type = evalin('base','save_teperature_type');
 switch(save_temperature_type)
     case 1 
-        % automatic
+        calculate_automatic_temperature_array(hObject, eventdata, handles);
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
     case 2
         temperature_quantity = evalin('base','temperature_quantity');
         temperature_array = evalin('base','temperature_array');
@@ -1875,10 +1882,13 @@ epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_inp
 epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
 epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature
-save_temperature_type = evalin('base','save_teperature_type');
+save_temperature_type = evalin('base','save_temperature_type');
+
 switch(save_temperature_type)
     case 1 
-        % automatic
+        calculate_automatic_temperature_array(hObject, eventdata, handles);
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
     case 2
         temperature_quantity = evalin('base','temperature_quantity');
         temperature_array = evalin('base','temperature_array');
@@ -2000,7 +2010,9 @@ epsilon_dot_manual_array = evalin('base','epsilon_dot_manual_array');
 save_temperature_type = evalin('base','save_teperature_type');
 switch(save_temperature_type)
     case 1 
-        % automatic
+        calculate_automatic_temperature_array(hObject, eventdata, handles);
+        temperature_quantity = evalin('base','temperature_quantity');
+        temperature_array = evalin('base','temperature_array');
     case 2
         temperature_quantity = evalin('base','temperature_quantity');
         temperature_array = evalin('base','temperature_array');
