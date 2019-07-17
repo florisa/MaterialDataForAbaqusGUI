@@ -907,11 +907,11 @@ end
 function temperature_automatic_min_input_Callback(hObject, eventdata, handles)
 % Reading the textbox fields
 temperature_automatic_min_input = str2double(get(hObject, 'String'));
-    if (isnan(temperature_automatic_min_input) || temperature_automatic_min_input <= 0)
+    if (isnan(temperature_automatic_min_input) || temperature_automatic_min_input < 0)
         temperature_automatic_min_input = 0;
         assignin('base', 'temperature_automatic_min_input', temperature_automatic_min_input);
         set(hObject, 'String', '');
-        errordlg('Enter the correct data','Error');
+        errordlg('Enter the correct data','Error');%zero should be possible here
     end
     assignin('base', 'temperature_automatic_min_input', temperature_automatic_min_input);
     
@@ -1083,7 +1083,7 @@ temperature_automatic_step_input = evalin('base','temperature_automatic_step_inp
 temperature_automatic_min_input = evalin('base','temperature_automatic_min_input'); 
 temperature_automatic_max_input = evalin('base','temperature_automatic_max_input');
 
-if temperature_automatic_step_input == 0 || temperature_automatic_min_input == 0 || temperature_automatic_max_input == 0
+if temperature_automatic_step_input == 0 || temperature_automatic_min_input < 0 || temperature_automatic_max_input == 0
     errordlg('Fullfil all the fields', 'Error');
     set(handles.temperature_automatic_max_input, 'string', '');
     set(handles.temperature_automatic_min_input, 'string', '');
@@ -1477,7 +1477,7 @@ epsilon_step_input = evalin('base', 'epsilon_step_input');
 epsilon_min_input = evalin('base', 'epsilon_min_input'); 
 epsilon_max_input = evalin('base', 'epsilon_max_input');
 
-if epsilon_min_input < 0 || epsilon_max_input == 0
+if epsilon_min_input < 0 || epsilon_max_input == 0 || epsilon_step_input == 0
     errordlg('Fullfil all the fields', 'Error');
     set(handles.epsilon_max_input, 'string', '');
     set(handles.epsilon_min_input, 'string', '');
@@ -1563,17 +1563,9 @@ temperature_automatic_step_input = evalin('base','temperature_automatic_step_inp
 temperature_automatic_min_input = evalin('base','temperature_automatic_min_input'); 
 temperature_automatic_max_input = evalin('base','temperature_automatic_max_input');
 
-%Get the temperature array size
-temperature_automatic_quantity = round((temperature_automatic_max_input - temperature_automatic_min_input)...
-/ temperature_automatic_step_input)+ 1;
-
-
-%Append the temperature values
-valueOfArrayTemperatureAutomatic = temperature_automatic_min_input:temperature_automatic_step_input:temperature_automatic_max_input;
-
 %Assign the values
-temperature_quantity = temperature_automatic_quantity;
-temperature_array = transpose(valueOfArrayTemperatureAutomatic);
+temperature_array = transpose(temperature_automatic_min_input:temperature_automatic_step_input:temperature_automatic_max_input);
+temperature_quantity = length(temperature_array);
 
 assignin('base', 'temperature_quantity', temperature_quantity);
 assignin('base', 'temperature_array', temperature_array);
@@ -1637,7 +1629,7 @@ epsilon_dot_step_automatic_input = evalin('base','epsilon_dot_step_automatic_inp
 epsilon_dot_min_automatic_input = evalin('base','epsilon_dot_min_automatic_input');
 epsilon_dot_max_automatic_input = evalin('base','epsilon_dot_max_automatic_input');
 % Temperature ===========================================
-save_temperature_type = evalin('base','save_teperature_type');
+save_temperature_type = evalin('base','save_temperature_type');
 
 switch(save_temperature_type)
     case 1 
