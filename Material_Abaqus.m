@@ -1926,9 +1926,9 @@ while i <= temperature_quantity
             while j <= strain_rate_automatic_quantity
                 while k <= epsilon_quantity 
                         sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
-                   if(epsilon >= 1)                        
-                        sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
-                   end                
+%                    if(epsilon >= 1)                        
+%                         sigma = (A+B)*(1+C*log(strain_rate_automatic/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+%                    end                
                         fprintf(fid,'%E\t%E\t%E\t%E\n', [sigma epsilon strain_rate_automatic temperature_array(i,1)]);            
                         matAuxPlot(a,1) = sigma;
                         matAuxPlot(a,2) = epsilon;
@@ -1950,9 +1950,9 @@ while i <= temperature_quantity
                             strain_rate_automatic_plot(w) = lastButOneStrainRateValue + delta * w;                           
                                 while k <= epsilon_quantity 
                                     sigma = (A+B*epsilon^n)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);
-                                        if(epsilon >= 1)                        
-                                            sigma = (A+B)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
-                                        end                        
+%                                         if(epsilon >= 1)                        
+%                                             sigma = (A+B)*(1+C*log(strain_rate_automatic_plot(w)/eps_dot_0))*(1-((temperature_array(i,1)-T_0)/(T_m-T_0))^m);                     
+%                                         end                        
                                             matAuxPlot(a,1) = sigma;
                                             matAuxPlot(a,2) = epsilon;
                                             matAuxPlot(a,3) = strain_rate_automatic_plot(w);
